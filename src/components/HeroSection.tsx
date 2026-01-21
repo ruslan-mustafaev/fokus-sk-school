@@ -10,17 +10,28 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-brand-light pt-32 pb-20">
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 right-20 w-96 h-96 bg-brand-blue/5 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-20 left-20 w-80 h-80 bg-brand-orange/5 rounded-full blur-3xl animate-pulse-slow" />
-        <svg className="absolute top-40 left-10 w-16 h-16 text-brand-blue/20 animate-float" viewBox="0 0 24 24" fill="currentColor">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Большие blur круги - размещены на краях */}
+        <div className="absolute top-10 -right-32 lg:top-20 lg:right-10 w-64 h-64 lg:w-96 lg:h-96 bg-brand-blue/5 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="absolute -bottom-20 -left-32 lg:bottom-10 lg:left-10 w-56 h-56 lg:w-80 lg:h-80 bg-brand-orange/5 rounded-full blur-3xl animate-pulse-slow" />
+
+        {/* Звезды - размещены на безопасном расстоянии от текста */}
+        <svg className="absolute top-32 left-4 lg:top-40 lg:left-10 w-12 h-12 lg:w-16 lg:h-16 text-brand-blue/20 animate-float" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
         </svg>
-        <svg className="absolute bottom-40 right-20 w-12 h-12 text-brand-orange/30 animate-float" style={{ animationDelay: '2s' }} viewBox="0 0 24 24" fill="currentColor">
+        <svg className="hidden lg:block absolute bottom-32 right-16 w-12 h-12 text-brand-orange/30 animate-float" style={{ animationDelay: '2s' }} viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
         </svg>
-        <div className="absolute top-1/3 right-1/4 w-4 h-4 bg-brand-orange rounded-full animate-float" style={{ animationDelay: '1s' }} />
-        <div className="absolute bottom-1/3 left-1/4 w-3 h-3 bg-brand-blue rounded-full animate-float" style={{ animationDelay: '3s' }} />
+
+        {/* Маленькие круги - размещены на периферии */}
+        <div className="hidden lg:block absolute top-1/4 right-32 w-4 h-4 bg-brand-orange rounded-full animate-float" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-40 lg:bottom-1/4 left-8 lg:left-20 w-3 h-3 bg-brand-blue rounded-full animate-float" style={{ animationDelay: '3s' }} />
+
+        {/* Дополнительные элементы для мобильной версии */}
+        <div className="lg:hidden absolute top-24 right-8 w-3 h-3 bg-brand-orange rounded-full animate-float" style={{ animationDelay: '1.5s' }} />
+        <svg className="lg:hidden absolute bottom-20 right-6 w-10 h-10 text-brand-orange/30 animate-float" style={{ animationDelay: '2s' }} viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+        </svg>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
