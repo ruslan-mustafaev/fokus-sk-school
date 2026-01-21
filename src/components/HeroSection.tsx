@@ -32,7 +32,7 @@ export default function HeroSection() {
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[0.9] tracking-tight">
-              <span className="text-brand-blue">ФОКУС.</span>
+              <span className="text-brand-blue">FOCUS.</span>
               <br />
               <span className="text-brand-dark">ДІЯ.</span>
               <br />
