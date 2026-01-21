@@ -10,7 +10,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden pt-24">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-10 w-32 h-32 bg-brand-blue rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 right-10 w-40 h-40 bg-brand-orange rounded-full blur-3xl"></div>
@@ -18,14 +18,6 @@ export default function HeroSection() {
 
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
         <div className="space-y-8">
-          <div className="inline-block">
-            <img
-              src="/logo/img_3159.png"
-              alt="Фокус - Онлайн школа словацької мови"
-              className="h-16 md:h-20 w-auto"
-            />
-          </div>
-
           <h1 className="text-4xl md:text-6xl font-bold leading-tight">
             Вивчай словацьку
             <span className="block text-brand-blue">з теплом і підтримкою</span>
