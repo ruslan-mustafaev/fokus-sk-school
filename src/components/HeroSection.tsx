@@ -10,17 +10,26 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-brand-light pt-32 pb-20">
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 right-20 w-96 h-96 bg-brand-blue/5 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-20 left-20 w-80 h-80 bg-brand-orange/5 rounded-full blur-3xl animate-pulse-slow" />
-        <svg className="absolute top-40 left-10 w-16 h-16 text-brand-blue/20 animate-float" viewBox="0 0 24 24" fill="currentColor">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="hidden md:block absolute -top-32 -right-48 w-96 h-96 bg-brand-blue/5 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="hidden md:block absolute -bottom-32 -left-48 w-80 h-80 bg-brand-orange/5 rounded-full blur-3xl animate-pulse-slow" />
+
+        <svg className="absolute -top-10 -left-20 w-24 h-24 text-brand-blue/15 animate-float md:block hidden" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
         </svg>
-        <svg className="absolute bottom-40 right-20 w-12 h-12 text-brand-orange/30 animate-float" style={{ animationDelay: '2s' }} viewBox="0 0 24 24" fill="currentColor">
+        <svg className="absolute -bottom-10 -right-16 w-16 h-16 text-brand-orange/20 animate-float md:block hidden" style={{ animationDelay: '2s' }} viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
         </svg>
-        <div className="absolute top-1/3 right-1/4 w-4 h-4 bg-brand-orange rounded-full animate-float" style={{ animationDelay: '1s' }} />
-        <div className="absolute bottom-1/3 left-1/4 w-3 h-3 bg-brand-blue rounded-full animate-float" style={{ animationDelay: '3s' }} />
+
+        <div className="hidden lg:block absolute top-20 -right-10 w-5 h-5 bg-brand-orange/40 rounded-full animate-float" style={{ animationDelay: '1s' }} />
+        <div className="hidden lg:block absolute bottom-32 -left-10 w-4 h-4 bg-brand-blue/40 rounded-full animate-float" style={{ animationDelay: '3s' }} />
+
+        <svg className="absolute top-1/4 -left-12 w-12 h-12 text-brand-blue/10 animate-float md:hidden block" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+        </svg>
+        <svg className="absolute bottom-1/4 -right-8 w-8 h-8 text-brand-orange/15 animate-float md:hidden block" style={{ animationDelay: '2s' }} viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+        </svg>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
