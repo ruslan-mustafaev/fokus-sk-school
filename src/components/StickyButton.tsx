@@ -30,11 +30,9 @@ export default function StickyButton() {
       >
         <button
           onClick={handleClick}
-          className="px-6 py-4 bg-brand-orange text-white rounded-full font-semibold shadow-2xl hover:bg-brand-orange/90 transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
+          className="p-4 bg-brand-orange text-white rounded-full font-semibold shadow-2xl hover:bg-brand-orange/90 transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
         >
-          <span className="hidden sm:inline">Записатись на пробний</span>
-          <span className="sm:hidden">Пробний урок</span>
-          <ArrowUp className="w-5 h-5" />
+          <ArrowUp className="w-6 h-6" />
         </button>
       </div>
     </>
