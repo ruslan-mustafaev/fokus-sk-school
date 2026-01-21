@@ -44,7 +44,7 @@ export default function Header() {
               src="/logo/img_3159.png"
               alt="FOCUS School"
               className={`transition-all duration-300 w-auto ${
-                isScrolled ? 'h-24 sm:h-28' : 'h-16 sm:h-20 md:h-24'
+                isScrolled ? 'h-48 sm:h-56' : 'h-16 sm:h-20 md:h-24'
               }`}
             />
           </a>
