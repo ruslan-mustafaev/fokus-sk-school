@@ -102,7 +102,7 @@ export default function HeroSection() {
                   <div className="w-8 h-8 rounded-full bg-brand-orange/20 border-2 border-white" />
                   <div className="w-8 h-8 rounded-full bg-brand-blue/30 border-2 border-white" />
                 </div>
-                <span className="text-sm font-semibold text-brand-dark">100+ студентів</span>
+                <span className="text-sm font-semibold text-brand-dark">700+ студентів</span>
               </div>
             </div>
           </div>
