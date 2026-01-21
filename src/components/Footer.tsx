@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
             <img
-              src="/img_3159.png"
+              src="/logo/img_3159.png"
               alt="Фокус"
               className="h-12 w-auto mb-4 brightness-0 invert"
             />

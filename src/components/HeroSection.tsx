@@ -20,7 +20,7 @@ export default function HeroSection() {
         <div className="space-y-8">
           <div className="inline-block">
             <img
-              src="/img_3159.png"
+              src="/logo/img_3159.png"
               alt="Фокус - Онлайн школа словацької мови"
               className="h-16 md:h-20 w-auto"
             />
