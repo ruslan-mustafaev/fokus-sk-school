@@ -6,35 +6,32 @@ export default function StickyButton() {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.scrollY > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      setIsVisible(window.scrollY > 500);
     };
 
     window.addEventListener('scroll', toggleVisibility);
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
-  const handleClick = () => {
-    alert('Форма запису на пробний урок буде підключена далі');
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <>
-      <div
-        className={`fixed bottom-6 right-6 z-50 transition-all duration-300 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'
-        }`}
+    <div
+      className={`fixed bottom-6 right-6 z-50 transition-all duration-500 ${
+        isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'
+      }`}
+    >
+      <button
+        onClick={scrollToTop}
+        className="w-14 h-14 bg-brand-blue text-white rounded-2xl shadow-2xl
+                 hover:bg-brand-blue/90 transition-all duration-300 transform hover:scale-110
+                 flex items-center justify-center"
+        aria-label="Scroll to top"
       >
-        <button
-          onClick={handleClick}
-          className="p-4 bg-brand-orange text-white rounded-full font-semibold shadow-2xl hover:bg-brand-orange/90 transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
-        >
-          <ArrowUp className="w-6 h-6" />
-        </button>
-      </div>
-    </>
+        <ArrowUp className="w-6 h-6" />
+      </button>
+    </div>
   );
 }
