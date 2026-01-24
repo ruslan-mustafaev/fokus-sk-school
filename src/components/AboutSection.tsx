@@ -50,6 +50,10 @@ export default function AboutSection() {
     <section id="about" className="py-24 px-4 bg-white relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue via-brand-orange to-brand-blue" />
 
+      <img src="/brand_imgs/element_12.png" alt="" className="absolute top-20 right-10 w-24 h-24 lg:w-32 lg:h-32 opacity-40 animate-float pointer-events-none" />
+      <img src="/brand_imgs/element_13.png" alt="" className="absolute bottom-20 left-10 w-20 h-20 lg:w-28 lg:h-28 opacity-40 animate-float pointer-events-none" style={{ animationDelay: '2s' }} />
+      <img src="/brand_imgs/element_18.png" alt="" className="absolute top-1/2 right-5 w-16 h-16 opacity-30 animate-float pointer-events-none" style={{ animationDelay: '1s' }} />
+
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-blue/10 rounded-full mb-6">

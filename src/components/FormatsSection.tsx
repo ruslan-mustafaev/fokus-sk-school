@@ -68,7 +68,10 @@ export default function FormatsSection() {
   };
 
   return (
-    <section id="formats" className="py-24 px-4 bg-brand-light">
+    <section id="formats" className="py-24 px-4 bg-brand-light relative overflow-hidden">
+      <img src="/brand_imgs/element_24.png" alt="" className="absolute top-16 left-8 w-20 h-20 lg:w-28 lg:h-28 opacity-40 animate-float pointer-events-none" />
+      <img src="/brand_imgs/element_25.png" alt="" className="absolute bottom-16 right-8 w-24 h-24 lg:w-32 lg:h-32 opacity-40 animate-float pointer-events-none" style={{ animationDelay: '1.5s' }} />
+
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/10 rounded-full mb-6">

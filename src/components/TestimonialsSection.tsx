@@ -48,7 +48,11 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section id="testimonials" className="py-24 px-4 bg-white">
+    <section id="testimonials" className="py-24 px-4 bg-white relative overflow-hidden">
+      <img src="/brand_imgs/element_30.png" alt="" className="absolute top-16 right-8 w-20 h-20 lg:w-28 lg:h-28 opacity-30 animate-float pointer-events-none" />
+      <img src="/brand_imgs/element_31.png" alt="" className="absolute top-1/2 left-8 w-16 h-16 lg:w-24 lg:h-24 opacity-35 animate-float pointer-events-none" style={{ animationDelay: '2s' }} />
+      <img src="/brand_imgs/element_32.png" alt="" className="absolute bottom-40 right-12 w-18 h-18 lg:w-20 lg:h-20 opacity-30 animate-float pointer-events-none" style={{ animationDelay: '1s' }} />
+
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-blue/10 rounded-full mb-6">

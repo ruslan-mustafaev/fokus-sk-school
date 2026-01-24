@@ -61,7 +61,10 @@ export default function PricingSection() {
   };
 
   return (
-    <section id="pricing" className="py-24 px-4 bg-white">
+    <section id="pricing" className="py-24 px-4 bg-white relative overflow-hidden">
+      <img src="/brand_imgs/element_26.png" alt="" className="absolute top-20 right-10 w-24 h-24 lg:w-32 lg:h-32 opacity-30 animate-float pointer-events-none" />
+      <img src="/brand_imgs/element_27.png" alt="" className="absolute bottom-32 left-8 w-20 h-20 lg:w-28 lg:h-28 opacity-35 animate-float pointer-events-none" style={{ animationDelay: '2s' }} />
+
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-blue/10 rounded-full mb-6">
