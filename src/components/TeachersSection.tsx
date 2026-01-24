@@ -52,10 +52,7 @@ export default function TeachersSection() {
   };
 
   return (
-    <section id="teachers" className="py-24 px-4 bg-brand-light relative overflow-hidden">
-      <img src="/brand_imgs/element_28.png" alt="" className="absolute top-24 left-6 w-20 h-20 lg:w-24 lg:h-24 opacity-40 animate-float pointer-events-none" />
-      <img src="/brand_imgs/element_29.png" alt="" className="absolute bottom-20 right-10 w-24 h-24 lg:w-28 lg:h-28 opacity-35 animate-float pointer-events-none" style={{ animationDelay: '1s' }} />
-
+    <section id="teachers" className="py-24 px-4 bg-brand-light">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/10 rounded-full mb-6">
