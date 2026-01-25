@@ -4,11 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        'brand-dark': '#1A1A1A',
-        'brand-blue': '#1E10C7',
-        'brand-orange': '#EE4E00',
-        'brand-light': '#EBEBEB',
-        'brand-white': '#FFFFFF',
+        'diary-pink': '#FF6B9D',
+        'diary-purple': '#C77DFF',
+        'diary-blue': '#4CC9F0',
+        'diary-yellow': '#FFD93D',
+        'diary-green': '#6BCF7F',
+        'diary-peach': '#FFB5A7',
+        'diary-lavender': '#E7C6FF',
+        'diary-mint': '#B4F8C8',
+        'diary-paper': '#FFF8E7',
+        'diary-dark': '#2D1B3D',
       },
       fontFamily: {
         'heading': ['Inter', 'system-ui', 'sans-serif'],
@@ -16,28 +21,26 @@ export default {
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
-        'pulse-slow': 'pulse 4s ease-in-out infinite',
-        'slide-up': 'slideUp 0.6s ease-out',
-        'slide-in-left': 'slideInLeft 0.6s ease-out',
-        'slide-in-right': 'slideInRight 0.6s ease-out',
+        'wiggle': 'wiggle 1s ease-in-out infinite',
+        'bounce-soft': 'bounceSoft 2s ease-in-out infinite',
       },
       keyframes: {
         float: {
+          '0%, 100%': { transform: 'translateY(0) rotate(-1deg)' },
+          '50%': { transform: 'translateY(-10px) rotate(1deg)' },
+        },
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        },
+        bounceSoft: {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' },
+          '50%': { transform: 'translateY(-5px)' },
         },
-        slideUp: {
-          '0%': { transform: 'translateY(30px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
-        slideInLeft: {
-          '0%': { transform: 'translateX(-30px)', opacity: '0' },
-          '100%': { transform: 'translateX(0)', opacity: '1' },
-        },
-        slideInRight: {
-          '0%': { transform: 'translateX(30px)', opacity: '0' },
-          '100%': { transform: 'translateX(0)', opacity: '1' },
-        },
+      },
+      backgroundImage: {
+        'dots': 'radial-gradient(circle, #FF6B9D 1px, transparent 1px)',
+        'lines': 'repeating-linear-gradient(0deg, transparent, transparent 25px, rgba(255, 107, 157, 0.1) 25px, rgba(255, 107, 157, 0.1) 26px)',
       },
     },
   },

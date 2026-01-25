@@ -17,7 +17,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-brand-dark text-white">
+    <footer className="bg-diary-purple text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-2">
@@ -57,7 +57,7 @@ export default function Footer() {
                 href="mailto:info@fokus.sk"
                 className="flex items-center gap-3 text-white/70 hover:text-white transition-colors"
               >
-                <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
+                <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
                   <Mail className="w-5 h-5" />
                 </div>
                 <span>info@fokus.sk</span>
@@ -68,13 +68,13 @@ export default function Footer() {
             <div className="flex gap-3">
               <a
                 href="#"
-                className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center hover:bg-brand-orange transition-colors"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-diary-pink transition-colors"
               >
                 <Instagram className="w-5 h-5" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center hover:bg-brand-blue transition-colors"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-diary-blue transition-colors"
               >
                 <Facebook className="w-5 h-5" />
               </a>

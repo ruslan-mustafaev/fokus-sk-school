@@ -33,8 +33,8 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-brand-blue shadow-lg py-1'
-          : 'bg-brand-blue py-2'
+          ? 'bg-diary-purple shadow-lg py-1'
+          : 'bg-diary-purple py-2'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -62,8 +62,8 @@ export default function Header() {
             ))}
             <button
               onClick={() => scrollToSection('#contact')}
-              className="ml-4 px-6 py-3 bg-brand-orange text-white rounded-full font-semibold
-                       hover:bg-brand-orange/90 transition-all duration-300 shadow-lg
+              className="ml-4 px-6 py-3 bg-diary-pink text-white rounded-full font-semibold
+                       hover:bg-diary-pink/90 transition-all duration-300 shadow-lg
                        hover:shadow-xl transform hover:scale-105"
             >
               Пробний урок
@@ -81,7 +81,7 @@ export default function Header() {
       </div>
 
       <div
-        className={`lg:hidden absolute top-full left-0 right-0 bg-brand-blue border-t border-white/10
+        className={`lg:hidden absolute top-full left-0 right-0 bg-diary-purple border-t border-white/10
                    shadow-xl transition-all duration-300 overflow-hidden ${
                      isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
                    }`}
@@ -99,8 +99,8 @@ export default function Header() {
           ))}
           <button
             onClick={() => scrollToSection('#contact')}
-            className="mt-4 px-6 py-4 bg-brand-orange text-white rounded-full font-semibold
-                     hover:bg-brand-orange/90 transition-all duration-300 shadow-lg text-center"
+            className="mt-4 px-6 py-4 bg-diary-pink text-white rounded-full font-semibold
+                     hover:bg-diary-pink/90 transition-all duration-300 shadow-lg text-center"
           >
             Записатись на пробний урок
           </button>

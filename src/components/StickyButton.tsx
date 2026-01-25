@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ArrowUp } from 'lucide-react';
+import { ArrowUp, Heart } from 'lucide-react';
 
 export default function StickyButton() {
   const [isVisible, setIsVisible] = useState(false);
@@ -25,12 +25,14 @@ export default function StickyButton() {
     >
       <button
         onClick={scrollToTop}
-        className="w-14 h-14 bg-brand-blue text-white rounded-2xl shadow-2xl
-                 hover:bg-brand-blue/90 transition-all duration-300 transform hover:scale-110
-                 flex items-center justify-center"
+        className="w-14 h-14 bg-diary-pink text-white rounded-full shadow-2xl
+                 hover:bg-diary-pink/90 transition-all duration-300 transform hover:scale-110
+                 flex items-center justify-center relative"
         aria-label="Scroll to top"
+        style={{ transform: 'rotate(-5deg)' }}
       >
         <ArrowUp className="w-6 h-6" />
+        <Heart className="absolute -top-1 -right-1 w-4 h-4 fill-diary-yellow text-diary-yellow" />
       </button>
     </div>
   );
