@@ -1,5 +1,4 @@
-import { Check, CreditCard, ArrowRight, Heart, Star, Sparkles } from 'lucide-react';
-import { Tape, DoodleHeart, DoodleStar } from './DiaryDecorations';
+import { Check, CreditCard, ArrowRight } from 'lucide-react';
 
 export default function PricingSection() {
   const pricing = {
@@ -13,8 +12,7 @@ export default function PricingSection() {
         'Матеріали включені',
         'Підтримка 24/7',
       ],
-      color: 'diary-pink',
-      rotation: -2,
+      highlight: false,
     },
     pair: {
       title: 'Парні',
@@ -26,8 +24,7 @@ export default function PricingSection() {
         'Спільна мотивація',
         'Матеріали включені',
       ],
-      color: 'diary-blue',
-      rotation: 1,
+      highlight: false,
     },
     group: {
       title: 'Групові заняття',
@@ -53,8 +50,6 @@ export default function PricingSection() {
         'Невимушена атмосфера',
         'Нові знайомства',
       ],
-      color: 'diary-green',
-      rotation: -1,
     },
   };
 
@@ -66,115 +61,92 @@ export default function PricingSection() {
   };
 
   return (
-    <section id="pricing" className="py-24 px-4 bg-diary-paper">
-      <DoodleHeart className="top-24 left-16" />
-      <DoodleStar className="bottom-40 right-20" />
-
+    <section id="pricing" className="py-24 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-diary-purple/20 rounded-full mb-6 border-2 border-diary-purple/30" style={{ transform: 'rotate(-1deg)' }}>
-            <CreditCard className="w-4 h-4 text-diary-purple" />
-            <span className="text-sm font-semibold text-diary-purple">Ціни</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-blue/10 rounded-full mb-6">
+            <CreditCard className="w-4 h-4 text-brand-blue" />
+            <span className="text-sm font-semibold text-brand-blue">Ціни</span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6">
-            Прозорі <span className="text-diary-pink">ціни</span>
+            Прозорі <span className="text-brand-blue">ціни</span>
           </h2>
-          <p className="text-lg md:text-xl text-diary-dark/70 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-brand-dark/70 max-w-2xl mx-auto leading-relaxed">
             Без прихованих платежів. Перший урок безкоштовно!
           </p>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-6 mb-12">
-          <div className={`bg-white p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-4 border-${pricing.individual.color}/20 relative`}
-            style={{
-              transform: `rotate(${pricing.individual.rotation}deg)`,
-              clipPath: 'polygon(2% 0%, 98% 1%, 99% 98%, 1% 99%)',
-            }}
-          >
-            <Tape className="top-0 right-1/4" rotation={-5} />
-            <h3 className="text-2xl font-bold mb-2 text-diary-dark">{pricing.individual.title}</h3>
+          <div className="bg-brand-light rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <h3 className="text-2xl font-bold mb-2 text-brand-dark">{pricing.individual.title}</h3>
             <div className="flex items-baseline gap-1 mb-6">
-              <span className="text-5xl font-black text-diary-pink">{pricing.individual.price}</span>
-              <span className="text-2xl font-bold text-diary-pink">EUR</span>
-              <span className="text-diary-dark/50 ml-2">{pricing.individual.unit}</span>
+              <span className="text-5xl font-black text-brand-blue">{pricing.individual.price}</span>
+              <span className="text-2xl font-bold text-brand-blue">EUR</span>
+              <span className="text-brand-dark/50 ml-2">{pricing.individual.unit}</span>
             </div>
             <ul className="space-y-3">
               {pricing.individual.features.map((feature, idx) => (
                 <li key={idx} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-diary-yellow/50 flex items-center justify-center flex-shrink-0">
-                    <Check className="w-3 h-3 text-diary-dark" />
+                  <div className="w-5 h-5 rounded-full bg-brand-blue/10 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-3 h-3 text-brand-blue" />
                   </div>
-                  <span className="text-diary-dark/70">{feature}</span>
+                  <span className="text-brand-dark/70">{feature}</span>
                 </li>
               ))}
             </ul>
-            <Heart className="absolute bottom-4 right-4 w-6 h-6 fill-diary-pink/30 text-diary-pink/30" />
           </div>
 
-          <div className={`bg-white p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-4 border-${pricing.pair.color}/20 relative`}
-            style={{
-              transform: `rotate(${pricing.pair.rotation}deg)`,
-              clipPath: 'polygon(2% 0%, 98% 1%, 99% 98%, 1% 99%)',
-            }}
-          >
-            <Tape className="top-0 left-1/3" rotation={8} />
-            <h3 className="text-2xl font-bold mb-2 text-diary-dark">{pricing.pair.title}</h3>
+          <div className="bg-brand-light rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <h3 className="text-2xl font-bold mb-2 text-brand-dark">{pricing.pair.title}</h3>
             <div className="flex items-baseline gap-1 mb-6">
-              <span className="text-5xl font-black text-diary-blue">{pricing.pair.price}</span>
-              <span className="text-2xl font-bold text-diary-blue">EUR</span>
-              <span className="text-diary-dark/50 ml-2">{pricing.pair.unit}</span>
+              <span className="text-5xl font-black text-brand-blue">{pricing.pair.price}</span>
+              <span className="text-2xl font-bold text-brand-blue">EUR</span>
+              <span className="text-brand-dark/50 ml-2">{pricing.pair.unit}</span>
             </div>
             <ul className="space-y-3">
               {pricing.pair.features.map((feature, idx) => (
                 <li key={idx} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-diary-yellow/50 flex items-center justify-center flex-shrink-0">
-                    <Check className="w-3 h-3 text-diary-dark" />
+                  <div className="w-5 h-5 rounded-full bg-brand-blue/10 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-3 h-3 text-brand-blue" />
                   </div>
-                  <span className="text-diary-dark/70">{feature}</span>
+                  <span className="text-brand-dark/70">{feature}</span>
                 </li>
               ))}
             </ul>
-            <Star className="absolute bottom-4 right-4 w-6 h-6 fill-diary-yellow/60 text-diary-yellow/60" />
           </div>
 
-          <div className={`bg-white p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-4 border-${pricing.club.color}/20 relative`}
-            style={{
-              transform: `rotate(${pricing.club.rotation}deg)`,
-              clipPath: 'polygon(2% 0%, 98% 1%, 99% 98%, 1% 99%)',
-            }}
-          >
-            <Tape className="top-0 right-1/4" rotation={-10} />
-            <h3 className="text-2xl font-bold mb-2 text-diary-dark">{pricing.club.title}</h3>
+          <div className="bg-brand-orange/10 rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-brand-orange/20">
+            <h3 className="text-2xl font-bold mb-2 text-brand-dark">{pricing.club.title}</h3>
             <div className="flex items-baseline gap-1 mb-6">
-              <span className="text-5xl font-black text-diary-green">{pricing.club.price}</span>
-              <span className="text-2xl font-bold text-diary-green">EUR</span>
-              <span className="text-diary-dark/50 ml-2">{pricing.club.unit}</span>
+              <span className="text-5xl font-black text-brand-orange">{pricing.club.price}</span>
+              <span className="text-2xl font-bold text-brand-orange">EUR</span>
+              <span className="text-brand-dark/50 ml-2">{pricing.club.unit}</span>
             </div>
             <ul className="space-y-3">
               {pricing.club.features.map((feature, idx) => (
                 <li key={idx} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-diary-yellow/50 flex items-center justify-center flex-shrink-0">
-                    <Check className="w-3 h-3 text-diary-dark" />
+                  <div className="w-5 h-5 rounded-full bg-brand-orange/10 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-3 h-3 text-brand-orange" />
                   </div>
-                  <span className="text-diary-dark/70">{feature}</span>
+                  <span className="text-brand-dark/70">{feature}</span>
                 </li>
               ))}
             </ul>
-            <Sparkles className="absolute bottom-4 right-4 w-6 h-6 text-diary-purple/50" />
           </div>
         </div>
 
-        <div className="bg-diary-purple rounded-3xl p-8 md:p-12 text-white relative overflow-hidden mb-12 transform rotate-1 shadow-xl">
-          <Tape className="top-4 right-1/4" rotation={15} />
+        <div className="bg-brand-blue rounded-[2.5rem] p-8 md:p-12 text-white relative overflow-hidden mb-12">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -mr-48 -mt-48" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-orange/20 rounded-full -ml-32 -mb-32" />
 
           <div className="relative z-10">
             <h3 className="text-3xl md:text-4xl font-black mb-8">{pricing.group.title}</h3>
 
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               {pricing.group.packages.map((pkg, idx) => (
-                <div key={idx} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 relative hover:bg-white/20 transition-colors border-2 border-white/20">
+                <div key={idx} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 relative hover:bg-white/20 transition-colors">
                   {pkg.badge && (
-                    <div className="absolute -top-3 -right-3 bg-diary-yellow text-diary-dark text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                    <div className="absolute -top-3 -right-3 bg-brand-orange text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
                       {pkg.badge}
                     </div>
                   )}
@@ -201,29 +173,24 @@ export default function PricingSection() {
               ))}
             </ul>
           </div>
-
-          <Heart className="absolute top-4 right-4 w-8 h-8 fill-white/10 text-white/10" />
-          <Star className="absolute bottom-4 left-4 w-6 h-6 fill-white/10 text-white/10" />
         </div>
 
-        <div className="bg-white rounded-3xl p-8 md:p-12 text-center transform -rotate-1 shadow-xl border-4 border-diary-pink/20">
-          <Tape className="top-4 left-1/3" rotation={-8} />
-          <p className="text-2xl md:text-3xl font-bold text-diary-dark mb-4">
+        <div className="bg-brand-light rounded-3xl p-8 md:p-12 text-center">
+          <p className="text-2xl md:text-3xl font-bold text-brand-dark mb-4">
             Перший пробний урок безкоштовно!
           </p>
-          <p className="text-diary-dark/70 mb-8 max-w-xl mx-auto">
+          <p className="text-brand-dark/70 mb-8 max-w-xl mx-auto">
             Познайомся з викладачем, спробуй наш метод та відчуй атмосферу школи
           </p>
           <button
             onClick={scrollToContact}
-            className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-diary-pink text-white
-                     rounded-full font-bold text-lg hover:bg-diary-pink/90 transition-all duration-300
+            className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-orange text-white
+                     rounded-full font-bold text-lg hover:bg-brand-orange/90 transition-all duration-300
                      shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
           >
             Записатись безкоштовно
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
-          <Star className="absolute top-4 right-4 w-8 h-8 fill-diary-yellow/40 text-diary-yellow/40" />
         </div>
       </div>
     </section>
