@@ -1,5 +1,6 @@
 import { Heart, MessageSquare, Target, Users, TrendingUp, Sparkles, BookOpen } from 'lucide-react';
 import AnimatedElement from './AnimatedElement';
+import DecorativeElement from './DecorativeElement';
 
 export default function AboutSection() {
   const values = [
@@ -49,6 +50,18 @@ export default function AboutSection() {
 
   return (
     <section id="about" className="py-24 px-4 bg-white relative overflow-hidden">
+      <DecorativeElement
+        src="/dekor/1.png"
+        className="top-20 right-10 w-24 h-24 md:w-32 md:h-32"
+        animation="float"
+        delay={0}
+      />
+      <DecorativeElement
+        src="/dekor/2.png"
+        className="bottom-32 left-5 w-20 h-20 md:w-28 md:h-28"
+        animation="sway"
+        delay={1000}
+      />
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <AnimatedElement animation="fade-in-down">
