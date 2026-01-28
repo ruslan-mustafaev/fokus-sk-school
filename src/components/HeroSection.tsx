@@ -82,17 +82,17 @@ export default function HeroSection() {
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[0.9] tracking-tight">
               <span className="text-brand-blue inline-block">
                 {displayText[0]}
-                <span className={`inline-block w-[0.15em] transition-opacity duration-200 ${currentWordIndex === 0 && currentCharIndex < WORDS[0].length ? 'opacity-100 animate-pulse' : 'opacity-0'}`}>|</span>
+                <span className={`inline-block w-[0.15em] ${currentWordIndex === 0 && currentCharIndex < WORDS[0].length ? 'animate-cursor-blink' : 'opacity-0'}`}>|</span>
               </span>
               <br />
               <span className="text-brand-dark inline-block">
                 {displayText[1]}
-                <span className={`inline-block w-[0.15em] transition-opacity duration-200 ${currentWordIndex === 1 && currentCharIndex < WORDS[1].length ? 'opacity-100 animate-pulse' : 'opacity-0'}`}>|</span>
+                <span className={`inline-block w-[0.15em] ${currentWordIndex === 1 && currentCharIndex < WORDS[1].length ? 'animate-cursor-blink' : 'opacity-0'}`}>|</span>
               </span>
               <br />
               <span className="text-brand-orange inline-block">
                 {displayText[2]}
-                <span className={`inline-block w-[0.15em] transition-opacity duration-200 ${currentWordIndex === 2 && currentCharIndex < WORDS[2].length ? 'opacity-100 animate-pulse' : 'opacity-0'}`}>|</span>
+                <span className={`inline-block w-[0.15em] ${currentWordIndex === 2 && currentCharIndex < WORDS[2].length ? 'animate-cursor-blink' : 'opacity-0'}`}>|</span>
               </span>
             </h1>
             </AnimatedElement>
