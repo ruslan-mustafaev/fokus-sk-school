@@ -108,17 +108,18 @@ export default function HeroSection() {
               <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={handleTrialClick}
-                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 overflow-hidden
-                         rounded-full font-bold text-lg transition-all duration-300
-                         shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
+                className="group relative inline-block transition-all duration-300
+                         hover:shadow-2xl transform hover:-translate-y-1"
               >
                 <img
                   src="/dekor/13.png"
-                  alt=""
-                  className="absolute inset-0 w-full h-full object-cover rounded-full"
+                  alt="Безкоштовний пробний урок"
+                  className="w-auto h-auto max-w-full"
                 />
-                <span className="relative z-10 text-white whitespace-nowrap">Безкоштовний пробний урок</span>
-                <ArrowRight className="relative z-10 w-5 h-5 text-white group-hover:translate-x-1 transition-transform" />
+                <span className="absolute inset-0 flex items-center justify-center gap-3 text-white font-bold text-lg px-8">
+                  <span className="whitespace-nowrap">Безкоштовний пробний урок</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </span>
               </button>
             </div>
             </AnimatedElement>
