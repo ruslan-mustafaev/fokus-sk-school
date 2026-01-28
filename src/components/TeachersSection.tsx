@@ -57,11 +57,13 @@ export default function TeachersSection() {
     <section id="teachers" className="py-24 px-4 bg-brand-light relative overflow-hidden">
       <DecorativeElement
         src="/dekor/7.png"
-        className="top-16 right-10 w-20 h-20 md:w-28 md:h-28 opacity-55"
+        className="top-16 right-10 w-20 h-20 md:w-28 md:h-28"
+        delay={350}
       />
       <DecorativeElement
         src="/dekor/8.png"
-        className="bottom-24 left-6 w-22 h-22 md:w-30 md:h-30 opacity-60"
+        className="bottom-24 left-6 w-22 h-22 md:w-30 md:h-30"
+        delay={550}
       />
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
