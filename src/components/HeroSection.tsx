@@ -2,9 +2,9 @@ import { ArrowRight, Target, Zap } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const WORDS = ['FOCUS.', 'ДІЯ.', 'РЕЗУЛЬТАТ.'];
-const TYPING_SPEED = 100;
+const TYPING_SPEED = 150;
 const PAUSE_BETWEEN_WORDS = 1000;
-const PAUSE_AT_END = 2000;
+const PAUSE_AT_END = 5000;
 
 export default function HeroSection() {
   const [displayText, setDisplayText] = useState(['', '', '']);
