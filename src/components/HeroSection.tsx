@@ -163,15 +163,6 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <div className="lg:hidden relative mt-8">
-            <div className="bg-gradient-to-r from-brand-blue to-brand-blue/70 rounded-2xl p-6 text-white text-center shadow-lg">
-              <p className="text-xl font-bold leading-tight">
-                <span className="block">Розпочни</span>
-                <span className="block text-brand-orange">без ризику</span>
-              </p>
-              <p className="text-sm mt-2 text-white/80">Пробний урок зовсім безкоштовно</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>
