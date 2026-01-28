@@ -16,39 +16,57 @@ const MagneticElement: React.FC<MagneticElementProps> = ({
   velocity,
   isInView
 }) => {
-  const [offset, setOffset] = useState({ x: 0, y: 0, rotate: 0, scale: 1 });
-  const targetOffset = useRef({ x: 0, y: 0, rotate: 0, scale: 1 });
+  const direction = (index % 2 === 0 ? 1 : -1);
+  const verticalDirection = (index % 3 === 0 ? 1 : -1);
+  const baseScatter = 50 + (index * 15);
+
+  const [offset, setOffset] = useState({
+    x: direction * baseScatter,
+    y: verticalDirection * (baseScatter * 0.6),
+    rotate: direction * 3,
+    scale: 1
+  });
+  const targetOffset = useRef({
+    x: direction * baseScatter,
+    y: verticalDirection * (baseScatter * 0.6),
+    rotate: direction * 3,
+    scale: 1
+  });
   const animationRef = useRef<number>();
 
   useEffect(() => {
     if (!isInView) {
-      targetOffset.current = { x: 0, y: 0, rotate: 0, scale: 1 };
+      const scattered = {
+        x: direction * baseScatter,
+        y: verticalDirection * (baseScatter * 0.6),
+        rotate: direction * 3,
+        scale: 1
+      };
+      targetOffset.current = scattered;
       return;
     }
 
-    const baseIntensity = Math.min(velocity * 0.5, 30);
-    const direction = (index % 2 === 0 ? 1 : -1);
-    const verticalDirection = (index % 3 === 0 ? 1 : -1);
+    const intensityMultiplier = Math.max(1, Math.min(velocity * 2, 3));
 
-    if (scrollDirection === 'up') {
-      targetOffset.current = {
-        x: direction * baseIntensity * (1 + index * 0.3),
-        y: verticalDirection * baseIntensity * 0.8,
-        rotate: direction * baseIntensity * 0.15,
-        scale: 1 + baseIntensity * 0.002,
-      };
-    } else if (scrollDirection === 'down') {
+    if (scrollDirection === 'down') {
       targetOffset.current = { x: 0, y: 0, rotate: 0, scale: 1 };
+    } else {
+      targetOffset.current = {
+        x: direction * baseScatter * intensityMultiplier,
+        y: verticalDirection * (baseScatter * 0.6) * intensityMultiplier,
+        rotate: direction * 3 * intensityMultiplier,
+        scale: 1 + (intensityMultiplier - 1) * 0.05,
+      };
     }
-  }, [scrollDirection, velocity, index, isInView]);
+  }, [scrollDirection, velocity, index, isInView, direction, verticalDirection, baseScatter]);
 
   useEffect(() => {
     const animate = () => {
       setOffset(prev => ({
-        x: prev.x + (targetOffset.current.x - prev.x) * 0.08,
-        y: prev.y + (targetOffset.current.y - prev.y) * 0.08,
-        rotate: prev.rotate + (targetOffset.current.rotate - prev.rotate) * 0.08,
-        scale: prev.scale + (targetOffset.current.scale - prev.scale) * 0.08,
+        x: prev.x + (targetOffset.current.x - prev.x) * 0.15,
+        y: prev.y + (targetOffset.current.y - prev.y) * 0.15,
+        rotate: prev.rotate + (targetOffset.current.rotate - prev.rotate) * 0.15,
+        scale: prev.scale + (targetOffset.current.scale - prev.scale) * 0.15,
       }));
       animationRef.current = requestAnimationFrame(animate);
     };
