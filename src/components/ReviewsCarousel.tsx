@@ -7,37 +7,31 @@ export default function ReviewsCarousel() {
       name: 'Олена',
       level: 'A1 - B1 за 8 місяців',
       text: 'Після 3 місяців не могла зв\'язати двох слів, а зараз вільно спілкуюся на роботі!',
-      avatar: '/visual/1.png',
     },
     {
       name: 'Андрій',
       level: 'Почав з нуля',
       text: 'Навчання настільки цікаве і без стресу, що я сам не помітив, як заговорив!',
-      avatar: '/visual/2.png',
     },
     {
       name: 'Марія',
       level: 'Розмовний клуб',
       text: 'Розмовний клуб це просто кайф! Практикую мову, знайомлюсь з цікавими людьми.',
-      avatar: '/visual/3.png',
     },
     {
       name: 'Дмитро',
       level: 'B1 - B2',
       text: 'Готувався до іспиту B2, і завдяки індивідуальним заняттям здав з першого разу!',
-      avatar: '/visual/4.png',
     },
     {
       name: 'Ірина',
       level: 'Групові заняття',
       text: 'Навчаюсь у групі вже 4 місяці це дуже мотивує і бачу прогрес!',
-      avatar: '/visual/6.png',
     },
     {
       name: 'Віктор',
       level: 'Індивідуальні заняття',
       text: 'Потрібна була словацька для роботи, і тут мені швидко допомогли. Рекомендую!',
-      avatar: '/visual/7.png',
     },
   ];
 
@@ -73,18 +67,9 @@ export default function ReviewsCarousel() {
                 "{review.text}"
               </p>
 
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full overflow-hidden bg-brand-light flex-shrink-0">
-                  <img
-                    src={review.avatar}
-                    alt={review.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div>
-                  <h4 className="font-bold text-brand-dark">{review.name}</h4>
-                  <p className="text-xs text-brand-blue font-semibold">{review.level}</p>
-                </div>
+              <div>
+                <h4 className="font-bold text-brand-dark">{review.name}</h4>
+                <p className="text-xs text-brand-blue font-semibold">{review.level}</p>
               </div>
             </div>
           ))}
