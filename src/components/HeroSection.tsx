@@ -35,11 +35,11 @@ export default function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="space-y-8">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[0.9] tracking-tight">
-              <span className="text-brand-blue">FOCUS.</span>
+              <span className="text-brand-blue highlight-word-1">FOCUS.</span>
               <br />
-              <span className="text-brand-dark">ДІЯ.</span>
+              <span className="text-brand-dark highlight-word-2">ДІЯ.</span>
               <br />
-              <span className="text-brand-orange">РЕЗУЛЬТАТ.</span>
+              <span className="text-brand-orange highlight-word-3">РЕЗУЛЬТАТ.</span>
             </h1>
 
             <p className="text-lg md:text-xl text-brand-dark/70 leading-relaxed max-w-xl">

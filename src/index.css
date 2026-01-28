@@ -16,6 +16,84 @@
   }
 }
 
+@keyframes text-highlight {
+  0%, 100% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+}
+
+@keyframes highlight-word-1 {
+  0%, 100% {
+    background-color: transparent;
+    text-shadow: none;
+  }
+  10%, 35% {
+    background-color: rgba(59, 130, 246, 0.3);
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+  40%, 100% {
+    background-color: transparent;
+    text-shadow: none;
+  }
+}
+
+@keyframes highlight-word-2 {
+  0%, 35%, 100% {
+    background-color: transparent;
+    text-shadow: none;
+  }
+  45%, 70% {
+    background-color: rgba(31, 41, 55, 0.3);
+    text-shadow: 0 0 20px rgba(31, 41, 55, 0.5);
+  }
+  75%, 100% {
+    background-color: transparent;
+    text-shadow: none;
+  }
+}
+
+@keyframes highlight-word-3 {
+  0%, 70%, 100% {
+    background-color: transparent;
+    text-shadow: none;
+  }
+  80%, 95% {
+    background-color: rgba(249, 115, 22, 0.3);
+    text-shadow: 0 0 20px rgba(249, 115, 22, 0.5);
+  }
+  100% {
+    background-color: transparent;
+    text-shadow: none;
+  }
+}
+
+.highlight-word-1 {
+  animation: highlight-word-1 8s ease-in-out infinite;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+}
+
+.highlight-word-2 {
+  animation: highlight-word-2 8s ease-in-out infinite;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+}
+
+.highlight-word-3 {
+  animation: highlight-word-3 8s ease-in-out infinite;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+}
+
 @layer components {
   .btn-primary {
     @apply px-8 py-4 bg-brand-orange text-white rounded-full font-semibold text-lg
