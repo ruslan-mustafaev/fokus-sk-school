@@ -80,19 +80,19 @@ export default function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="space-y-8">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[0.9] tracking-tight">
-              <span className="text-brand-blue">
+              <span className="text-brand-blue inline-block">
                 {displayText[0]}
-                {currentWordIndex === 0 && currentCharIndex < WORDS[0].length && <span className="animate-pulse">|</span>}
+                <span className={`inline-block w-[0.15em] transition-opacity duration-200 ${currentWordIndex === 0 && currentCharIndex < WORDS[0].length ? 'opacity-100 animate-pulse' : 'opacity-0'}`}>|</span>
               </span>
               <br />
-              <span className="text-brand-dark">
+              <span className="text-brand-dark inline-block">
                 {displayText[1]}
-                {currentWordIndex === 1 && currentCharIndex < WORDS[1].length && <span className="animate-pulse">|</span>}
+                <span className={`inline-block w-[0.15em] transition-opacity duration-200 ${currentWordIndex === 1 && currentCharIndex < WORDS[1].length ? 'opacity-100 animate-pulse' : 'opacity-0'}`}>|</span>
               </span>
               <br />
-              <span className="text-brand-orange">
+              <span className="text-brand-orange inline-block">
                 {displayText[2]}
-                {currentWordIndex === 2 && currentCharIndex < WORDS[2].length && <span className="animate-pulse">|</span>}
+                <span className={`inline-block w-[0.15em] transition-opacity duration-200 ${currentWordIndex === 2 && currentCharIndex < WORDS[2].length ? 'opacity-100 animate-pulse' : 'opacity-0'}`}>|</span>
               </span>
             </h1>
 
