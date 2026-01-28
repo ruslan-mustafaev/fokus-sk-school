@@ -1,4 +1,4 @@
-import { Check, CreditCard, ArrowRight } from 'lucide-react';
+import { Check, ArrowRight } from 'lucide-react';
 
 export default function PricingSection() {
   const pricing = {
@@ -64,10 +64,6 @@ export default function PricingSection() {
     <section id="pricing" className="py-24 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-blue/10 rounded-full mb-6">
-            <CreditCard className="w-4 h-4 text-brand-blue" />
-            <span className="text-sm font-semibold text-brand-blue">Ціни</span>
-          </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6">
             Прозорі <span className="text-brand-blue">ціни</span>
           </h2>
