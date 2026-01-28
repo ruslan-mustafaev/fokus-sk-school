@@ -3,7 +3,7 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 interface AnimatedElementProps {
   children: ReactNode;
-  animation?: 'fade-in-up' | 'fade-in-down' | 'fade-in-left' | 'fade-in-right' | 'scale-in' | 'rotate-in';
+  animation?: 'fade-in-up' | 'fade-in-down' | 'fade-in-left' | 'fade-in-right' | 'scale-in' | 'rotate-in' | 'zoom-in';
   delay?: 0 | 100 | 200 | 300 | 400 | 500 | 600;
   className?: string;
 }

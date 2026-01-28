@@ -122,7 +122,7 @@ export default function AboutSection() {
           </div>
         </AnimatedElement>
 
-        <AnimatedElement animation="fade-in-up" delay={200}>
+        <AnimatedElement animation="zoom-in" delay={200}>
           <div className="mt-16 text-center">
             <div className="inline-block">
               <img src="/dekor/40.png" alt="Вчуся, щоб не лише розуміти, а й говорити!" className="max-w-full h-auto" />
