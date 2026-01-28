@@ -46,16 +46,14 @@ const MagneticElement: React.FC<MagneticElementProps> = ({
       return;
     }
 
-    const intensityMultiplier = Math.max(1, Math.min(velocity * 2, 3));
-
     if (scrollDirection === 'down') {
       targetOffset.current = { x: 0, y: 0, rotate: 0, scale: 1 };
     } else {
       targetOffset.current = {
-        x: direction * baseScatter * intensityMultiplier,
-        y: verticalDirection * (baseScatter * 0.6) * intensityMultiplier,
-        rotate: direction * 3 * intensityMultiplier,
-        scale: 1 + (intensityMultiplier - 1) * 0.05,
+        x: direction * baseScatter,
+        y: verticalDirection * (baseScatter * 0.6),
+        rotate: direction * 3,
+        scale: 1,
       };
     }
   }, [scrollDirection, velocity, index, isInView, direction, verticalDirection, baseScatter]);
