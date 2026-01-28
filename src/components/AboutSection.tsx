@@ -52,15 +52,11 @@ export default function AboutSection() {
     <section id="about" className="py-24 px-4 bg-white relative overflow-hidden">
       <DecorativeElement
         src="/dekor/1.png"
-        className="top-20 right-10 w-24 h-24 md:w-32 md:h-32"
-        animation="float"
-        delay={0}
+        className="top-10 right-5 w-16 h-16 md:w-20 md:h-20 opacity-60"
       />
       <DecorativeElement
         src="/dekor/2.png"
-        className="bottom-32 left-5 w-20 h-20 md:w-28 md:h-28"
-        animation="sway"
-        delay={1000}
+        className="bottom-20 left-10 w-20 h-20 md:w-24 md:h-24 opacity-50"
       />
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">

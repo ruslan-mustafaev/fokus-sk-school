@@ -66,15 +66,11 @@ export default function PricingSection() {
     <section id="pricing" className="py-24 px-4 bg-white relative overflow-hidden">
       <DecorativeElement
         src="/dekor/5.png"
-        className="top-16 right-16 w-20 h-20 md:w-28 md:h-28"
-        animation="float"
-        delay={1500}
+        className="top-20 right-10 w-20 h-20 md:w-26 md:h-26 opacity-60"
       />
       <DecorativeElement
         src="/dekor/6.png"
-        className="bottom-40 left-10 w-32 h-32 md:w-40 md:h-40"
-        animation="sway"
-        delay={500}
+        className="bottom-32 left-8 w-24 h-24 md:w-32 md:h-32 opacity-50"
       />
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
