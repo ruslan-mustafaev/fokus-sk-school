@@ -1,10 +1,10 @@
-import { Clock, Users, UserPlus, Coffee, Check, ArrowRight } from 'lucide-react';
+import { Clock, Check, ArrowRight } from 'lucide-react';
 import AnimatedElement from './AnimatedElement';
 
 export default function FormatsSection() {
   const formats = [
     {
-      icon: Users,
+      image: '/visual/1.png',
       title: 'Індивідуальні',
       description: 'Повна увага викладача тільки тобі',
       benefits: [
@@ -18,7 +18,7 @@ export default function FormatsSection() {
       iconBg: 'bg-brand-blue',
     },
     {
-      icon: UserPlus,
+      image: '/visual/2.png',
       title: 'Парні',
       description: 'Навчайтесь разом з другом',
       benefits: [
@@ -32,7 +32,7 @@ export default function FormatsSection() {
       iconBg: 'bg-brand-orange',
     },
     {
-      icon: Users,
+      image: '/visual/3.png',
       title: 'Групові',
       description: 'Вчись у компанії однодумців',
       benefits: [
@@ -46,7 +46,7 @@ export default function FormatsSection() {
       iconBg: 'bg-brand-blue',
     },
     {
-      icon: Coffee,
+      image: '/visual/4.png',
       title: 'Розмовний клуб',
       description: 'Практикуй мову невимушено',
       benefits: [
@@ -95,8 +95,12 @@ export default function FormatsSection() {
                          transform hover:-translate-y-2 border-l-4 ${format.accent} h-full`}
               >
                 <div className="flex items-start gap-4 mb-6">
-                  <div className={`w-14 h-14 ${format.iconBg} rounded-2xl flex items-center justify-center text-white shadow-lg flex-shrink-0`}>
-                    <format.icon className="w-7 h-7" />
+                  <div className={`w-16 h-16 ${format.iconBg} rounded-2xl flex items-center justify-center shadow-lg flex-shrink-0 overflow-hidden`}>
+                    <img
+                      src={format.image}
+                      alt={format.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-brand-dark">{format.title}</h3>
