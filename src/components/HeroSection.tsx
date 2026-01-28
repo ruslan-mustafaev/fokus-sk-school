@@ -1,5 +1,6 @@
 import { ArrowRight, Target, Zap } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import AnimatedElement from './AnimatedElement';
 
 const WORDS = ['FOCUS.', 'ДІЯ.', 'РЕЗУЛЬТАТ.'];
 const TYPING_SPEED = 150;
@@ -77,7 +78,8 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="space-y-8">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[0.9] tracking-tight">
+            <AnimatedElement animation="fade-in-right" delay={100}>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[0.9] tracking-tight">
               <span className="text-brand-blue inline-block">
                 {displayText[0]}
                 <span className={`inline-block w-[0.15em] transition-opacity duration-200 ${currentWordIndex === 0 && currentCharIndex < WORDS[0].length ? 'opacity-100 animate-pulse' : 'opacity-0'}`}>|</span>
@@ -93,13 +95,17 @@ export default function HeroSection() {
                 <span className={`inline-block w-[0.15em] transition-opacity duration-200 ${currentWordIndex === 2 && currentCharIndex < WORDS[2].length ? 'opacity-100 animate-pulse' : 'opacity-0'}`}>|</span>
               </span>
             </h1>
+            </AnimatedElement>
 
-            <p className="text-lg md:text-xl text-brand-dark/70 leading-relaxed max-w-xl">
+            <AnimatedElement animation="fade-in-up" delay={200}>
+              <p className="text-lg md:text-xl text-brand-dark/70 leading-relaxed max-w-xl">
               Вчися словацькій, щоб не лише розуміти, а й впевнено говорити.
               Практичний підхід, індивідуальна підтримка, реальні результати.
             </p>
+            </AnimatedElement>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <AnimatedElement animation="scale-in" delay={300}>
+              <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={handleTrialClick}
                 className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-orange text-white
@@ -110,8 +116,10 @@ export default function HeroSection() {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
+            </AnimatedElement>
 
-            <div className="flex flex-wrap gap-6 pt-4">
+            <AnimatedElement animation="fade-in-up" delay={400}>
+              <div className="flex flex-wrap gap-6 pt-4">
               <div className="flex items-center gap-2">
                 <div className="w-10 h-10 bg-brand-blue/10 rounded-full flex items-center justify-center">
                   <Target className="w-5 h-5 text-brand-blue" />
@@ -125,9 +133,11 @@ export default function HeroSection() {
                 <span className="text-sm font-medium text-brand-dark/70">Швидкий прогрес</span>
               </div>
             </div>
+            </AnimatedElement>
           </div>
 
-          <div className="relative hidden lg:block">
+          <AnimatedElement animation="fade-in-left" delay={300}>
+            <div className="relative hidden lg:block">
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-br from-brand-blue to-brand-blue/50 rounded-[3rem] transform rotate-3" />
               <div className="relative bg-white rounded-[2.5rem] p-8 shadow-2xl">
@@ -161,6 +171,7 @@ export default function HeroSection() {
               </div>
             </div>
           </div>
+          </AnimatedElement>
 
         </div>
       </div>

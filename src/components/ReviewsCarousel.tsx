@@ -1,4 +1,5 @@
 import { Star } from 'lucide-react';
+import AnimatedElement from './AnimatedElement';
 
 export default function ReviewsCarousel() {
   const reviews = [
@@ -38,11 +39,13 @@ export default function ReviewsCarousel() {
 
   return (
     <section className="py-16 px-4 bg-gradient-to-r from-brand-blue/5 via-brand-orange/5 to-brand-blue/5 overflow-hidden">
-      <div className="max-w-7xl mx-auto mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-brand-dark">
-          Що кажуть наші <span className="text-brand-blue">студенти</span>
-        </h2>
-      </div>
+      <AnimatedElement animation="fade-in-down">
+        <div className="max-w-7xl mx-auto mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-brand-dark">
+            Що кажуть наші <span className="text-brand-blue">студенти</span>
+          </h2>
+        </div>
+      </AnimatedElement>
 
       <div className="relative overflow-hidden">
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10" />
