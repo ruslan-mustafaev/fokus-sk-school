@@ -91,7 +91,7 @@ export default function Footer() {
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/50 text-sm">
-            2026 FOCUS School. Всі права захищені.
+            2024 FOCUS School. Всі права захищені.
           </p>
           <p className="text-white/30 text-sm">
             ФОКУС. ДІЯ. РЕЗУЛЬТАТ.

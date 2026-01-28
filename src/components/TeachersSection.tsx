@@ -10,7 +10,7 @@ export default function TeachersSection() {
       hobby: 'Подорожі та фотографія',
       fact: 'Вивчила словацьку за 6 місяців і тепер допомагаю іншим!',
       love: 'Бачити, як студенти починають впевнено говорити',
-      image: '/visual/5.png',
+      initials: 'Н',
       color: 'bg-brand-blue',
     },
     {
@@ -20,7 +20,7 @@ export default function TeachersSection() {
       hobby: 'Читання словацької літератури',
       fact: 'Можу пояснити будь-яке правило через мемі',
       love: 'Коли студенти починають жартувати словацькою',
-      image: '/visual/6.png',
+      initials: 'М',
       color: 'bg-brand-orange',
     },
     {
@@ -30,7 +30,7 @@ export default function TeachersSection() {
       hobby: 'Словацька музика та кіно',
       fact: 'Знаю всі словацькі приказки та їх історію',
       love: 'Розмови про культуру та традиції Словаччини',
-      image: '/visual/7.png',
+      initials: 'П',
       color: 'bg-brand-blue',
     },
     {
@@ -40,7 +40,7 @@ export default function TeachersSection() {
       hobby: 'Малювання та каліграфія',
       fact: 'Створюю власні навчальні матеріали з ілюстраціями',
       love: 'Перші успіхи новачків!',
-      image: '/visual/8.png',
+      initials: 'С',
       color: 'bg-brand-orange',
     },
   ];
@@ -83,12 +83,8 @@ export default function TeachersSection() {
             >
               <div className="bg-white rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 h-full">
                 <div className="flex items-start gap-5 mb-6">
-                  <div className={`w-20 h-20 ${teacher.color} rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg overflow-hidden`}>
-                    <img
-                      src={teacher.image}
-                      alt={teacher.name}
-                      className="w-full h-full object-cover"
-                    />
+                  <div className={`w-20 h-20 ${teacher.color} rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg`}>
+                    <span className="text-3xl font-black text-white">{teacher.initials}</span>
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-brand-dark">{teacher.name}</h3>

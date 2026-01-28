@@ -61,17 +61,6 @@ export default function HeroSection() {
         <div className="absolute top-10 -right-32 lg:top-20 lg:right-10 w-64 h-64 lg:w-96 lg:h-96 bg-brand-blue/5 rounded-full blur-3xl animate-pulse-slow" />
         <div className="absolute -bottom-20 -left-32 lg:bottom-10 lg:left-10 w-56 h-56 lg:w-80 lg:h-80 bg-brand-orange/5 rounded-full blur-3xl animate-pulse-slow" />
 
-        {/* Декоративные картинки в фоне */}
-        <div className="hidden lg:block absolute top-32 right-20 w-20 h-20 rounded-2xl overflow-hidden opacity-30 animate-float shadow-lg" style={{ animationDelay: '0s' }}>
-          <img src="/visual/1.png" alt="decoration" className="w-full h-full object-cover" />
-        </div>
-        <div className="hidden lg:block absolute bottom-40 right-32 w-24 h-24 rounded-2xl overflow-hidden opacity-20 animate-float shadow-lg" style={{ animationDelay: '1.5s' }}>
-          <img src="/visual/3.png" alt="decoration" className="w-full h-full object-cover" />
-        </div>
-        <div className="hidden lg:block absolute top-1/2 right-16 w-16 h-16 rounded-xl overflow-hidden opacity-25 animate-float shadow-lg" style={{ animationDelay: '2.5s' }}>
-          <img src="/visual/5.png" alt="decoration" className="w-full h-full object-cover" />
-        </div>
-
         {/* Звезда на правой стороне */}
         <svg className="hidden lg:block absolute bottom-32 right-16 w-12 h-12 text-brand-orange/30 animate-float" style={{ animationDelay: '2s' }} viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />

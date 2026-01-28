@@ -1,28 +1,28 @@
-import { Target } from 'lucide-react';
+import { Heart, MessageSquare, Target, Users, TrendingUp, Sparkles, BookOpen } from 'lucide-react';
 import AnimatedElement from './AnimatedElement';
 
 export default function AboutSection() {
   const values = [
     {
-      image: '/visual/1.png',
+      icon: MessageSquare,
       title: 'Практичний підхід',
       description: 'Вчимо те, що справді потрібно в житті. Жива розмовна мова для реальних ситуацій.',
       color: 'bg-brand-blue',
     },
     {
-      image: '/visual/2.png',
+      icon: TrendingUp,
       title: 'Постійний прогрес',
       description: 'Відстежуємо твої результати, долаємо бар\'єри, фіксуємо кожен успіх.',
       color: 'bg-brand-orange',
     },
     {
-      image: '/visual/3.png',
+      icon: Heart,
       title: 'Підтримка 24/7',
       description: 'Допомога між уроками, відповіді на питання, мотивація коли потрібно.',
       color: 'bg-brand-blue',
     },
     {
-      image: '/visual/4.png',
+      icon: Users,
       title: 'Індивідуальний план',
       description: 'Програма під твої цілі та темп. Кожен студент — унікальний.',
       color: 'bg-brand-orange',
@@ -31,17 +31,17 @@ export default function AboutSection() {
 
   const targetAudience = [
     {
-      image: '/visual/5.png',
+      icon: Sparkles,
       title: 'Початківці',
       description: 'Тільки починаєш вивчати словацьку з нуля',
     },
     {
-      image: '/visual/6.png',
+      icon: TrendingUp,
       title: 'Вдосконалення',
       description: 'Маєш базу, хочеш говорити впевненіше',
     },
     {
-      image: '/visual/7.png',
+      icon: BookOpen,
       title: 'Життя та робота',
       description: 'Потрібна мова для переїзду чи кар\'єри',
     },
@@ -79,12 +79,8 @@ export default function AboutSection() {
             >
               <div className="group bg-brand-light rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 relative overflow-hidden h-full">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-brand-blue/5 to-brand-orange/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
-                <div className={`w-20 h-20 ${value.color} rounded-2xl flex items-center justify-center mb-6 shadow-lg overflow-hidden`}>
-                  <img
-                    src={value.image}
-                    alt={value.title}
-                    className="w-full h-full object-cover"
-                  />
+                <div className={`w-16 h-16 ${value.color} rounded-2xl flex items-center justify-center mb-6 text-white shadow-lg`}>
+                  <value.icon className="w-8 h-8" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-brand-dark">{value.title}</h3>
                 <p className="text-brand-dark/70 leading-relaxed text-lg">{value.description}</p>
@@ -103,12 +99,8 @@ export default function AboutSection() {
               <div className="grid md:grid-cols-3 gap-6">
                 {targetAudience.map((item, index) => (
                   <div key={index} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-colors">
-                    <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center mb-4 overflow-hidden">
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="w-full h-full object-cover"
-                      />
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4">
+                      <item.icon className="w-6 h-6 text-white" />
                     </div>
                     <p className="text-xl font-bold mb-2">{item.title}</p>
                     <p className="text-white/80">{item.description}</p>
