@@ -1,4 +1,5 @@
-import { Heart, Book, Star, Users, ArrowRight } from 'lucide-react';
+import { Heart, Book, Star, Users } from 'lucide-react';
+import { ParticleScatter } from './ParticleScatter';
 
 export default function TeachersSection() {
   const teachers = [
@@ -67,7 +68,7 @@ export default function TeachersSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <ParticleScatter className="grid md:grid-cols-2 gap-6">
           {teachers.map((teacher, index) => (
             <div
               key={index}
@@ -122,7 +123,7 @@ export default function TeachersSection() {
               </div>
             </div>
           ))}
-        </div>
+        </ParticleScatter>
 
       </div>
     </section>

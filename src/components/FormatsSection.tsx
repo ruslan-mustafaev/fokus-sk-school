@@ -1,4 +1,5 @@
 import { Clock, Users, UserPlus, Coffee, Check, ArrowRight } from 'lucide-react';
+import { ParticleScatter } from './ParticleScatter';
 
 export default function FormatsSection() {
   const formats = [
@@ -79,7 +80,7 @@ export default function FormatsSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <ParticleScatter className="grid md:grid-cols-2 gap-6">
           {formats.map((format, index) => (
             <div
               key={index}
@@ -118,7 +119,7 @@ export default function FormatsSection() {
               </div>
             </div>
           ))}
-        </div>
+        </ParticleScatter>
 
         <div className="mt-16 text-center">
           <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl max-w-2xl mx-auto">

@@ -1,5 +1,6 @@
 import { ArrowRight, Target, Zap } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { ParticleScatter } from './ParticleScatter';
 
 const WORDS = ['FOCUS.', 'ДІЯ.', 'РЕЗУЛЬТАТ.'];
 const TYPING_SPEED = 150;
@@ -111,7 +112,7 @@ export default function HeroSection() {
               </button>
             </div>
 
-            <div className="flex flex-wrap gap-6 pt-4">
+            <ParticleScatter className="flex flex-wrap gap-6 pt-4">
               <div className="flex items-center gap-2">
                 <div className="w-10 h-10 bg-brand-blue/10 rounded-full flex items-center justify-center">
                   <Target className="w-5 h-5 text-brand-blue" />
@@ -124,7 +125,7 @@ export default function HeroSection() {
                 </div>
                 <span className="text-sm font-medium text-brand-dark/70">Швидкий прогрес</span>
               </div>
-            </div>
+            </ParticleScatter>
           </div>
 
           <div className="relative hidden lg:block">

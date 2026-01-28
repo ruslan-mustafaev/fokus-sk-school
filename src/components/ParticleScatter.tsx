@@ -1,121 +1,122 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, Children, cloneElement, isValidElement } from 'react';
 import { useScrollDirection } from '../hooks/useScrollDirection';
 
-interface Particle {
-  id: number;
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  originalX: number;
-  originalY: number;
-}
-
-interface ParticleScatterProps {
+interface MagneticElementProps {
   children: React.ReactNode;
-  intensity?: number;
+  index: number;
+  scrollDirection: 'up' | 'down' | 'none';
+  velocity: number;
+  isInView: boolean;
 }
 
-export const ParticleScatter: React.FC<ParticleScatterProps> = ({ children, intensity = 1 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [particles, setParticles] = useState<Particle[]>([]);
-  const { scrollDirection } = useScrollDirection();
-  const animationFrameRef = useRef<number>();
-  const particlesRef = useRef<Particle[]>([]);
+const MagneticElement: React.FC<MagneticElementProps> = ({
+  children,
+  index,
+  scrollDirection,
+  velocity,
+  isInView
+}) => {
+  const [offset, setOffset] = useState({ x: 0, y: 0, rotate: 0, scale: 1 });
+  const targetOffset = useRef({ x: 0, y: 0, rotate: 0, scale: 1 });
+  const animationRef = useRef<number>();
 
   useEffect(() => {
-    const createParticles = () => {
-      if (!containerRef.current) return;
+    if (!isInView) {
+      targetOffset.current = { x: 0, y: 0, rotate: 0, scale: 1 };
+      return;
+    }
 
-      const rect = containerRef.current.getBoundingClientRect();
-      const newParticles: Particle[] = [];
-      const particleCount = Math.min(12, Math.ceil((rect.width * rect.height) / 5000));
+    const baseIntensity = Math.min(velocity * 0.5, 30);
+    const direction = (index % 2 === 0 ? 1 : -1);
+    const verticalDirection = (index % 3 === 0 ? 1 : -1);
 
-      for (let i = 0; i < particleCount; i++) {
-        const x = Math.random() * rect.width;
-        const y = Math.random() * rect.height;
-        newParticles.push({
-          id: i,
-          x,
-          y,
-          vx: 0,
-          vy: 0,
-          originalX: x,
-          originalY: y,
-        });
-      }
-
-      setParticles(newParticles);
-      particlesRef.current = newParticles;
-    };
-
-    createParticles();
-
-    const handleResize = () => createParticles();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    if (scrollDirection === 'up') {
+      targetOffset.current = {
+        x: direction * baseIntensity * (1 + index * 0.3),
+        y: verticalDirection * baseIntensity * 0.8,
+        rotate: direction * baseIntensity * 0.15,
+        scale: 1 + baseIntensity * 0.002,
+      };
+    } else if (scrollDirection === 'down') {
+      targetOffset.current = { x: 0, y: 0, rotate: 0, scale: 1 };
+    }
+  }, [scrollDirection, velocity, index, isInView]);
 
   useEffect(() => {
     const animate = () => {
-      const updatedParticles = particlesRef.current.map((particle) => {
-        const force = 0.08 * intensity;
-        let tx: number, ty: number;
-
-        if (scrollDirection === 'down') {
-          tx = particle.originalX;
-          ty = particle.originalY;
-        } else {
-          tx = particle.originalX + (Math.random() - 0.5) * 80 * intensity;
-          ty = particle.originalY + (Math.random() - 0.5) * 80 * intensity;
-        }
-
-        const dx = tx - particle.x;
-        const dy = ty - particle.y;
-
-        const newVx = particle.vx + dx * force;
-        const newVy = particle.vy + dy * force;
-
-        return {
-          ...particle,
-          x: particle.x + newVx * 0.85,
-          y: particle.y + newVy * 0.85,
-          vx: newVx * 0.85,
-          vy: newVy * 0.85,
-        };
-      });
-
-      particlesRef.current = updatedParticles;
-      setParticles([...updatedParticles]);
-      animationFrameRef.current = requestAnimationFrame(animate);
+      setOffset(prev => ({
+        x: prev.x + (targetOffset.current.x - prev.x) * 0.08,
+        y: prev.y + (targetOffset.current.y - prev.y) * 0.08,
+        rotate: prev.rotate + (targetOffset.current.rotate - prev.rotate) * 0.08,
+        scale: prev.scale + (targetOffset.current.scale - prev.scale) * 0.08,
+      }));
+      animationRef.current = requestAnimationFrame(animate);
     };
 
-    animationFrameRef.current = requestAnimationFrame(animate);
+    animationRef.current = requestAnimationFrame(animate);
     return () => {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
     };
-  }, [scrollDirection, intensity]);
+  }, []);
 
   return (
-    <div ref={containerRef} className="relative overflow-hidden">
+    <div
+      style={{
+        transform: `translate(${offset.x}px, ${offset.y}px) rotate(${offset.rotate}deg) scale(${offset.scale})`,
+        willChange: 'transform',
+      }}
+    >
       {children}
-
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {particles.map((particle) => (
-          <div
-            key={particle.id}
-            className="absolute w-1 h-1 bg-brand-blue/40 rounded-full blur-sm"
-            style={{
-              left: `${particle.x}px`,
-              top: `${particle.y}px`,
-              transform: 'translate(-50%, -50%)',
-              transition: 'none',
-            }}
-          />
-        ))}
-      </div>
     </div>
   );
 };
+
+interface ParticleScatterProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export const ParticleScatter: React.FC<ParticleScatterProps> = ({ children, className = '' }) => {
+  const { scrollDirection, velocity } = useScrollDirection();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const wrappedChildren = Children.map(children, (child, index) => {
+    if (isValidElement(child)) {
+      return (
+        <MagneticElement
+          index={index}
+          scrollDirection={scrollDirection}
+          velocity={velocity}
+          isInView={isInView}
+        >
+          {child}
+        </MagneticElement>
+      );
+    }
+    return child;
+  });
+
+  return (
+    <div ref={containerRef} className={className}>
+      {wrappedChildren}
+    </div>
+  );
+};
+
+export default ParticleScatter;
