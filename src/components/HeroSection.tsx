@@ -155,9 +155,7 @@ export default function HeroSection() {
             </div>
 
             <div className="absolute -bottom-8 -left-8 bg-brand-orange text-white rounded-2xl p-6 shadow-2xl max-w-xs transform -rotate-3 hover:rotate-0 transition-transform duration-300">
-              <p className="font-bold text-lg leading-snug">
-                STAY FOCUSED,<br />GET RESULTS!
-              </p>
+              <img src="/dekor/24.png" alt="Stay Focused" className="w-full h-auto" />
             </div>
 
             <div className="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-xl">
