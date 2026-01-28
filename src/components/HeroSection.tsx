@@ -1,6 +1,51 @@
 import { ArrowRight, Target, Zap } from 'lucide-react';
+import { useState, useEffect } from 'react';
+
+const WORDS = ['FOCUS.', 'ДІЯ.', 'РЕЗУЛЬТАТ.'];
+const TYPING_SPEED = 100;
+const PAUSE_BETWEEN_WORDS = 1000;
+const PAUSE_AT_END = 2000;
 
 export default function HeroSection() {
+  const [displayText, setDisplayText] = useState(['', '', '']);
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentCharIndex, setCurrentCharIndex] = useState(0);
+  const [isTyping, setIsTyping] = useState(true);
+
+  useEffect(() => {
+    if (!isTyping) return;
+
+    const timer = setTimeout(() => {
+      const word = WORDS[currentWordIndex];
+
+      if (currentCharIndex < word.length) {
+        setDisplayText(prev => {
+          const newText = [...prev];
+          newText[currentWordIndex] = word.substring(0, currentCharIndex + 1);
+          return newText;
+        });
+        setCurrentCharIndex(prev => prev + 1);
+      } else {
+        if (currentWordIndex < WORDS.length - 1) {
+          setCurrentWordIndex(prev => prev + 1);
+          setCurrentCharIndex(0);
+          setIsTyping(false);
+          setTimeout(() => setIsTyping(true), PAUSE_BETWEEN_WORDS);
+        } else {
+          setIsTyping(false);
+          setTimeout(() => {
+            setCurrentWordIndex(0);
+            setCurrentCharIndex(0);
+            setDisplayText(['', '', '']);
+            setIsTyping(true);
+          }, PAUSE_AT_END);
+        }
+      }
+    }, TYPING_SPEED);
+
+    return () => clearTimeout(timer);
+  }, [currentCharIndex, currentWordIndex, isTyping]);
+
   const handleTrialClick = () => {
     const element = document.querySelector('#contact');
     if (element) {
@@ -35,11 +80,20 @@ export default function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="space-y-8">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[0.9] tracking-tight">
-              <span className="text-brand-blue highlight-word-1">FOCUS.</span>
+              <span className="text-brand-blue">
+                {displayText[0]}
+                {currentWordIndex === 0 && currentCharIndex < WORDS[0].length && <span className="animate-pulse">|</span>}
+              </span>
               <br />
-              <span className="text-brand-dark highlight-word-2">ДІЯ.</span>
+              <span className="text-brand-dark">
+                {displayText[1]}
+                {currentWordIndex === 1 && currentCharIndex < WORDS[1].length && <span className="animate-pulse">|</span>}
+              </span>
               <br />
-              <span className="text-brand-orange highlight-word-3">РЕЗУЛЬТАТ.</span>
+              <span className="text-brand-orange">
+                {displayText[2]}
+                {currentWordIndex === 2 && currentCharIndex < WORDS[2].length && <span className="animate-pulse">|</span>}
+              </span>
             </h1>
 
             <p className="text-lg md:text-xl text-brand-dark/70 leading-relaxed max-w-xl">
