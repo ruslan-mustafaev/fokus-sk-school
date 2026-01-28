@@ -1,5 +1,4 @@
 import { Heart, MessageSquare, Target, Users, TrendingUp, Sparkles, BookOpen } from 'lucide-react';
-import { ParticleScatter } from './ParticleScatter';
 
 export default function AboutSection() {
   const values = [
@@ -64,7 +63,7 @@ export default function AboutSection() {
           </p>
         </div>
 
-        <ParticleScatter className="grid md:grid-cols-2 gap-6 mb-20">
+        <div className="grid md:grid-cols-2 gap-6 mb-20">
           {values.map((value, index) => (
             <div
               key={index}
@@ -78,7 +77,7 @@ export default function AboutSection() {
               <p className="text-brand-dark/70 leading-relaxed text-lg">{value.description}</p>
             </div>
           ))}
-        </ParticleScatter>
+        </div>
 
         <div className="bg-brand-blue rounded-[2.5rem] p-8 md:p-12 text-white relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -mr-48 -mt-48" />
@@ -86,7 +85,7 @@ export default function AboutSection() {
 
           <div className="relative z-10">
             <h3 className="text-3xl md:text-4xl font-black mb-8">Для кого школа?</h3>
-            <ParticleScatter className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-6">
               {targetAudience.map((item, index) => (
                 <div key={index} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-colors">
                   <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4">
@@ -96,7 +95,7 @@ export default function AboutSection() {
                   <p className="text-white/80">{item.description}</p>
                 </div>
               ))}
-            </ParticleScatter>
+            </div>
           </div>
         </div>
 

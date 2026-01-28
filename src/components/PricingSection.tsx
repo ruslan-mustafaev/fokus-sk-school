@@ -1,5 +1,4 @@
 import { Check, ArrowRight } from 'lucide-react';
-import { ParticleScatter } from './ParticleScatter';
 
 export default function PricingSection() {
   const pricing = {
@@ -73,7 +72,7 @@ export default function PricingSection() {
           </p>
         </div>
 
-        <ParticleScatter className="grid lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid lg:grid-cols-3 gap-6 mb-12">
           <div className="bg-brand-light rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
             <h3 className="text-2xl font-bold mb-2 text-brand-dark">{pricing.individual.title}</h3>
             <div className="flex items-baseline gap-1 mb-6">
@@ -130,7 +129,7 @@ export default function PricingSection() {
               ))}
             </ul>
           </div>
-        </ParticleScatter>
+        </div>
 
         <div className="bg-brand-blue rounded-[2.5rem] p-8 md:p-12 text-white relative overflow-hidden mb-12">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -mr-48 -mt-48" />
@@ -139,7 +138,7 @@ export default function PricingSection() {
           <div className="relative z-10">
             <h3 className="text-3xl md:text-4xl font-black mb-8">{pricing.group.title}</h3>
 
-            <ParticleScatter className="grid md:grid-cols-3 gap-6 mb-8">
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
               {pricing.group.packages.map((pkg, idx) => (
                 <div key={idx} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 relative hover:bg-white/20 transition-colors">
                   {pkg.badge && (
@@ -157,7 +156,7 @@ export default function PricingSection() {
                   </div>
                 </div>
               ))}
-            </ParticleScatter>
+            </div>
 
             <ul className="grid md:grid-cols-2 gap-3">
               {pricing.group.features.map((feature, idx) => (
