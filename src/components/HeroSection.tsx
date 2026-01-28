@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles, Target, Zap } from 'lucide-react';
+import { ArrowRight, Target, Zap } from 'lucide-react';
 
 export default function HeroSection() {
   const handleTrialClick = () => {
@@ -37,11 +37,6 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="space-y-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-blue/10 rounded-full">
-              <Sparkles className="w-4 h-4 text-brand-blue" />
-              <span className="text-sm font-semibold text-brand-blue">Онлайн школа словацької мови</span>
-            </div>
-
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[0.9] tracking-tight">
               <span className="text-brand-blue">FOCUS.</span>
               <br />
