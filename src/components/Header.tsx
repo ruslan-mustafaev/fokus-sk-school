@@ -34,7 +34,7 @@ export default function Header() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? 'bg-brand-blue shadow-lg py-1'
-          : 'bg-brand-blue py-2'
+          : 'bg-brand-blue py-1.5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -44,7 +44,7 @@ export default function Header() {
               src="/logo/img_3159.png"
               alt="FOCUS School"
               className={`transition-all duration-300 w-auto ${
-                isScrolled ? 'h-14 sm:h-16' : 'h-16 sm:h-20 md:h-24'
+                isScrolled ? 'h-12 sm:h-14' : 'h-14 sm:h-16 md:h-20'
               }`}
             />
           </a>
