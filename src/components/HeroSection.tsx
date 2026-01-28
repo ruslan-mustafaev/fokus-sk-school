@@ -67,7 +67,6 @@ export default function HeroSection() {
 
         {/* Маленькие круги - размещены на периферии */}
         <div className="hidden lg:block absolute top-1/4 right-32 w-4 h-4 bg-brand-orange rounded-full animate-float" style={{ animationDelay: '1s' }} />
-        <div className="absolute bottom-40 lg:bottom-1/4 left-8 lg:left-20 w-3 h-3 bg-brand-blue rounded-full animate-float" style={{ animationDelay: '3s' }} />
 
         {/* Дополнительные элементы для мобильной версии */}
         <svg className="lg:hidden absolute bottom-20 right-6 w-10 h-10 text-brand-orange/30 animate-float" style={{ animationDelay: '2s' }} viewBox="0 0 24 24" fill="currentColor">
