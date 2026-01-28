@@ -124,20 +124,6 @@ export default function TeachersSection() {
           ))}
         </div>
 
-        <div className="mt-16 bg-white rounded-3xl p-8 md:p-12 shadow-xl text-center">
-          <p className="text-lg text-brand-dark/70 mb-6">
-            Ти можеш обрати викладача, з яким тобі найкомфортніше!
-          </p>
-          <button
-            onClick={scrollToContact}
-            className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-orange text-white
-                     rounded-full font-bold text-lg hover:bg-brand-orange/90 transition-all duration-300
-                     shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
-          >
-            Познайомитися на пробному уроці
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
       </div>
     </section>
   );
