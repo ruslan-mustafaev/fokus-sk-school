@@ -124,10 +124,8 @@ export default function AboutSection() {
 
         <AnimatedElement animation="fade-in-up" delay={200}>
           <div className="mt-16 text-center">
-            <div className="inline-block bg-brand-orange/10 rounded-2xl px-8 py-6">
-              <p className="text-xl md:text-2xl font-bold text-brand-orange">
-                Вчуся, щоб не лише розуміти, а й говорити!
-              </p>
+            <div className="inline-block">
+              <img src="/dekor/40.png" alt="Вчуся, щоб не лише розуміти, а й говорити!" className="max-w-full h-auto" />
             </div>
           </div>
         </AnimatedElement>
