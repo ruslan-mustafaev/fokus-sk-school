@@ -7,25 +7,19 @@ import TeachersSection from './components/TeachersSection';
 import ReviewsCarousel from './components/ReviewsCarousel';
 import Footer from './components/Footer';
 import StickyButton from './components/StickyButton';
-import ParticleEffect from './components/ParticleEffect';
-import MagneticScroll from './components/MagneticScroll';
 
 function App() {
   return (
-    <div className="min-h-screen relative">
-      <ParticleEffect />
-      <MagneticScroll />
-      <div className="relative z-10">
-        <Header />
-        <HeroSection />
-        <AboutSection />
-        <FormatsSection />
-        <PricingSection />
-        <TeachersSection />
-        <ReviewsCarousel />
-        <Footer />
-        <StickyButton />
-      </div>
+    <div className="min-h-screen">
+      <Header />
+      <HeroSection />
+      <AboutSection />
+      <FormatsSection />
+      <PricingSection />
+      <TeachersSection />
+      <ReviewsCarousel />
+      <Footer />
+      <StickyButton />
     </div>
   );
 }
