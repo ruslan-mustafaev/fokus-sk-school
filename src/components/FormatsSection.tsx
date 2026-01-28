@@ -1,4 +1,4 @@
-import { Clock, Users, UserPlus, Coffee, Check, Layers, ArrowRight } from 'lucide-react';
+import { Clock, Users, UserPlus, Coffee, Check, ArrowRight } from 'lucide-react';
 
 export default function FormatsSection() {
   const formats = [
@@ -71,10 +71,6 @@ export default function FormatsSection() {
     <section id="formats" className="py-24 px-4 bg-brand-light">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/10 rounded-full mb-6">
-            <Layers className="w-4 h-4 text-brand-orange" />
-            <span className="text-sm font-semibold text-brand-orange">Формати навчання</span>
-          </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6">
             Обери свій <span className="text-brand-orange">формат</span>
           </h2>
