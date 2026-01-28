@@ -5,6 +5,7 @@ import FormatsSection from './components/FormatsSection';
 import PricingSection from './components/PricingSection';
 import TeachersSection from './components/TeachersSection';
 import TestimonialsSection from './components/TestimonialsSection';
+import ReviewsCarousel from './components/ReviewsCarousel';
 import Footer from './components/Footer';
 import StickyButton from './components/StickyButton';
 
@@ -17,6 +18,7 @@ function App() {
       <FormatsSection />
       <PricingSection />
       <TeachersSection />
+      <ReviewsCarousel />
       <TestimonialsSection />
       <Footer />
       <StickyButton />
