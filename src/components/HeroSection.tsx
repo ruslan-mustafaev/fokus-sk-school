@@ -70,7 +70,6 @@ export default function HeroSection() {
         <div className="absolute bottom-40 lg:bottom-1/4 left-8 lg:left-20 w-3 h-3 bg-brand-blue rounded-full animate-float" style={{ animationDelay: '3s' }} />
 
         {/* Дополнительные элементы для мобильной версии */}
-        <div className="lg:hidden absolute top-24 right-8 w-3 h-3 bg-brand-orange rounded-full animate-float" style={{ animationDelay: '1.5s' }} />
         <svg className="lg:hidden absolute bottom-20 right-6 w-10 h-10 text-brand-orange/30 animate-float" style={{ animationDelay: '2s' }} viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
         </svg>
@@ -164,10 +163,13 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <div className="lg:hidden relative">
-            <div className="bg-gradient-to-br from-brand-blue to-brand-blue/80 rounded-3xl p-8 text-white text-center">
-              <p className="text-2xl font-bold mb-2">STAY FOCUSED,</p>
-              <p className="text-2xl font-bold">GET RESULTS!</p>
+          <div className="lg:hidden relative mt-8">
+            <div className="bg-gradient-to-r from-brand-blue to-brand-blue/70 rounded-2xl p-6 text-white text-center shadow-lg">
+              <p className="text-xl font-bold leading-tight">
+                <span className="block">Розпочни</span>
+                <span className="block text-brand-orange">без ризику</span>
+              </p>
+              <p className="text-sm mt-2 text-white/80">Пробний урок зовсім безкоштовно</p>
             </div>
           </div>
         </div>
