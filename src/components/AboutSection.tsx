@@ -88,7 +88,7 @@ export default function AboutSection() {
             <img
               src="/dekor/40.png"
               alt="Вчуся, щоб не лише розуміти, а й говорити!"
-              className="absolute -top-6 -right-2 md:-right-4 w-56 md:w-80 h-auto z-30"
+              className="absolute -top-6 -right-2 md:-right-10 w-56 md:w-80 h-auto z-30"
               style={{ transform: 'rotate(20deg)' }}
             />
 
