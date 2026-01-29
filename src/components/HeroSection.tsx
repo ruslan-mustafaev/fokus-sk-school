@@ -126,9 +126,10 @@ export default function HeroSection() {
           <AnimatedElement animation="fade-in-left" delay={300}>
             <div className="relative hidden lg:block max-w-sm xl:max-w-md mx-auto lg:mr-0">
             <div className="relative px-3 pt-12 pb-8">
-              <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/20 via-brand-orange/20 to-brand-blue/20 rounded-[2.5rem] blur-2xl" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-brand-orange/30 to-brand-blue/30 rounded-[2.5rem] transform rotate-1" />
-              <div className="relative bg-white rounded-[2rem] p-5 shadow-2xl border-4 border-white">
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/30 via-brand-orange/40 to-brand-blue/30 rounded-[2.5rem] blur-3xl" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-brand-orange/50 via-brand-blue/40 to-brand-orange/50 rounded-[2.5rem] transform rotate-2" />
+              <div className="absolute inset-0 bg-gradient-to-bl from-brand-blue/40 to-brand-orange/40 rounded-[2.5rem] transform -rotate-1" />
+              <div className="relative bg-white rounded-[2rem] p-5 shadow-2xl border-2 border-white/80">
                 <div className="aspect-[4/5] rounded-xl overflow-hidden bg-brand-light flex items-center justify-center">
                   <div className="text-center p-4">
                     <div className="w-28 h-28 mx-auto mb-3 rounded-full bg-gradient-to-br from-brand-blue/20 to-brand-orange/20 flex items-center justify-center">
