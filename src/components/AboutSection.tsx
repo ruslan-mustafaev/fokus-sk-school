@@ -88,6 +88,13 @@ export default function AboutSection() {
             <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -mr-48 -mt-48" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-orange/20 rounded-full -ml-32 -mb-32" />
 
+            <img
+              src="/dekor/40.png"
+              alt="Вчуся, щоб не лише розуміти, а й говорити!"
+              className="absolute -top-8 -right-4 w-64 md:w-80 h-auto z-20"
+              style={{ transform: 'rotate(20deg)' }}
+            />
+
             <div className="relative z-10">
               <h3 className="text-3xl md:text-4xl font-black mb-8">Для кого школа?</h3>
               <div className="grid md:grid-cols-3 gap-6">
@@ -101,14 +108,6 @@ export default function AboutSection() {
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-        </AnimatedElement>
-
-        <AnimatedElement animation="zoom-in" delay={200}>
-          <div className="mt-16 text-center">
-            <div className="inline-block">
-              <img src="/dekor/40.png" alt="Вчуся, щоб не лише розуміти, а й говорити!" className="max-w-2xl h-auto" />
             </div>
           </div>
         </AnimatedElement>
