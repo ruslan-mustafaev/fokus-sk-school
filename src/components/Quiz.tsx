@@ -911,7 +911,7 @@ export default function Quiz({ onBackToSite }: { onBackToSite?: () => void }) {
   const currentScore = answers.filter(a => a.isCorrect).length;
 
   return (
-    <div className="min-h-screen bg-brand-light pt-8 pb-16 relative overflow-hidden">
+    <div className="min-h-screen bg-brand-light pb-16 relative overflow-hidden">
       <DecorativeElement
         imageSrc="/dekor/24.png"
         position="top-right"
@@ -931,29 +931,35 @@ export default function Quiz({ onBackToSite }: { onBackToSite?: () => void }) {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-gradient-to-br from-brand-blue/3 to-brand-orange/3 rounded-full blur-3xl" />
       </div>
 
-      <header className="relative z-10 py-6 px-4 mb-8">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <button onClick={onBackToSite} className="flex items-center gap-3 cursor-pointer hover:scale-105 transition-transform duration-300">
-            <img src="/logo/img_3159.png" alt="FOCUS School" className="h-12 md:h-14" />
-          </button>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-brand-blue shadow-lg py-1">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
+            <button onClick={onBackToSite} className="flex items-center group cursor-pointer">
+              <img
+                src="/logo/img_3159.png"
+                alt="FOCUS School"
+                className="h-12 sm:h-14 w-auto transition-all duration-300 group-hover:scale-105"
+              />
+            </button>
 
-          {stage === 'quiz' && (
-            <div className="flex items-center gap-3 md:gap-4">
-              <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-white rounded-xl shadow-md">
-                <span className="text-brand-dark/60 text-sm font-medium">
-                  Питання <span className="font-black text-brand-blue">{currentQuestion + 1}</span>/<span className="font-black text-brand-orange">{questions.length}</span>
-                </span>
+            {stage === 'quiz' && (
+              <div className="flex items-center gap-2 md:gap-3">
+                <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-lg">
+                  <span className="text-white/80 text-sm font-medium">
+                    Питання <span className="font-bold text-white">{currentQuestion + 1}</span>/<span className="font-bold text-brand-orange">{questions.length}</span>
+                  </span>
+                </div>
+                <div className="flex items-center gap-2 px-3 md:px-4 py-2 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
+                  <CheckCircle className="w-4 h-4 text-brand-orange" />
+                  <span className="font-bold text-white">{currentScore}</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 bg-green-50 border-2 border-green-200 rounded-xl shadow-md">
-                <CheckCircle className="w-4 h-4 text-green-600" />
-                <span className="font-black text-green-700">{currentScore}</span>
-              </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </header>
 
-      <main className="relative z-10 px-4">
+      <main className="relative z-10 px-4 pt-24">
         <div className="max-w-5xl mx-auto">
           {stage === 'registration' && (
             <RegistrationForm onSubmit={handleRegistration} />
