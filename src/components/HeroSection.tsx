@@ -1,4 +1,4 @@
-import { ArrowRight, Target, Zap } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import AnimatedElement from './AnimatedElement';
 
@@ -105,22 +105,6 @@ export default function HeroSection() {
             </div>
             </AnimatedElement>
 
-            <AnimatedElement animation="fade-in-up" delay={400}>
-              <div className="flex flex-wrap gap-6 pt-4">
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 bg-brand-blue/10 rounded-full flex items-center justify-center">
-                  <Target className="w-5 h-5 text-brand-blue" />
-                </div>
-                <span className="text-sm font-medium text-brand-dark/70">Чіткий план</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 bg-brand-orange/10 rounded-full flex items-center justify-center">
-                  <Zap className="w-5 h-5 text-brand-orange" />
-                </div>
-                <span className="text-sm font-medium text-brand-dark/70">Швидкий прогрес</span>
-              </div>
-            </div>
-            </AnimatedElement>
           </div>
 
           <AnimatedElement animation="fade-in-left" delay={300}>
