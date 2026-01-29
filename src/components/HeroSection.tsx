@@ -55,7 +55,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-brand-light pt-32 pb-20">
+    <section className="relative h-screen flex items-center overflow-hidden bg-brand-light pt-20 pb-12 md:pt-32 md:pb-20">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Большие blur круги - размещены на краях */}
         <div className="absolute top-10 -right-32 lg:top-20 lg:right-10 w-64 h-64 lg:w-96 lg:h-96 bg-brand-blue/5 rounded-full blur-3xl animate-pulse-slow" />
@@ -64,9 +64,9 @@ export default function HeroSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div className="space-y-8">
+          <div className="space-y-4 md:space-y-8">
             <AnimatedElement animation="fade-in-right" delay={100}>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[0.9] tracking-tight">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-[0.9] tracking-tight">
               <span className="text-brand-blue inline-block">
                 {displayText[0]}
                 <span className={`inline-block w-[0.15em] ${currentWordIndex === 0 && currentCharIndex < WORDS[0].length ? 'animate-cursor-blink' : 'opacity-0'}`}>|</span>
@@ -85,7 +85,7 @@ export default function HeroSection() {
             </AnimatedElement>
 
             <AnimatedElement animation="fade-in-up" delay={200}>
-              <p className="text-lg md:text-xl text-brand-dark/70 leading-relaxed max-w-xl">
+              <p className="text-base md:text-lg lg:text-xl text-brand-dark/70 leading-relaxed max-w-xl">
               Вчися словацькій, щоб не лише розуміти, а й впевнено говорити.
               Практичний підхід, індивідуальна підтримка, реальні результати.
             </p>
@@ -95,8 +95,8 @@ export default function HeroSection() {
               <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={handleTrialClick}
-                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-orange text-white
-                         rounded-full font-bold text-lg hover:bg-brand-orange/90 transition-all duration-300
+                className="group inline-flex items-center justify-center gap-3 px-6 py-3 md:px-8 md:py-4 bg-brand-orange text-white
+                         rounded-full font-bold text-base md:text-lg hover:bg-brand-orange/90 transition-all duration-300
                          shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
               >
                 Безкоштовний пробний урок
