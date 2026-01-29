@@ -1,4 +1,4 @@
-import { Heart, MessageSquare, Target, Users, TrendingUp, Sparkles, BookOpen } from 'lucide-react';
+import { Heart, MessageSquare, Users, TrendingUp, Sparkles, BookOpen } from 'lucide-react';
 import AnimatedElement from './AnimatedElement';
 import DecorativeElement from './DecorativeElement';
 
@@ -62,12 +62,6 @@ export default function AboutSection() {
       />
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
-          <AnimatedElement animation="fade-in-down">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-blue/10 rounded-full mb-6">
-              <Target className="w-4 h-4 text-brand-blue" />
-              <span className="text-sm font-semibold text-brand-blue">Наш підхід</span>
-            </div>
-          </AnimatedElement>
           <AnimatedElement animation="fade-in-up" delay={100}>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6">
               Чому обирають{' '}
