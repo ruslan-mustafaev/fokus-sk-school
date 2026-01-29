@@ -1,6 +1,5 @@
 import { Clock, Users, UserPlus, Coffee, Check, ArrowRight } from 'lucide-react';
 import AnimatedElement from './AnimatedElement';
-import DecorativeElement from './DecorativeElement';
 
 export default function FormatsSection() {
   const formats = [
@@ -71,16 +70,6 @@ export default function FormatsSection() {
 
   return (
     <section id="formats" className="py-24 px-4 bg-brand-light relative overflow-hidden">
-      <DecorativeElement
-        src="/dekor/3.png"
-        className="top-5 left-5 w-18 h-18 md:w-24 md:h-24"
-        delay={300}
-      />
-      <DecorativeElement
-        src="/dekor/4.png"
-        className="bottom-10 right-8 w-20 h-20 md:w-28 md:h-28"
-        delay={500}
-      />
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-down">

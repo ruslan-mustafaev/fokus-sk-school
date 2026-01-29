@@ -1,6 +1,5 @@
 import { Check, ArrowRight } from 'lucide-react';
 import AnimatedElement from './AnimatedElement';
-import DecorativeElement from './DecorativeElement';
 
 export default function PricingSection() {
   const pricing = {
@@ -64,16 +63,6 @@ export default function PricingSection() {
 
   return (
     <section id="pricing" className="py-24 px-4 bg-white relative overflow-hidden">
-      <DecorativeElement
-        src="/dekor/5.png"
-        className="top-20 right-10 w-20 h-20 md:w-26 md:h-26"
-        delay={250}
-      />
-      <DecorativeElement
-        src="/dekor/6.png"
-        className="bottom-32 left-8 w-24 h-24 md:w-32 md:h-32"
-        delay={450}
-      />
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-down">
