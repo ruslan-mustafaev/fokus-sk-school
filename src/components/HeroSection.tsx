@@ -124,16 +124,16 @@ export default function HeroSection() {
           </div>
 
           <AnimatedElement animation="fade-in-left" delay={300}>
-            <div className="relative hidden lg:block">
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-br from-brand-blue to-brand-blue/50 rounded-[3rem] transform rotate-3" />
-              <div className="relative bg-white rounded-[2.5rem] p-8 shadow-2xl">
-                <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-brand-light flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <div className="w-40 h-40 mx-auto mb-6 rounded-full bg-gradient-to-br from-brand-blue/20 to-brand-orange/20 flex items-center justify-center">
-                      <span className="text-7xl">F</span>
+            <div className="relative hidden lg:block max-w-sm xl:max-w-md mx-auto lg:mr-0">
+            <div className="relative px-3 py-8">
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-blue to-brand-blue/50 rounded-[2.5rem] transform rotate-2 scale-105" />
+              <div className="relative bg-white rounded-[2rem] p-5 shadow-2xl">
+                <div className="aspect-[4/5] rounded-xl overflow-hidden bg-brand-light flex items-center justify-center">
+                  <div className="text-center p-4">
+                    <div className="w-28 h-28 mx-auto mb-3 rounded-full bg-gradient-to-br from-brand-blue/20 to-brand-orange/20 flex items-center justify-center">
+                      <span className="text-5xl">F</span>
                     </div>
-                    <p className="text-sm text-brand-dark/50">
+                    <p className="text-xs text-brand-dark/50">
                       Тут буде фото
                     </p>
                   </div>
@@ -141,18 +141,18 @@ export default function HeroSection() {
               </div>
             </div>
 
-            <div className="absolute -bottom-8 -left-8 max-w-xs transform -rotate-3 hover:rotate-0 transition-transform duration-300">
+            <div className="absolute bottom-0 left-0 max-w-[180px] transform -rotate-3 hover:rotate-0 transition-transform duration-300">
               <img src="/dekor/24.png" alt="Stay Focused" className="w-full h-auto" />
             </div>
 
-            <div className="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-xl">
-              <div className="flex items-center gap-2">
-                <div className="flex -space-x-2">
-                  <div className="w-8 h-8 rounded-full bg-brand-blue/20 border-2 border-white" />
-                  <div className="w-8 h-8 rounded-full bg-brand-orange/20 border-2 border-white" />
-                  <div className="w-8 h-8 rounded-full bg-brand-blue/30 border-2 border-white" />
+            <div className="absolute top-4 right-0 bg-white rounded-xl p-2.5 shadow-xl">
+              <div className="flex items-center gap-1.5">
+                <div className="flex -space-x-1.5">
+                  <div className="w-6 h-6 rounded-full bg-brand-blue/20 border-2 border-white" />
+                  <div className="w-6 h-6 rounded-full bg-brand-orange/20 border-2 border-white" />
+                  <div className="w-6 h-6 rounded-full bg-brand-blue/30 border-2 border-white" />
                 </div>
-                <span className="text-sm font-semibold text-brand-dark">100+ студентів</span>
+                <span className="text-xs font-semibold text-brand-dark whitespace-nowrap">100+ студентів</span>
               </div>
             </div>
           </div>
