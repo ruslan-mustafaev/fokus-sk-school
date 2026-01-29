@@ -84,32 +84,31 @@ export default function AboutSection() {
         </div>
 
         <AnimatedElement animation="scale-in">
-          <div className="relative">
-            <img
-              src="/dekor/40.png"
-              alt="Вчуся, щоб не лише розуміти, а й говорити!"
-              className="absolute -top-6 -right-2 md:-right-10 w-56 md:w-80 h-auto z-30"
-              style={{ transform: 'rotate(20deg)' }}
-            />
+          <div className="bg-brand-blue rounded-[2.5rem] p-8 md:p-12 text-white relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -mr-48 -mt-48" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-orange/20 rounded-full -ml-32 -mb-32" />
 
-            <div className="bg-brand-blue rounded-[2.5rem] p-8 md:p-12 text-white relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -mr-48 -mt-48" />
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-orange/20 rounded-full -ml-32 -mb-32" />
-
-              <div className="relative z-10">
-                <h3 className="text-3xl md:text-4xl font-black mb-8">Для кого школа?</h3>
-                <div className="grid md:grid-cols-3 gap-6">
-                  {targetAudience.map((item, index) => (
-                    <div key={index} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-colors">
-                      <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4">
-                        <item.icon className="w-6 h-6 text-white" />
-                      </div>
-                      <p className="text-xl font-bold mb-2">{item.title}</p>
-                      <p className="text-white/80">{item.description}</p>
+            <div className="relative z-10">
+              <h3 className="text-3xl md:text-4xl font-black mb-8">Для кого школа?</h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                {targetAudience.map((item, index) => (
+                  <div key={index} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-colors">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4">
+                      <item.icon className="w-6 h-6 text-white" />
                     </div>
-                  ))}
-                </div>
+                    <p className="text-xl font-bold mb-2">{item.title}</p>
+                    <p className="text-white/80">{item.description}</p>
+                  </div>
+                ))}
               </div>
+            </div>
+          </div>
+        </AnimatedElement>
+
+        <AnimatedElement animation="zoom-in" delay={200}>
+          <div className="mt-16 text-center">
+            <div className="inline-block">
+              <img src="/dekor/40.png" alt="Вчуся, щоб не лише розуміти, а й говорити!" className="max-w-2xl h-auto" />
             </div>
           </div>
         </AnimatedElement>
