@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
+import ArrowDecoration from './components/ArrowDecoration';
 import FormatsSection from './components/FormatsSection';
 import PricingSection from './components/PricingSection';
 import TeachersSection from './components/TeachersSection';
@@ -22,6 +23,7 @@ function App() {
       <Header onQuizClick={() => setShowQuiz(true)} />
       <HeroSection />
       <AboutSection />
+      <ArrowDecoration />
       <FormatsSection onQuizClick={() => setShowQuiz(true)} />
       <PricingSection />
       <TeachersSection />
