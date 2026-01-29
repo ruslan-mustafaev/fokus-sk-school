@@ -9,7 +9,7 @@ const navLinks = [
   { label: 'Відгуки', href: '#testimonials' },
 ];
 
-export default function Header() {
+export default function Header({ onQuizClick }: { onQuizClick?: () => void }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -61,8 +61,16 @@ export default function Header() {
               </button>
             ))}
             <button
+              onClick={onQuizClick}
+              className="ml-4 px-6 py-3 bg-white text-brand-blue rounded-full font-semibold
+                       hover:bg-white/90 transition-all duration-300 shadow-lg
+                       hover:shadow-xl transform hover:scale-105"
+            >
+              Перевірити знання
+            </button>
+            <button
               onClick={() => scrollToSection('#contact')}
-              className="ml-4 px-6 py-3 bg-brand-orange text-white rounded-full font-semibold
+              className="ml-2 px-6 py-3 bg-brand-orange text-white rounded-full font-semibold
                        hover:bg-brand-orange/90 transition-all duration-300 shadow-lg
                        hover:shadow-xl transform hover:scale-105"
             >
@@ -98,8 +106,15 @@ export default function Header() {
             </button>
           ))}
           <button
+            onClick={onQuizClick}
+            className="mt-4 px-6 py-4 bg-white text-brand-blue rounded-full font-semibold
+                     hover:bg-white/90 transition-all duration-300 shadow-lg text-center"
+          >
+            Перевірити знання
+          </button>
+          <button
             onClick={() => scrollToSection('#contact')}
-            className="mt-4 px-6 py-4 bg-brand-orange text-white rounded-full font-semibold
+            className="mt-2 px-6 py-4 bg-brand-orange text-white rounded-full font-semibold
                      hover:bg-brand-orange/90 transition-all duration-300 shadow-lg text-center"
           >
             Записатись на пробний урок
