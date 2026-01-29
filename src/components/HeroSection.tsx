@@ -55,7 +55,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative flex items-center overflow-hidden bg-brand-light pt-32 pb-20">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-brand-light pt-32 pb-20">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Большие blur круги - размещены на краях */}
         <div className="absolute top-10 -right-32 lg:top-20 lg:right-10 w-64 h-64 lg:w-96 lg:h-96 bg-brand-blue/5 rounded-full blur-3xl animate-pulse-slow" />
