@@ -106,9 +106,9 @@ export default function AboutSection() {
         </AnimatedElement>
 
         <AnimatedElement animation="zoom-in" delay={200}>
-          <div className="mt-20 mb-8 text-center">
+          <div className="mt-16 text-center">
             <div className="inline-block">
-              <img src="/dekor/40.png" alt="Вчуся, щоб не лише розуміти, а й говорити!" className="max-w-3xl md:max-w-4xl h-auto" />
+              <img src="/dekor/40.png" alt="Вчуся, щоб не лише розуміти, а й говорити!" className="max-w-2xl h-auto" />
             </div>
           </div>
         </AnimatedElement>
