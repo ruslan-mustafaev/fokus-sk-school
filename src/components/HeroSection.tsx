@@ -55,11 +55,19 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative h-screen flex items-center overflow-hidden bg-brand-light pt-20 pb-12 md:pt-32 md:pb-20">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Большие blur круги - размещены на краях */}
-        <div className="absolute top-10 -right-32 lg:top-20 lg:right-10 w-64 h-64 lg:w-96 lg:h-96 bg-brand-blue/5 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute -bottom-20 -left-32 lg:bottom-10 lg:left-10 w-56 h-56 lg:w-80 lg:h-80 bg-brand-orange/5 rounded-full blur-3xl animate-pulse-slow" />
+    <section className="relative h-screen flex items-center overflow-hidden pt-20 pb-12 md:pt-32 md:pb-20">
+      <div className="absolute inset-0 overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/video/hero-background.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/40 via-transparent to-brand-orange/30" />
+        <div className="absolute inset-0 bg-black/20" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -67,17 +75,17 @@ export default function HeroSection() {
           <div className="space-y-4 md:space-y-8">
             <AnimatedElement animation="fade-in-right" delay={100}>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-[0.9] tracking-tight">
-              <span className="text-brand-blue inline-block">
+              <span className="text-white inline-block drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
                 {displayText[0]}
                 <span className={`inline-block w-[0.15em] ${currentWordIndex === 0 && currentCharIndex < WORDS[0].length ? 'animate-cursor-blink' : 'opacity-0'}`}>|</span>
               </span>
               <br />
-              <span className="text-brand-dark inline-block">
+              <span className="text-white inline-block drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
                 {displayText[1]}
                 <span className={`inline-block w-[0.15em] ${currentWordIndex === 1 && currentCharIndex < WORDS[1].length ? 'animate-cursor-blink' : 'opacity-0'}`}>|</span>
               </span>
               <br />
-              <span className="text-brand-orange inline-block">
+              <span className="text-brand-orange inline-block drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
                 {displayText[2]}
                 <span className={`inline-block w-[0.15em] ${currentWordIndex === 2 && currentCharIndex < WORDS[2].length ? 'animate-cursor-blink' : 'opacity-0'}`}>|</span>
               </span>
@@ -85,7 +93,7 @@ export default function HeroSection() {
             </AnimatedElement>
 
             <AnimatedElement animation="fade-in-up" delay={200}>
-              <p className="text-base md:text-lg lg:text-xl text-brand-dark/70 leading-relaxed max-w-xl">
+              <p className="text-base md:text-lg lg:text-xl text-white leading-relaxed max-w-xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
               Вчися словацькій, щоб не лише розуміти, а й впевнено говорити.
               Практичний підхід, індивідуальна підтримка, реальні результати.
             </p>
