@@ -47,9 +47,13 @@ export default function Header({ onQuizClick }: { onQuizClick?: () => void }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <a href="#" className="flex items-center">
-            <span className="text-2xl sm:text-3xl font-black text-brand-blue tracking-tight">
-              FOCUS <span className="font-light text-lg sm:text-xl">school</span>
-            </span>
+            <img
+              src="/logo/img_3159.png"
+              alt="FOCUS School"
+              className={`transition-all duration-300 ${
+                isScrolled ? 'h-10 sm:h-12' : 'h-12 sm:h-14'
+              }`}
+            />
           </a>
 
           <nav className="hidden lg:flex items-center gap-8">
