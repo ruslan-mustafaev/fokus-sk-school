@@ -56,13 +56,17 @@ export default function HeroSection() {
         />
       </section>
 
-      <section className="bg-gray-100 py-10 px-4">
-        <div className="max-w-5xl mx-auto text-center">
+      <section className="bg-gray-100 py-16 px-4">
+        <div className="max-w-6xl mx-auto">
           <AnimatedElement animation="fade-in-up">
-            <p className="text-xl md:text-2xl lg:text-3xl font-bold text-brand-dark leading-relaxed">
-              <span className="text-brand-blue font-black">Focus school</span> -- школа, де готують до життя у Словаччині:
-              робота, навчання, документи, лікарі, магазини, живе спілкування.
-            </p>
+            <div className="text-center space-y-4">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-brand-blue mb-4">
+                Focus school
+              </h2>
+              <p className="text-xl md:text-2xl lg:text-3xl font-medium text-brand-dark leading-relaxed max-w-4xl mx-auto">
+                -- школа, де готують до життя у Словаччині: робота, навчання, документи, лікарі, магазини, живе спілкування.
+              </p>
+            </div>
           </AnimatedElement>
         </div>
       </section>
