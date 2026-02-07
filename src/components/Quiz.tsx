@@ -525,7 +525,7 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: UserData) => void }) 
         <div className="text-center mb-12">
           <div className="relative inline-block mb-6">
             <img
-              src="/full_dekor/9.png"
+              src="/full_dekor/25.png"
               alt="Quiz"
               className="w-32 h-32 object-contain"
             />
