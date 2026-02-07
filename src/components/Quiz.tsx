@@ -525,8 +525,12 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: UserData) => void }) 
         <div className="text-center mb-12">
           <div className="relative inline-block mb-6">
             <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/20 to-brand-orange/20 rounded-[2rem] blur-2xl" />
-            <div className="relative w-24 h-24 rounded-[1.5rem] bg-gradient-to-br from-brand-blue to-brand-orange flex items-center justify-center shadow-2xl">
-              <BookOpen className="w-12 h-12 text-white" />
+            <div className="relative w-24 h-24 rounded-[1.5rem] bg-gradient-to-br from-brand-blue to-brand-orange flex items-center justify-center shadow-2xl p-4">
+              <img
+                src="/full_dekor/1.png"
+                alt="Quiz"
+                className="w-full h-full object-contain"
+              />
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-brand-dark mb-4 leading-tight">
