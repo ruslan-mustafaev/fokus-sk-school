@@ -522,22 +522,20 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: UserData) => void }) 
   return (
     <div className="max-w-2xl mx-auto">
       <AnimatedElement animation="fade-in-down">
-        <div className="text-center mb-12">
-          <div className="relative inline-block mb-6">
-            <div className="relative w-full max-w-xl mx-auto">
-              <img
-                src="/full_dekor/13.png"
-                alt="Quiz"
-                className="w-full h-auto object-contain"
-              />
-              <div className="absolute inset-0 flex items-center justify-center px-6">
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-brand-dark leading-tight">
-                  Тест на визначення рівня <span className="font-pangolin text-brand-orange">словацької</span>
-                </h1>
-              </div>
+        <div className="text-center mb-8">
+          <div className="relative inline-block w-full max-w-md mx-auto mb-4">
+            <img
+              src="/full_dekor/13.png"
+              alt="Quiz decoration"
+              className="w-full h-auto object-contain"
+            />
+            <div className="absolute bottom-[15%] left-0 right-0 px-8">
+              <h1 className="text-xl md:text-2xl font-black text-brand-dark leading-tight">
+                Тест на визначення<br />рівня <span className="font-pangolin text-brand-orange">словацької</span>
+              </h1>
             </div>
           </div>
-          <p className="text-lg md:text-xl text-brand-dark/70 max-w-xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-brand-dark/70 max-w-xl mx-auto leading-relaxed">
             Пройдіть тест і дізнайтесь свій рівень володіння словацькою мовою
           </p>
         </div>
