@@ -523,15 +523,17 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: UserData) => void }) 
     <div className="max-w-2xl mx-auto">
       <AnimatedElement animation="fade-in-down">
         <div className="text-center mb-8">
-          <div className="relative inline-block w-full max-w-md mx-auto mb-4">
+          <div className="relative inline-block w-full max-w-lg mx-auto mb-4">
             <img
               src="/full_dekor/13_trim.png"
               alt="Quiz decoration"
               className="w-full h-auto object-contain"
             />
-            <div className="absolute bottom-[15%] left-0 right-0 px-8">
-              <h1 className="text-xl md:text-2xl font-black text-brand-dark leading-tight">
-                Тест на визначення<br />рівня <span className="font-pangolin text-brand-orange">словацької</span>
+            <div className="absolute inset-0 flex items-center justify-center px-12">
+              <h1 className="font-pangolin text-2xl md:text-3xl leading-snug text-center">
+                <span className="text-white">Тест на визначення</span><br />
+                <span className="text-white">рівня </span>
+                <span className="text-blue-700">словацької</span>
               </h1>
             </div>
           </div>
