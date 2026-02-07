@@ -524,10 +524,9 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: UserData) => void }) 
       <AnimatedElement animation="fade-in-down">
         <div className="text-center mb-8">
           <div className="inline-block w-full max-w-2xl mx-auto mb-4">
-            <h1 className="font-pangolin text-4xl md:text-5xl lg:text-6xl leading-snug text-center">
-              <span className="text-white">Тест на визначення</span><br />
-              <span className="text-white">рівня </span>
-              <span className="text-blue-600">словацької</span>
+            <h1 className="font-pangolin text-4xl md:text-5xl lg:text-6xl leading-snug text-center text-blue-600">
+              Тест на визначення<br />
+              рівня словацької
             </h1>
             <img
               src="/full_dekor/19_trim.png"
