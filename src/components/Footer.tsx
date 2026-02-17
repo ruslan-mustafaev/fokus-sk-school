@@ -24,7 +24,7 @@ export default function Footer() {
           <AnimatedElement animation="fade-in-up" delay={0}>
             <div className="md:col-span-2">
               <img
-                src="/logo/img_3159.png"
+                src="/logo/image.png"
                 alt="FOCUS School"
                 className="h-16 w-auto mb-6"
               />
