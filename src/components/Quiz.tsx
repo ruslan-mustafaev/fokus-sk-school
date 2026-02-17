@@ -938,7 +938,7 @@ export default function Quiz({ onBackToSite }: { onBackToSite?: () => void }) {
           <div className="flex items-center justify-between">
             <button onClick={onBackToSite} className="flex items-center group cursor-pointer">
               <img
-                src="/logo/img_3159.png"
+                src="/logo/image.png"
                 alt="FOCUS School"
                 className="h-10 sm:h-12 w-auto transition-all duration-300 group-hover:scale-105"
               />
