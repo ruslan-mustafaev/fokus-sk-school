@@ -48,7 +48,7 @@ export default function Header({ onQuizClick }: { onQuizClick?: () => void }) {
         <div className="flex items-center justify-between">
           <a href="#" className="flex items-center">
             <img
-              src="/logo/img_3159.png"
+              src="/logo/image.png"
               alt="FOCUS School"
               className={`transition-all duration-300 ${
                 isScrolled ? 'h-10 sm:h-12' : 'h-12 sm:h-14'
