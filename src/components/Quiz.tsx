@@ -933,7 +933,7 @@ export default function Quiz({ onBackToSite }: { onBackToSite?: () => void }) {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-gradient-to-br from-brand-blue/3 to-brand-orange/3 rounded-full blur-3xl" />
       </div>
 
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-lg py-2">
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md shadow-lg py-2" style={{ backgroundColor: '#eaeaea' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <button onClick={onBackToSite} className="flex items-center group cursor-pointer">
