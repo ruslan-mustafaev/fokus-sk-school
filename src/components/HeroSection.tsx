@@ -42,7 +42,7 @@ export default function HeroSection() {
                          rounded-full font-bold text-lg hover:bg-brand-orange/90 transition-all duration-300
                          shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
               >
-                Записатись на пробний
+                Записатись на пробний урок
                 <PenTool className="w-5 h-5 group-hover:rotate-12 transition-transform" />
               </button>
             </AnimatedElement>
