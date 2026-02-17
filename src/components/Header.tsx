@@ -43,7 +43,7 @@ export default function Header({ onQuizClick }: { onQuizClick?: () => void }) {
           ? 'backdrop-blur-md shadow-lg py-2'
           : 'backdrop-blur-sm py-3'
       }`}
-      style={{ backgroundColor: '#D3D3D3' }}
+      style={{ backgroundColor: '#eaeaea' }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -103,7 +103,7 @@ export default function Header({ onQuizClick }: { onQuizClick?: () => void }) {
       </div>
 
       {mobileOpen && (
-        <div className="lg:hidden border-t border-gray-300 shadow-xl" style={{ backgroundColor: '#D3D3D3' }}>
+        <div className="lg:hidden border-t border-gray-300 shadow-xl" style={{ backgroundColor: '#eaeaea' }}>
           <div className="px-4 py-4 space-y-2">
             {navLinks.map((link) => (
               <button
