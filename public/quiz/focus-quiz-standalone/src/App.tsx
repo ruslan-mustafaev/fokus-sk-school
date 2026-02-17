@@ -907,11 +907,8 @@ export default function QuizPage() {
       {/* Header */}
       <header className="relative z-10 py-4 px-4 mb-6">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1E10C7] to-[#EE4E00] flex items-center justify-center text-white font-bold shadow-lg">
-              F
-            </div>
-            <span className="text-xl font-bold text-gray-900">FOCUS School</span>
+          <div className="flex items-center">
+            <img src="/logo/image.png" alt="FOCUS School" className="h-10" />
           </div>
 
           {stage === 'quiz' && (
