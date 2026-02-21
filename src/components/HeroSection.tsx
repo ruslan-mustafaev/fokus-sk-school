@@ -14,9 +14,9 @@ export default function HeroSection() {
       <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-24 pb-16">
         <div className="absolute inset-0">
           <img
-            src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
-            alt="Team"
-            className="absolute inset-0 w-full h-full object-cover"
+            src="/IMG_4314.JPG"
+            alt="Teacher"
+            className="absolute inset-0 w-full h-full object-cover object-top"
           />
           <div className="absolute inset-0 bg-black/60" />
         </div>
