@@ -14,9 +14,10 @@ export default function HeroSection() {
       <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-24 pb-16">
         <div className="absolute inset-0">
           <img
-            src="/IMG_4314.JPG"
+            src="/logo/IMG_5071.PNG"
             alt="Teacher"
-            className="absolute inset-0 w-full h-full object-cover object-top"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ objectPosition: '50% 30%' }}
           />
           <div className="absolute inset-0 bg-black/60" />
         </div>
