@@ -186,7 +186,7 @@ export default function PricingSection() {
 
         <AnimatedElement animation="fade-in-up" delay={100}>
           <div className="bg-brand-light rounded-3xl p-8 md:p-12 text-center">
-          <p className="text-2xl md:text-3xl font-bold text-brand-dark mb-4">
+          <p className="text-2xl md:text-3xl font-bold font-pangolin text-brand-dark mb-4">
             Перший пробний урок безкоштовно!
           </p>
           <p className="text-brand-dark/70 mb-8 max-w-xl mx-auto">
