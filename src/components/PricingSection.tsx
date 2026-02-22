@@ -148,7 +148,7 @@ export default function PricingSection() {
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-orange/20 rounded-full -ml-32 -mb-32" />
 
           <div className="relative z-10">
-            <h3 className="text-3xl md:text-4xl font-black mb-8">{pricing.group.title}</h3>
+            <h3 className="text-3xl md:text-4xl font-black font-pangolin mb-8">{pricing.group.title}</h3>
 
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               {pricing.group.packages.map((pkg, idx) => (
