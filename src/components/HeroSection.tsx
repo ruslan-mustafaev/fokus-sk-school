@@ -62,8 +62,17 @@ export default function HeroSection() {
         />
       </section>
 
-      <section className="bg-gray-100 py-16 px-4">
-        <div className="max-w-6xl mx-auto">
+      <section className="relative py-24 px-4 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="/IMG_7364.JPEG"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ objectPosition: '50% 20%' }}
+          />
+          <div className="absolute inset-0 bg-white/80 backdrop-blur-sm" />
+        </div>
+        <div className="max-w-6xl mx-auto relative z-10">
           <AnimatedElement animation="fade-in-up">
             <div className="text-center space-y-4">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-brand-blue mb-4 font-pangolin">

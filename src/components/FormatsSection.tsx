@@ -69,8 +69,17 @@ export default function FormatsSection({ onQuizClick }: { onQuizClick?: () => vo
   };
 
   return (
-    <section id="formats" className="py-24 px-4 bg-brand-light relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section id="formats" className="py-24 px-4 relative overflow-hidden">
+      <div className="absolute inset-0">
+        <img
+          src="/IMG_7363.JPEG"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: '50% 30%' }}
+        />
+        <div className="absolute inset-0 bg-brand-light/90 backdrop-blur-sm" />
+      </div>
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-down">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6">
