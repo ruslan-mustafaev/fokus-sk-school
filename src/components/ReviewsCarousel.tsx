@@ -40,8 +40,8 @@ export default function ReviewsCarousel() {
   return (
     <section className="py-16 px-4 bg-gradient-to-r from-brand-blue/5 via-brand-orange/5 to-brand-blue/5 overflow-hidden">
       <AnimatedElement animation="fade-in-down">
-        <div className="max-w-7xl mx-auto mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-brand-dark">
+        <div className="max-w-7xl mx-auto mb-8"> 
+          <h2 className="text-3xl md:text-4xl font-bold text-center font-pangolin text-brand-dark">
             Що кажуть наші <span className="text-brand-blue font-pangolin">студенти</span>
           </h2>
         </div>
