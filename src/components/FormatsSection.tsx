@@ -73,8 +73,8 @@ export default function FormatsSection({ onQuizClick }: { onQuizClick?: () => vo
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-down">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black font-pangolin mb-6">
-              <span className="uppercase tracking-wide">Обери свій</span>{' '}
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6">
+              <span className="uppercase font-pangolin tracking-wide">Обери свій</span>{' '}
               <span className="text-brand-orange italic font-pangolin">Формат</span>{' '}
               <span className="uppercase font-pangolin tracking-wide">навчання</span>
             </h2>
