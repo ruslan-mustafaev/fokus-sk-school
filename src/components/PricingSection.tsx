@@ -66,7 +66,7 @@ export default function PricingSection() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-down">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black font-pangolin mb-6">
               Прозорі <span className="text-brand-blue font-pangolin">ціни</span>
             </h2>
           </AnimatedElement>
