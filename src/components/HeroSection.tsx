@@ -70,15 +70,15 @@ export default function HeroSection() {
             className="absolute inset-0 w-full h-full object-cover"
             style={{ objectPosition: '50% 20%' }}
           />
-          <div className="absolute inset-0 bg-white/50" />
+          <div className="absolute inset-0 bg-white/80 backdrop-blur-sm" />
         </div>
         <div className="max-w-6xl mx-auto relative z-10">
           <AnimatedElement animation="fade-in-up">
             <div className="text-center space-y-4">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-brand-blue mb-4 font-pangolin drop-shadow-sm">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-brand-blue mb-4 font-pangolin">
                 Focus school
               </h2>
-              <p className="text-xl md:text-2xl lg:text-3xl font-medium text-brand-dark leading-relaxed max-w-4xl mx-auto drop-shadow-sm">
+              <p className="text-xl md:text-2xl lg:text-3xl font-medium text-brand-dark leading-relaxed max-w-4xl mx-auto">
                 -- школа, де готують до життя у Словаччині: робота, навчання, документи, лікарі, магазини, живе спілкування.
               </p>
             </div>

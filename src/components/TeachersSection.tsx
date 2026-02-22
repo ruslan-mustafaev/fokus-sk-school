@@ -61,7 +61,7 @@ export default function TeachersSection() {
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: '50% 20%' }}
         />
-        <div className="absolute inset-0 bg-brand-light/55" />
+        <div className="absolute inset-0 bg-brand-light/90 backdrop-blur-sm" />
       </div>
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
