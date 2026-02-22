@@ -70,7 +70,7 @@ export default function PricingSection() {
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: '50% 20%' }}
         />
-        <div className="absolute inset-0 bg-white/85 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-white/50" />
       </div>
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
