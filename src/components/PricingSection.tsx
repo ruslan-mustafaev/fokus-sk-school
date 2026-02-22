@@ -66,7 +66,7 @@ export default function PricingSection() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-down">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black font-pangolin mb-6">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6">
               Прозорі <span className="text-brand-blue font-pangolin">ціни</span>
             </h2>
           </AnimatedElement>
@@ -148,7 +148,7 @@ export default function PricingSection() {
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-orange/20 rounded-full -ml-32 -mb-32" />
 
           <div className="relative z-10">
-            <h3 className="text-3xl md:text-4xl font-black font-pangolin mb-8">{pricing.group.title}</h3>
+            <h3 className="text-3xl md:text-4xl font-black mb-8">{pricing.group.title}</h3>
 
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               {pricing.group.packages.map((pkg, idx) => (
@@ -186,7 +186,7 @@ export default function PricingSection() {
 
         <AnimatedElement animation="fade-in-up" delay={100}>
           <div className="bg-brand-light rounded-3xl p-8 md:p-12 text-center">
-          <p className="text-2xl md:text-3xl font-bold font-pangolin text-brand-dark mb-4">
+          <p className="text-2xl md:text-3xl font-bold text-brand-dark mb-4">
             Перший пробний урок безкоштовно!
           </p>
           <p className="text-brand-dark/70 mb-8 max-w-xl mx-auto">

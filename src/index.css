@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 @font-face {
+  font-family: 'Coolvetica';
+  src: url('/full_dekor/Coolvetica_Rg_Cram.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Pangolin';
   src: url('/full_dekor/pangolin-regular.ttf') format('truetype');
   font-weight: normal;

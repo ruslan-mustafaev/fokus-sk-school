@@ -11,8 +11,8 @@ export default {
         'brand-white': '#FFFFFF',
       },
       fontFamily: {
-        'heading': ['Inter', 'system-ui', 'sans-serif'],
-        'body': ['Inter', 'system-ui', 'sans-serif'],
+        'heading': ['Coolvetica', 'system-ui', 'sans-serif'],
+        'body': ['Coolvetica', 'system-ui', 'sans-serif'],
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
