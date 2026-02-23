@@ -77,19 +77,19 @@ export default function FormatsSection({ onQuizClick }: { onQuizClick?: () => vo
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: '50% 30%' }}
         />
-        <div className="absolute inset-0 bg-brand-light/90 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-black/50" />
       </div>
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-down">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-white">
               <span className="uppercase tracking-wide">Обери свій</span>{' '}
               <span className="text-brand-orange italic font-pangolin">Формат</span>{' '}
               <span className="uppercase tracking-wide">навчання</span>
             </h2>
           </AnimatedElement>
           <AnimatedElement animation="fade-in-up" delay={100}>
-            <p className="text-lg md:text-xl text-brand-dark/70 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
               Всі заняття проходять онлайн. Вчись звідки зручно!
             </p>
           </AnimatedElement>
@@ -144,7 +144,7 @@ export default function FormatsSection({ onQuizClick }: { onQuizClick?: () => vo
           <div className="mt-16 text-center">
             <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl max-w-2xl mx-auto">
               <p className="text-xl text-brand-dark/70 mb-6">
-                Не знаєш, який формат обрати?
+                Не знаєш який формат обрати?
               </p>
               <button
                 onClick={onQuizClick}

@@ -70,17 +70,17 @@ export default function PricingSection() {
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: '50% 20%' }}
         />
-        <div className="absolute inset-0 bg-white/85 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-black/50" />
       </div>
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-down">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6">
-              Прозорі <span className="text-brand-blue font-pangolin">ціни</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-white">
+              Прозорі <span className="text-brand-orange font-pangolin">ціни</span>
             </h2>
           </AnimatedElement>
           <AnimatedElement animation="fade-in-up" delay={100}>
-            <p className="text-lg md:text-xl text-brand-dark/70 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
               Без прихованих платежів. Перший урок безкоштовно!
             </p>
           </AnimatedElement>

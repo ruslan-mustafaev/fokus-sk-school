@@ -36,17 +36,17 @@ export default function FeaturesSection() {
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: '50% 30%' }}
         />
-        <div className="absolute inset-0 bg-white/85 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-black/50" />
       </div>
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-up" delay={100}>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-white">
               Наші <span className="text-brand-orange font-pangolin">Фішки</span>
             </h2>
           </AnimatedElement>
           <AnimatedElement animation="fade-in-up" delay={200}>
-            <p className="text-lg md:text-xl text-brand-dark/60 font-medium">
+            <p className="text-lg md:text-xl text-white/70 font-medium">
               Фішки навчання у Focus
             </p>
           </AnimatedElement>
