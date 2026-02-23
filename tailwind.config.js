@@ -12,7 +12,8 @@ export default {
       },
       fontFamily: {
         'heading': ['Coolvetica', 'system-ui', 'sans-serif'],
-        'body': ['Inter', 'system-ui', 'sans-serif'],
+        'body': ['Coolvetica', 'system-ui', 'sans-serif'],
+        'pangolin': ['Pangolin', 'cursive'],
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',

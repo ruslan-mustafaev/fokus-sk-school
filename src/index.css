@@ -34,9 +34,6 @@
   }
 }
 
-.font-pangolin {
-  font-family: 'Pangolin', cursive;
-}
 
 @keyframes text-highlight {
   0%, 100% {
