@@ -73,7 +73,7 @@ export default function TeachersSection() {
           </AnimatedElement>
           <AnimatedElement animation="fade-in-up" delay={100}>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6">
-              Наші <span className="text-brand-orange">викладачі</span>
+              Наші <span className="text-brand-orange font-pangolin">викладачі</span>
             </h2>
           </AnimatedElement>
           <AnimatedElement animation="fade-in-up" delay={200}>

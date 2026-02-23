@@ -26,7 +26,8 @@
   }
 
   h1, h2 {
-    @apply font-heading tracking-tight;
+    @apply font-heading;
+    letter-spacing: 0.03em;
   }
 
   h3, h4, h5, h6 {

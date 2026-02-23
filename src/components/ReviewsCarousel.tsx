@@ -42,7 +42,7 @@ export default function ReviewsCarousel() {
       <AnimatedElement animation="fade-in-down">
         <div className="max-w-7xl mx-auto mb-8"> 
           <h2 className="text-3xl md:text-4xl font-bold text-center text-brand-dark">
-            Що кажуть наші <span className="text-brand-blue">студенти</span>
+            Що кажуть наші <span className="text-brand-blue font-pangolin">студенти</span>
           </h2>
         </div>
       </AnimatedElement>
