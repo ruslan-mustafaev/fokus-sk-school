@@ -1,11 +1,10 @@
-import { PenTool, BookOpen, Users, Globe, MessageCircle } from 'lucide-react';
+import { PenTool } from 'lucide-react';
 import AnimatedElement from './AnimatedElement';
 
 const stats = [
-  { icon: BookOpen, value: '500+', label: 'Студентів навчились' },
-  { icon: Users, value: '10+', label: 'Досвідчених викладачів' },
-  { icon: Globe, value: '5', label: 'Рівнів навчання' },
-  { icon: MessageCircle, value: '95%', label: 'Задоволених студентів' },
+  { value: '700', label: 'учнів успішно закінчили навчання' },
+  { value: '10', label: 'викладачів щодня доводять до результату' },
+  { value: '86%', label: 'наших учнів рекомендують Focus' },
 ];
 
 export default function HeroSection() {
@@ -51,7 +50,7 @@ export default function HeroSection() {
                          rounded-full font-bold text-lg hover:bg-brand-orange/90 transition-all duration-300
                          shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
               >
-                Записатись на пробний урок
+                Записатись на пробний
                 <PenTool className="w-5 h-5 group-hover:rotate-12 transition-transform" />
               </button>
             </AnimatedElement>
@@ -70,47 +69,39 @@ export default function HeroSection() {
         />
       </section>
 
-      <section
-        className="relative py-56 md:py-72 lg:py-80 px-4 overflow-hidden"
-        style={{
-          backgroundImage: 'url(/IMG_7364.JPEG)',
-          backgroundSize: '100% auto',
-          backgroundPosition: 'center 20%',
-          backgroundRepeat: 'no-repeat',
-          backgroundColor: '#2D2D2D',
-        }}
-      >
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="max-w-6xl mx-auto relative z-10">
-          <AnimatedElement animation="fade-in-up">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 font-pangolin">
-                Focus school
-              </h2>
-              <p className="text-xl md:text-2xl lg:text-3xl font-medium text-white/90 leading-relaxed max-w-4xl mx-auto mb-4">
-                -- школа, де готують до життя у Словаччині
-              </p>
-              <p className="text-base md:text-lg text-white/70 leading-relaxed max-w-3xl mx-auto">
-                Робота, навчання, документи, лікарі, магазини, живе спілкування --
-                ми навчаємо мови через реальні ситуації, з якими ви зіткнетесь щодня.
-              </p>
-            </div>
-          </AnimatedElement>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mt-8">
+      <section className="relative py-16 px-4 bg-gray-100 overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             {stats.map((stat, index) => (
-              <AnimatedElement key={stat.label} animation="fade-in-up" delay={100 + index * 100}>
-                <div className="text-center group">
-                  <div className="w-14 h-14 md:w-16 md:h-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-4
-                                  group-hover:bg-brand-orange/80 transition-colors duration-300">
-                    <stat.icon className="w-7 h-7 md:w-8 md:h-8 text-white" />
-                  </div>
-                  <div className="text-3xl md:text-4xl font-black text-white mb-1">{stat.value}</div>
-                  <div className="text-sm md:text-base text-white/60 font-medium">{stat.label}</div>
+              <AnimatedElement key={stat.label} animation="fade-in-up" delay={(100 + index * 100) as 0 | 100 | 200 | 300}>
+                <div className="text-center">
+                  <div className="text-4xl md:text-5xl font-black text-brand-orange mb-2">{stat.value}</div>
+                  <div className="text-sm md:text-base text-brand-dark/70 font-medium leading-relaxed">{stat.label}</div>
                 </div>
               </AnimatedElement>
             ))}
           </div>
+
+          <AnimatedElement animation="scale-in" delay={200}>
+            <div className="flex justify-center mb-12">
+              <button
+                onClick={handleTrialClick}
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-orange text-white
+                         rounded-full font-bold text-lg hover:bg-brand-orange/90 transition-all duration-300
+                         shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
+              >
+                Записатись на пробний ✍️
+              </button>
+            </div>
+          </AnimatedElement>
+
+          <AnimatedElement animation="fade-in-up" delay={300}>
+            <blockquote className="relative max-w-3xl border-l-4 border-brand-orange pl-6 py-2">
+              <p className="text-xl md:text-2xl text-brand-dark/80 italic leading-relaxed font-pangolin">
+                Focus school – школа, де готують до життя у Словаччині: робота, навчання, документи, лікарі, магазини, живе спілкування.
+              </p>
+            </blockquote>
+          </AnimatedElement>
         </div>
       </section>
     </>

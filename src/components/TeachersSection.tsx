@@ -1,54 +1,122 @@
-import { Heart, Book, Star, Users } from 'lucide-react';
+import { useRef } from 'react';
+import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import AnimatedElement from './AnimatedElement';
 
-export default function TeachersSection() {
-  const teachers = [
-    {
-      name: 'Нана',
-      role: 'Засновниця та викладач',
-      favoriteWord: 'Pohoda',
-      hobby: 'Подорожі та фотографія',
-      fact: 'Вивчила словацьку за 6 місяців і тепер допомагаю іншим!',
-      love: 'Бачити, як студенти починають впевнено говорити',
-      initials: 'Н',
-      color: 'bg-brand-blue',
-    },
-    {
-      name: 'Марта',
-      role: 'Викладач',
-      favoriteWord: 'Srdiečko',
-      hobby: 'Читання словацької літератури',
-      fact: 'Можу пояснити будь-яке правило через мемі',
-      love: 'Коли студенти починають жартувати словацькою',
-      initials: 'М',
-      color: 'bg-brand-orange',
-    },
-    {
-      name: 'Петро',
-      role: 'Викладач розмовної практики',
-      favoriteWord: 'Kamoš',
-      hobby: 'Словацька музика та кіно',
-      fact: 'Знаю всі словацькі приказки та їх історію',
-      love: 'Розмови про культуру та традиції Словаччини',
-      initials: 'П',
-      color: 'bg-brand-blue',
-    },
-    {
-      name: 'Софія',
-      role: 'Викладач для початківців',
-      favoriteWord: 'Úsmev',
-      hobby: 'Малювання та каліграфія',
-      fact: 'Створюю власні навчальні матеріали з ілюстраціями',
-      love: 'Перші успіхи новачків!',
-      initials: 'С',
-      color: 'bg-brand-orange',
-    },
-  ];
+const teachers = [
+  {
+    name: 'Юля',
+    role: 'Викладач',
+    videoId: 'NRqoDtDHx3s',
+    hasVideo: true,
+  },
+  {
+    name: 'Яна',
+    role: 'Викладач',
+    videoId: null,
+    hasVideo: false,
+    initials: 'Я',
+    color: 'bg-brand-orange',
+  },
+  {
+    name: 'Настя',
+    role: 'Викладач',
+    videoId: 'xNHj_Ijuod4',
+    hasVideo: true,
+  },
+  {
+    name: 'Настя',
+    role: 'Викладач',
+    videoId: 'KmgPR349Lko',
+    hasVideo: true,
+  },
+  {
+    name: 'Яна',
+    role: 'Викладач',
+    videoId: null,
+    hasVideo: false,
+    initials: 'Я',
+    color: 'bg-brand-blue',
+  },
+  {
+    name: 'Віка',
+    role: 'Викладач',
+    videoId: 'DafLvRLuwI8',
+    hasVideo: true,
+  },
+  {
+    name: 'Lenka',
+    role: 'Носійка, що говорить українською',
+    videoId: 'xp0-08DLXwI',
+    hasVideo: true,
+  },
+  {
+    name: 'Gabriela',
+    role: 'Носійка мови',
+    videoId: 'WQgluo4_dt8',
+    hasVideo: true,
+  },
+  {
+    name: 'Даша',
+    role: 'Викладач',
+    videoId: null,
+    hasVideo: false,
+    initials: 'Д',
+    color: 'bg-brand-orange',
+  },
+];
 
-  const scrollToContact = () => {
-    const element = document.querySelector('#contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+function TeacherCard({ teacher }: { teacher: typeof teachers[0] }) {
+  if (teacher.hasVideo && teacher.videoId) {
+    return (
+      <div className="flex-shrink-0 w-72 bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+        <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
+          <iframe
+            className="absolute inset-0 w-full h-full"
+            src={`https://www.youtube.com/embed/${teacher.videoId}`}
+            title={teacher.name}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+        <div className="p-5">
+          <h3 className="text-xl font-bold text-brand-dark">{teacher.name}</h3>
+          <p className="text-sm text-brand-dark/60">{teacher.role}</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex-shrink-0 w-72 bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+      <div
+        className={`w-full h-48 ${(teacher as { color?: string }).color ?? 'bg-brand-blue'} flex items-center justify-center`}
+      >
+        <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center">
+          <span className="text-4xl font-black text-white">
+            {(teacher as { initials?: string }).initials ?? teacher.name[0]}
+          </span>
+        </div>
+        <div className="absolute">
+          <Play className="w-8 h-8 text-white/30" />
+        </div>
+      </div>
+      <div className="p-5">
+        <h3 className="text-xl font-bold text-brand-dark">{teacher.name}</h3>
+        <p className="text-sm text-brand-dark/60">{teacher.role}</p>
+      </div>
+    </div>
+  );
+}
+
+export default function TeachersSection() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: direction === 'left' ? -320 : 320,
+        behavior: 'smooth',
+      });
     }
   };
 
@@ -63,86 +131,61 @@ export default function TeachersSection() {
         backgroundRepeat: 'no-repeat',
       }}
     >
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-black/60" />
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <AnimatedElement animation="fade-in-down">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/20 rounded-full mb-6">
-              <Users className="w-4 h-4 text-brand-orange" />
-              <span className="text-sm font-semibold text-brand-orange">Наша команда</span>
-            </div>
-          </AnimatedElement>
-          <AnimatedElement animation="fade-in-up" delay={100}>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-white">
-              Наші <span className="text-brand-orange font-pangolin">викладачі</span>
+
+        {/* Header */}
+        <div className="text-center mb-12">
+          <AnimatedElement animation="fade-in-up">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
+              Не сухі резюме, а живі люди,{' '}
+              <span className="text-brand-orange font-pangolin">які люблять свою справу</span>
             </h2>
           </AnimatedElement>
-          <AnimatedElement animation="fade-in-up" delay={200}>
-            <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
-              Не сухі резюме, а живі люди, які люблять свою справу
+          <AnimatedElement animation="fade-in-up" delay={100}>
+            <p className="text-lg text-white/70 max-w-3xl mx-auto leading-relaxed">
+              Кожен викладач FOCUS — це людина, яка по-справжньому горить своєю справою.
+              Для нас урок — це не процес, а результат. Ми працюємо не "для галочки",
+              а щоб довести кожного учня до впевненого рівня та реальних змін.
             </p>
           </AnimatedElement>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {teachers.map((teacher, index) => (
-            <AnimatedElement
-              key={index}
-              animation={index % 2 === 0 ? 'fade-in-left' : 'fade-in-right'}
-              delay={(index * 100) as 0 | 100 | 200 | 300}
+        {/* Carousel */}
+        <AnimatedElement animation="fade-in-up" delay={200}>
+          <div className="relative">
+            {/* Left arrow */}
+            <button
+              onClick={() => scroll('left')}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20
+                       w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center
+                       hover:bg-brand-orange hover:text-white transition-all duration-300"
             >
-              <div className="bg-white rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 h-full">
-                <div className="flex items-start gap-5 mb-6">
-                  <div className={`w-20 h-20 ${teacher.color} rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg`}>
-                    <span className="text-3xl font-black text-white">{teacher.initials}</span>
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-brand-dark">{teacher.name}</h3>
-                    <p className="text-brand-dark/60">{teacher.role}</p>
-                  </div>
-                </div>
+              <ChevronLeft className="w-6 h-6" />
+            </button>
 
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-brand-orange/10 flex items-center justify-center flex-shrink-0">
-                      <Star className="w-4 h-4 text-brand-orange" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-brand-dark/50 uppercase tracking-wide">Улюблене слово</p>
-                      <p className="text-brand-dark font-bold">{teacher.favoriteWord}</p>
-                    </div>
-                  </div>
+            {/* Cards */}
+            <div
+              ref={scrollRef}
+              className="flex gap-6 overflow-x-auto py-4 px-2 scroll-smooth"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {teachers.map((teacher, index) => (
+                <TeacherCard key={index} teacher={teacher} />
+              ))}
+            </div>
 
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-brand-blue/10 flex items-center justify-center flex-shrink-0">
-                      <Heart className="w-4 h-4 text-brand-blue" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-brand-dark/50 uppercase tracking-wide">Хобі</p>
-                      <p className="text-brand-dark/80">{teacher.hobby}</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-brand-orange/10 flex items-center justify-center flex-shrink-0">
-                      <Book className="w-4 h-4 text-brand-orange" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-brand-dark/50 uppercase tracking-wide">Цікавий факт</p>
-                      <p className="text-brand-dark/80">{teacher.fact}</p>
-                    </div>
-                  </div>
-
-                  <div className="pt-4 border-t border-brand-light">
-                    <p className="text-brand-blue font-medium">
-                      {teacher.love}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </AnimatedElement>
-          ))}
-        </div>
+            {/* Right arrow */}
+            <button
+              onClick={() => scroll('right')}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20
+                       w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center
+                       hover:bg-brand-orange hover:text-white transition-all duration-300"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
+        </AnimatedElement>
 
       </div>
     </section>

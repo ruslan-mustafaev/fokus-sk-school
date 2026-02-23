@@ -4,9 +4,9 @@ import AnimatedElement from './AnimatedElement';
 const navLinks = [
   { label: 'Про нас', href: '#about' },
   { label: 'Формати', href: '#formats' },
-  { label: 'Ціни', href: '#pricing' },
+  { label: 'Ціни', href: '#formats' },
   { label: 'Викладачі', href: '#teachers' },
-  { label: 'Відгуки', href: '#testimonials' },
+  { label: 'Відео-уроки', href: '#video-lessons' },
 ];
 
 export default function Footer() {
@@ -92,9 +92,6 @@ export default function Footer() {
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/50 text-sm">
             2026 FOCUS School. Всі права захищені.
-          </p>
-          <p className="text-white/30 text-sm">
-            ФОКУС. ДІЯ. РЕЗУЛЬТАТ.
           </p>
         </div>
       </div>

@@ -46,11 +46,6 @@ export default function FeaturesSection() {
               Наші <span className="text-brand-orange font-pangolin">Фішки</span>
             </h2>
           </AnimatedElement>
-          <AnimatedElement animation="fade-in-up" delay={200}>
-            <p className="text-lg md:text-xl text-white/70 font-medium">
-              Фішки навчання у Focus
-            </p>
-          </AnimatedElement>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
