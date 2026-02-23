@@ -1,5 +1,12 @@
-import { PenTool } from 'lucide-react';
+import { PenTool, BookOpen, Users, Globe, MessageCircle } from 'lucide-react';
 import AnimatedElement from './AnimatedElement';
+
+const stats = [
+  { icon: BookOpen, value: '500+', label: 'Студентів навчились' },
+  { icon: Users, value: '10+', label: 'Досвідчених викладачів' },
+  { icon: Globe, value: '5', label: 'Рівнів навчання' },
+  { icon: MessageCircle, value: '95%', label: 'Задоволених студентів' },
+];
 
 export default function HeroSection() {
   const handleTrialClick = () => {
@@ -62,7 +69,7 @@ export default function HeroSection() {
         />
       </section>
 
-      <section className="relative py-24 px-4 overflow-hidden">
+      <section className="relative py-32 md:py-40 px-4 overflow-hidden">
         <div className="absolute inset-0">
           <img
             src="/IMG_7364.JPEG"
@@ -74,15 +81,34 @@ export default function HeroSection() {
         </div>
         <div className="max-w-6xl mx-auto relative z-10">
           <AnimatedElement animation="fade-in-up">
-            <div className="text-center space-y-4">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4 font-pangolin">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 font-pangolin">
                 Focus school
               </h2>
-              <p className="text-xl md:text-2xl lg:text-3xl font-medium text-white/90 leading-relaxed max-w-4xl mx-auto">
-                -- школа, де готують до життя у Словаччині: робота, навчання, документи, лікарі, магазини, живе спілкування.
+              <p className="text-xl md:text-2xl lg:text-3xl font-medium text-white/90 leading-relaxed max-w-4xl mx-auto mb-4">
+                -- школа, де готують до життя у Словаччині
+              </p>
+              <p className="text-base md:text-lg text-white/70 leading-relaxed max-w-3xl mx-auto">
+                Робота, навчання, документи, лікарі, магазини, живе спілкування --
+                ми навчаємо мови через реальні ситуації, з якими ви зіткнетесь щодня.
               </p>
             </div>
           </AnimatedElement>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mt-8">
+            {stats.map((stat, index) => (
+              <AnimatedElement key={stat.label} animation="fade-in-up" delay={100 + index * 100}>
+                <div className="text-center group">
+                  <div className="w-14 h-14 md:w-16 md:h-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-4
+                                  group-hover:bg-brand-orange/80 transition-colors duration-300">
+                    <stat.icon className="w-7 h-7 md:w-8 md:h-8 text-white" />
+                  </div>
+                  <div className="text-3xl md:text-4xl font-black text-white mb-1">{stat.value}</div>
+                  <div className="text-sm md:text-base text-white/60 font-medium">{stat.label}</div>
+                </div>
+              </AnimatedElement>
+            ))}
+          </div>
         </div>
       </section>
     </>
