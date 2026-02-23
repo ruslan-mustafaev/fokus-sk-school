@@ -69,7 +69,7 @@ export default function HeroSection() {
         />
       </section>
 
-      <section className="relative py-44 md:py-56 lg:py-64 px-4 overflow-hidden">
+      <section className="relative py-56 md:py-72 lg:py-80 px-4 overflow-hidden">
         <div className="absolute inset-0">
           <img
             src="/IMG_7364.JPEG"
