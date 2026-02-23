@@ -28,16 +28,17 @@ export default function FeaturesSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="about" className="py-24 px-4 relative overflow-hidden">
-      <div className="absolute inset-0">
-        <img
-          src="/IMG_2092.JPG"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectPosition: '50% 30%' }}
-        />
-        <div className="absolute inset-0 bg-black/50" />
-      </div>
+    <section
+      id="about"
+      className="relative py-24 px-4 overflow-hidden bg-brand-dark"
+      style={{
+        backgroundImage: 'url(/IMG_2092.JPG)',
+        backgroundSize: '100% auto',
+        backgroundPosition: 'top center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
+      <div className="absolute inset-0 bg-black/50" />
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-up" delay={100}>

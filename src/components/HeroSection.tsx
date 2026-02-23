@@ -18,16 +18,17 @@ export default function HeroSection() {
 
   return (
     <>
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden pb-16">
-        <div className="absolute inset-0">
-          <img
-            src="/logo/IMG_5071.PNG"
-            alt="Teacher"
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ objectPosition: '50% 30%' }}
-          />
-          <div className="absolute inset-0 bg-black/60" />
-        </div>
+      <section
+        className="relative min-h-[90vh] flex items-center overflow-hidden pt-24 pb-16"
+        style={{
+          backgroundImage: 'url(/logo/IMG_5071.PNG)',
+          backgroundSize: '100% auto',
+          backgroundPosition: 'center 30%',
+          backgroundRepeat: 'no-repeat',
+          backgroundColor: '#2D2D2D',
+        }}
+      >
+        <div className="absolute inset-0 bg-black/60" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="max-w-3xl">
@@ -60,7 +61,7 @@ export default function HeroSection() {
         <img
           src="/full_dekor/4.png"
           alt=""
-          className="absolute bottom-8 right-8 w-24 md:w-32 opacity-40 pointer-events-none select-none"
+          className="absolute bottom-8 right-8 w-24 md:w-32 opacity-40 pointer-events-none select-none z-20"
         />
         <img
           src="/logo/Logo2.png"
@@ -69,16 +70,17 @@ export default function HeroSection() {
         />
       </section>
 
-      <section className="relative py-56 md:py-72 lg:py-80 px-4 overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="/IMG_7364.JPEG"
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ objectPosition: '50% 20%' }}
-          />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
+      <section
+        className="relative py-56 md:py-72 lg:py-80 px-4 overflow-hidden"
+        style={{
+          backgroundImage: 'url(/IMG_7364.JPEG)',
+          backgroundSize: '100% auto',
+          backgroundPosition: 'center 20%',
+          backgroundRepeat: 'no-repeat',
+          backgroundColor: '#2D2D2D',
+        }}
+      >
+        <div className="absolute inset-0 bg-black/50" />
         <div className="max-w-6xl mx-auto relative z-10">
           <AnimatedElement animation="fade-in-up">
             <div className="text-center mb-12">

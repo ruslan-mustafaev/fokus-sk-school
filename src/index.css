@@ -22,7 +22,7 @@
   }
 
   body {
-    @apply font-body bg-brand-dark text-brand-dark antialiased;
+    @apply font-body bg-brand-white text-brand-dark antialiased;
   }
 
   h1, h2 {

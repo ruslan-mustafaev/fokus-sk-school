@@ -61,24 +61,18 @@ export default function FormatsSection({ onQuizClick }: { onQuizClick?: () => vo
     },
   ];
 
-  const scrollToContact = () => {
-    const element = document.querySelector('#contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <section id="formats" className="py-24 px-4 relative overflow-hidden">
-      <div className="absolute inset-0">
-        <img
-          src="/IMG_7363.JPEG"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectPosition: '50% 30%' }}
-        />
-        <div className="absolute inset-0 bg-black/50" />
-      </div>
+    <section
+      id="formats"
+      className="relative py-24 px-4 overflow-hidden bg-brand-dark"
+      style={{
+        backgroundImage: 'url(/IMG_7363.JPEG)',
+        backgroundSize: '100% auto',
+        backgroundPosition: 'top center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
+      <div className="absolute inset-0 bg-black/50" />
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-down">

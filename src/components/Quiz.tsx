@@ -913,7 +913,7 @@ export default function Quiz({ onBackToSite }: { onBackToSite?: () => void }) {
   const currentScore = answers.filter(a => a.isCorrect).length;
 
   return (
-    <div className="min-h-screen bg-brand-light pb-16 relative overflow-hidden max-w-[1280px] mx-auto">
+    <div className="min-h-screen bg-brand-light pb-16 relative overflow-hidden">
       <DecorativeElement
         imageSrc="/dekor/24.png"
         position="top-right"
@@ -933,7 +933,7 @@ export default function Quiz({ onBackToSite }: { onBackToSite?: () => void }) {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-gradient-to-br from-brand-blue/3 to-brand-orange/3 rounded-full blur-3xl" />
       </div>
 
-      <header className="sticky top-0 z-50 backdrop-blur-md shadow-lg py-2" style={{ backgroundColor: '#eaeaea' }}>
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md shadow-lg py-2" style={{ backgroundColor: '#eaeaea' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <button onClick={onBackToSite} className="flex items-center group cursor-pointer">
@@ -968,7 +968,7 @@ export default function Quiz({ onBackToSite }: { onBackToSite?: () => void }) {
         </div>
       </header>
 
-      <main className="relative z-10 px-4 pt-8">
+      <main className="relative z-10 px-4 pt-24">
         <div className="max-w-5xl mx-auto">
           {stage === 'registration' && (
             <RegistrationForm onSubmit={handleRegistration} />
