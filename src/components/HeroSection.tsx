@@ -18,7 +18,7 @@ export default function HeroSection() {
 
   return (
     <>
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-24 pb-16">
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden pb-16">
         <div className="absolute inset-0">
           <img
             src="/logo/IMG_5071.PNG"

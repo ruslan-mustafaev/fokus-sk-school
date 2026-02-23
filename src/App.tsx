@@ -18,7 +18,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen max-w-[1280px] mx-auto relative">
       <Header onQuizClick={() => setShowQuiz(true)} />
       <HeroSection />
       <FeaturesSection />
