@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: 'Coolvetica';
-  src: url('/full_dekor/Coolvetica_Rg_Cram.otf') format('opentype');
+  src: url('/full_dekor/Coolvetica_Rg.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -26,8 +26,7 @@
   }
 
   h1, h2 {
-    @apply font-heading;
-    letter-spacing: 0.03em;
+    @apply font-heading tracking-tight;
   }
 
   h3, h4, h5, h6 {
