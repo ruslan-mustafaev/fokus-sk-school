@@ -123,15 +123,14 @@ export default function TeachersSection() {
   return (
     <section
       id="teachers"
-      className="relative py-24 px-4 overflow-hidden bg-brand-dark"
-      style={{
-        backgroundImage: 'url(/IMG_4314_copy.JPG)',
-        backgroundSize: '100% auto',
-        backgroundPosition: 'top center',
-        backgroundRepeat: 'no-repeat',
-      }}
+      className="relative py-24 px-4 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-black/60" />
+      <div className="absolute inset-0 bg-black/20" />
+      <img
+        src="/full_dekor/10_trim.png"
+        alt=""
+        className="absolute top-4 right-4 w-32 md:w-48 opacity-80 pointer-events-none select-none z-10 animate-pendulum"
+      />
       <div className="max-w-7xl mx-auto relative z-10">
 
         {/* Header */}
@@ -139,7 +138,7 @@ export default function TeachersSection() {
           <AnimatedElement animation="fade-in-up">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
               Не сухі резюме, а живі люди,{' '}
-              <span className="text-brand-orange font-pangolin">які люблять свою справу</span>
+              <span className="text-brand-orange font-lapkoi">які люблять свою справу</span>
             </h2>
           </AnimatedElement>
           <AnimatedElement animation="fade-in-up" delay={100}>

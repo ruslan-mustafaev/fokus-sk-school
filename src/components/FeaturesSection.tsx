@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import AnimatedElement from './AnimatedElement';
 
+const stats = [
+  { value: '700', label: 'учнів успішно закінчили навчання' },
+  { value: '10', label: 'викладачів щодня доводять до результату' },
+  { value: '86%', label: 'наших учнів рекомендують Focus' },
+];
+
 const features = [
   {
     title: 'Не тільки україномовні викладачі, але й носії мови',
@@ -27,24 +33,64 @@ const features = [
 export default function FeaturesSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
+  const handleTrialClick = () => {
+    const element = document.querySelector('#contact');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section
       id="about"
-      className="relative py-24 px-4 overflow-hidden bg-brand-dark"
-      style={{
-        backgroundImage: 'url(/IMG_2092.JPG)',
-        backgroundSize: '100% auto',
-        backgroundPosition: 'top center',
-        backgroundRepeat: 'no-repeat',
-      }}
+      className="relative py-24 px-4 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-black/20" />
       <div className="max-w-7xl mx-auto relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          {stats.map((stat, index) => (
+            <AnimatedElement key={stat.label} animation="fade-in-up" delay={(100 + index * 100) as 0 | 100 | 200 | 300}>
+              <div className="text-center">
+                <div className="text-4xl md:text-5xl font-black text-brand-orange mb-2">{stat.value}</div>
+                <div className="text-sm md:text-base text-white/70 font-medium leading-relaxed">{stat.label}</div>
+              </div>
+            </AnimatedElement>
+          ))}
+        </div>
+
+        <AnimatedElement animation="scale-in" delay={200}>
+          <div className="flex justify-center mb-16">
+            <button
+              onClick={handleTrialClick}
+              className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-orange text-white
+                       rounded-full font-bold text-lg hover:bg-brand-orange/90 transition-all duration-300
+                       shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
+            >
+              Записатись на пробний ✍️
+            </button>
+          </div>
+        </AnimatedElement>
+
+        <AnimatedElement animation="fade-in-up" delay={0}>
+          <blockquote className="relative max-w-3xl mx-auto border-l-4 border-brand-orange pl-6 py-2 mb-16">
+            <p className="text-3xl md:text-4xl text-white/80 italic leading-relaxed font-lapkoi">
+              Focus school – школа, де готують до життя у Словаччині: робота, навчання, документи, лікарі, магазини, живе спілкування.
+            </p>
+          </blockquote>
+        </AnimatedElement>
+
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-up" delay={100}>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-white">
-              Наші <span className="text-brand-orange font-pangolin">Фішки</span>
-            </h2>
+            <div className="relative inline-block">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-white relative z-10">
+                Наші <span className="text-brand-orange font-lapkoi">Фішки</span>
+              </h2>
+              <img
+                src="/full_dekor/16_trim.png"
+                alt=""
+                className="absolute inset-0 w-full h-full object-contain pointer-events-none select-none z-0 scale-[2.5]"
+              />
+            </div>
           </AnimatedElement>
         </div>
 

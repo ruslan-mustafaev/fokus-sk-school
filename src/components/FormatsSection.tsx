@@ -120,15 +120,9 @@ export default function FormatsSection({ onQuizClick }: { onQuizClick?: () => vo
   return (
     <section
       id="formats"
-      className="relative py-24 px-4 overflow-hidden bg-brand-dark"
-      style={{
-        backgroundImage: 'url(/IMG_7363.JPEG)',
-        backgroundSize: '100% auto',
-        backgroundPosition: 'top center',
-        backgroundRepeat: 'no-repeat',
-      }}
+      className="relative py-24 px-4 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-black/20" />
       <div className="max-w-7xl mx-auto relative z-10">
 
         {/* Heading */}
@@ -136,7 +130,7 @@ export default function FormatsSection({ onQuizClick }: { onQuizClick?: () => vo
           <AnimatedElement animation="fade-in-down">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-white">
               <span className="uppercase tracking-wide">Обери свій</span>{' '}
-              <span className="text-brand-orange italic font-pangolin">Формат</span>{' '}
+              <span className="text-brand-orange italic font-lapkoi">Формат</span>{' '}
               <span className="uppercase tracking-wide">навчання</span>
             </h2>
           </AnimatedElement>
@@ -176,14 +170,14 @@ export default function FormatsSection({ onQuizClick }: { onQuizClick?: () => vo
                       <div className="w-4 h-4 rounded-full bg-brand-light flex items-center justify-center flex-shrink-0">
                         <Check className="w-2.5 h-2.5 text-brand-blue" />
                       </div>
-                      <span className="text-brand-dark/80 text-sm">{feat}</span>
+                      <span className="text-brand-dark/80 text-base">{feat}</span>
                     </li>
                   ))}
                 </ul>
 
                 <div className="mt-auto pt-4 border-t border-brand-light space-y-1">
                   {course.pricing.map((p, idx) => (
-                    <div key={idx} className="flex justify-between items-center text-sm">
+                    <div key={idx} className="flex justify-between items-center text-base">
                       <span className="text-brand-dark/60">{p.label}</span>
                       <span className="font-bold text-brand-dark">
                         {p.old ? (
@@ -223,7 +217,7 @@ export default function FormatsSection({ onQuizClick }: { onQuizClick?: () => vo
                   <h4 className="text-lg font-bold text-brand-dark mb-4">{fmt.title}</h4>
                   <ul className="space-y-2 mb-5">
                     {fmt.benefits.map((b, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-sm text-brand-dark/70">
+                      <li key={idx} className="flex items-start gap-2 text-base text-brand-dark/70">
                         <Check className="w-4 h-4 text-brand-blue flex-shrink-0 mt-0.5" />
                         <span>{b}</span>
                       </li>

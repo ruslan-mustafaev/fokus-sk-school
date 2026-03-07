@@ -19,13 +19,8 @@ export default function TrialSignupSection() {
     <section
       id="contact"
       className="relative py-24 px-4 overflow-hidden"
-      style={{
-        backgroundImage: "url(/IMG_7364.JPEG)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
     >
-      <div className="absolute inset-0 bg-black/65" />
+      <div className="absolute inset-0 bg-black/20" />
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left side — text */}
@@ -33,7 +28,7 @@ export default function TrialSignupSection() {
             <div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight mb-6">
                 Почни говорити{" "}
-                <span className="text-brand-orange font-pangolin">
+                <span className="text-brand-orange font-lapkoi">
                   словацькою
                 </span>{" "}
                 вже на пробному!

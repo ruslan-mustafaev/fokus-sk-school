@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Header from './components/Header';
+import ScrollBackground from './components/ScrollBackground';
 import HeroSection from './components/HeroSection';
 import FeaturesSection from './components/FeaturesSection';
 import FormatsSection from './components/FormatsSection';
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <div className="min-h-screen">
+      <ScrollBackground />
       <Header onQuizClick={() => setShowQuiz(true)} />
       <HeroSection />
       <FeaturesSection />

@@ -47,7 +47,7 @@ export default function FounderSection() {
                   Я постійно вдосконалюю програми, розвиваю команду та масштабую школу,
                   щоб ще більше українців могли почуватися впевнено у Словаччині.
                 </p>
-                <blockquote className="border-l-4 border-brand-orange pl-4 italic text-brand-dark font-pangolin text-xl">
+                <blockquote className="border-l-4 border-brand-orange pl-4 italic text-brand-dark font-lapkoi text-3xl md:text-4xl">
                   Focus School — це про результат, систему і любов до мови.
                 </blockquote>
               </div>

@@ -62,7 +62,7 @@ export default function Header({ onQuizClick }: { onQuizClick?: () => void }) {
               <button
                 key={link.href}
                 onClick={() => scrollToSection(link.href)}
-                className="text-brand-dark/80 font-semibold text-sm uppercase tracking-wide
+                className="text-brand-dark/80 font-semibold text-base uppercase tracking-wide
                          hover:text-brand-blue transition-colors duration-200"
               >
                 {link.label}

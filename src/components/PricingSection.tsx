@@ -67,8 +67,8 @@ export default function PricingSection() {
       className="relative py-24 px-4 overflow-hidden bg-brand-dark"
       style={{
         backgroundImage: 'url(/IMG_4363.JPG)',
-        backgroundSize: '100% auto',
-        backgroundPosition: 'top center',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}
     >
@@ -77,7 +77,7 @@ export default function PricingSection() {
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-down">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-white">
-              Прозорі <span className="text-brand-orange font-pangolin">ціни</span>
+              Прозорі <span className="text-brand-orange font-lapkoi">ціни</span>
             </h2>
           </AnimatedElement>
           <AnimatedElement animation="fade-in-up" delay={100}>

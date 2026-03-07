@@ -26,7 +26,7 @@ export default function Footer() {
               <img
                 src="/logo/image.png"
                 alt="FOCUS School"
-                className="h-16 w-auto mb-6"
+                className="h-16 w-auto mb-6 brightness-0 invert"
               />
               <p className="text-white/70 leading-relaxed max-w-md mb-6">
                 Онлайн школа словацької мови для тих, хто хоче впевнено говорити в реальних життєвих ситуаціях.
