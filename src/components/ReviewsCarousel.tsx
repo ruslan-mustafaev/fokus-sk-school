@@ -1,4 +1,5 @@
 import AnimatedElement from './AnimatedElement';
+import { renderLapkoiText } from './renderLapkoiText';
 
 const reviews = [
   {
@@ -39,11 +40,12 @@ const duplicatedReviews = [...reviews, ...reviews];
 
 export default function ReviewsCarousel() {
   return (
-    <section className="py-16 px-4 overflow-hidden">
+    <section className="relative py-16 px-4 overflow-hidden">
+      <div className="absolute inset-0 bg-black/50" />
       <AnimatedElement animation="fade-in-down">
         <div className="max-w-7xl mx-auto mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-white">
-            Що кажуть наші <span className="text-brand-blue font-lapkoi">студенти</span>
+            Що кажуть наші <span className="text-brand-blue font-lapkoi">{renderLapkoiText('студенти')}</span>
           </h2>
         </div>
       </AnimatedElement>
@@ -56,7 +58,8 @@ export default function ReviewsCarousel() {
           {duplicatedReviews.map((review, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-80 bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="flex-shrink-0 w-80 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-cover bg-center"
+              style={{ backgroundImage: 'url(/textures/white.webp)' }}
             >
               <div className="flex gap-1 mb-3">
                 {[...Array(5)].map((_, i) => (

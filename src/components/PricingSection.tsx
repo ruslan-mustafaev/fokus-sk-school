@@ -1,5 +1,6 @@
 import { Check, ArrowRight } from 'lucide-react';
 import AnimatedElement from './AnimatedElement';
+import { renderLapkoiText } from './renderLapkoiText';
 
 export default function PricingSection() {
   const pricing = {
@@ -66,7 +67,7 @@ export default function PricingSection() {
       id="pricing"
       className="relative py-24 px-4 overflow-hidden bg-brand-dark"
       style={{
-        backgroundImage: 'url(/IMG_4363.JPG)',
+        backgroundImage: 'url(/IMG_4363.webp)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -77,7 +78,7 @@ export default function PricingSection() {
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-down">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-white">
-              Прозорі <span className="text-brand-orange font-lapkoi">ціни</span>
+              Прозорі <span className="text-brand-orange font-lapkoi">{renderLapkoiText('ціни')}</span>
             </h2>
           </AnimatedElement>
           <AnimatedElement animation="fade-in-up" delay={100}>

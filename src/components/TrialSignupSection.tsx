@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AnimatedElement from "./AnimatedElement";
+import { renderLapkoiText } from "./renderLapkoiText";
 
 export default function TrialSignupSection() {
   const [formData, setFormData] = useState({
@@ -20,7 +21,7 @@ export default function TrialSignupSection() {
       id="contact"
       className="relative py-24 px-4 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-black/20" />
+      <div className="absolute inset-0 bg-cover bg-center texture-bg" style={{ backgroundImage: 'url(/textures/blue.webp)' }} />
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left side — text */}
@@ -29,7 +30,7 @@ export default function TrialSignupSection() {
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight mb-6">
                 Почни говорити{" "}
                 <span className="text-brand-orange font-lapkoi">
-                  словацькою
+                  {renderLapkoiText("словацькою")}
                 </span>{" "}
                 вже на пробному!
               </h2>
@@ -44,7 +45,8 @@ export default function TrialSignupSection() {
           <AnimatedElement animation="fade-in-right" delay={100}>
             <form
               onSubmit={handleSubmit}
-              className="bg-white rounded-3xl p-8 shadow-2xl"
+              className="rounded-3xl p-8 shadow-2xl bg-cover bg-center"
+              style={{ backgroundImage: 'url(/textures/white.webp)' }}
             >
               <div className="space-y-4 mb-6">
                 <div>

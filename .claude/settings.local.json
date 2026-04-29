@@ -8,7 +8,12 @@
       "Bash(npx tsc:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(powershell -Command:*)"
+      "Bash(powershell -Command:*)",
+      "Bash(find ~/.claude -name *.json -type f)",
+      "Bash(find /c/Users/Graycheg/Documents/GitHub/fokus-sk-school -name *.json -type f)",
+      "WebSearch",
+      "Bash(uvx --version)",
+      "Bash(uv --version)"
     ]
   }
 }

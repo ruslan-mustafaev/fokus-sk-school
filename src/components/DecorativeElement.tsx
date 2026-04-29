@@ -17,6 +17,7 @@ export default function DecorativeElement({
       alt={alt}
       className={`absolute pointer-events-none select-none animate-magnet ${className}`}
       style={{ animationDelay: `${delay}ms` }}
+      decoding="async"
       loading="lazy"
     />
   );

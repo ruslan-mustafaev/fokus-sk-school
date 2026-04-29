@@ -1,4 +1,5 @@
 import AnimatedElement from './AnimatedElement';
+import { renderLapkoiText } from './renderLapkoiText';
 
 const lessons = [
   {
@@ -47,18 +48,19 @@ export default function VideoLessonsSection() {
   return (
     <section
       id="video-lessons"
-      className="py-24 px-4 bg-gray-50 overflow-hidden"
+      className="relative py-24 px-4 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="absolute inset-0 bg-black/50" />
+      <div className="max-w-7xl mx-auto relative z-10">
 
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-down">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-brand-dark">
-              Відео-<span className="text-brand-orange font-lapkoi">уроки</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-white">
+              Відео-<span className="text-brand-orange font-lapkoi">{renderLapkoiText('уроки')}</span>
             </h2>
           </AnimatedElement>
           <AnimatedElement animation="fade-in-up" delay={100}>
-            <p className="text-lg md:text-xl text-brand-dark/60 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
               Прокачай свою словацьку за допомогою наших відео-уроків
             </p>
           </AnimatedElement>

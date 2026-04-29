@@ -18,7 +18,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-brand-dark text-white">
+    <footer className="relative text-white bg-cover bg-center" style={{ backgroundImage: 'url(/textures/dark.webp)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <AnimatedElement animation="fade-in-up" delay={0}>
@@ -27,6 +27,8 @@ export default function Footer() {
                 src="/logo/image.png"
                 alt="FOCUS School"
                 className="h-16 w-auto mb-6 brightness-0 invert"
+                decoding="async"
+                loading="lazy"
               />
               <p className="text-white/70 leading-relaxed max-w-md mb-6">
                 Онлайн школа словацької мови для тих, хто хоче впевнено говорити в реальних життєвих ситуаціях.
@@ -47,6 +49,7 @@ export default function Footer() {
                     key={link.href}
                     onClick={() => scrollToSection(link.href)}
                     className="block text-white/70 hover:text-white transition-colors text-left"
+                    style={{ boxShadow: 'none', textShadow: 'none' }}
                   >
                     {link.label}
                   </button>

@@ -49,6 +49,8 @@ export default function HeroSection() {
           src="/logo/Logo2.png"
           alt="Logo"
           className="absolute top-8 left-1/2 -translate-x-1/2 w-32 md:w-40 pointer-events-none select-none z-20"
+          decoding="async"
+          fetchPriority="low"
         />
       </section>
 

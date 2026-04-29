@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import AnimatedElement from './AnimatedElement';
+import { renderLapkoiText } from './renderLapkoiText';
 
 const stats = [
   { value: '700', label: 'учнів успішно закінчили навчання' },
@@ -59,7 +60,7 @@ export default function FeaturesSection() {
         </div>
 
         <AnimatedElement animation="scale-in" delay={200}>
-          <div className="flex justify-center mb-16">
+          <div className="flex justify-center mb-24 md:mb-28">
             <button
               onClick={handleTrialClick}
               className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-orange text-white
@@ -71,24 +72,18 @@ export default function FeaturesSection() {
           </div>
         </AnimatedElement>
 
-        <AnimatedElement animation="fade-in-up" delay={0}>
-          <blockquote className="relative max-w-3xl mx-auto border-l-4 border-brand-orange pl-6 py-2 mb-16">
-            <p className="text-3xl md:text-4xl text-white/80 italic leading-relaxed font-lapkoi">
-              Focus school – школа, де готують до життя у Словаччині: робота, навчання, документи, лікарі, магазини, живе спілкування.
-            </p>
-          </blockquote>
-        </AnimatedElement>
-
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-up" delay={100}>
             <div className="relative inline-block">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-white relative z-10">
-                Наші <span className="text-brand-orange font-lapkoi">Фішки</span>
+                Наші <span className="text-brand-orange font-lapkoi">{renderLapkoiText('Фішки')}</span>
               </h2>
               <img
                 src="/full_dekor/16_trim.png"
                 alt=""
                 className="absolute inset-0 w-full h-full object-contain pointer-events-none select-none z-0 scale-[2.5]"
+                decoding="async"
+                loading="lazy"
               />
             </div>
           </AnimatedElement>
@@ -104,11 +99,12 @@ export default function FeaturesSection() {
               <div
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className={`group relative rounded-3xl p-8 transition-all duration-500 transform hover:-translate-y-2 h-full cursor-default ${
+                className={`group relative rounded-3xl p-8 transition-all duration-500 transform hover:-translate-y-2 h-full cursor-default bg-cover bg-center ${
                   hoveredIndex === index
-                    ? 'bg-brand-orange shadow-2xl shadow-brand-orange/20'
-                    : 'bg-brand-light hover:shadow-xl'
+                    ? 'shadow-2xl shadow-brand-orange/20'
+                    : 'hover:shadow-xl'
                 }`}
+                style={{ backgroundImage: hoveredIndex === index ? 'url(/textures/orange.webp)' : 'url(/textures/white.webp)' }}
               >
                 <div className="flex items-start gap-4 mb-4">
                   <img
@@ -117,6 +113,8 @@ export default function FeaturesSection() {
                     className={`w-10 h-10 object-contain flex-shrink-0 transition-all duration-300 ${
                       hoveredIndex === index ? 'brightness-0 invert' : ''
                     }`}
+                    decoding="async"
+                    loading="lazy"
                   />
                 </div>
                 <h3 className={`text-xl md:text-2xl font-bold mb-3 transition-colors duration-300 ${

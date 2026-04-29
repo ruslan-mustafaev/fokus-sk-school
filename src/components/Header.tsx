@@ -54,6 +54,7 @@ export default function Header({ onQuizClick }: { onQuizClick?: () => void }) {
               className={`transition-all duration-300 ${
                 isScrolled ? 'h-10 sm:h-12' : 'h-12 sm:h-14'
               }`}
+              decoding="async"
             />
           </a>
 
@@ -64,6 +65,7 @@ export default function Header({ onQuizClick }: { onQuizClick?: () => void }) {
                 onClick={() => scrollToSection(link.href)}
                 className="text-brand-dark/80 font-semibold text-base uppercase tracking-wide
                          hover:text-brand-blue transition-colors duration-200"
+                style={{ boxShadow: 'none', textShadow: 'none' }}
               >
                 {link.label}
               </button>

@@ -3,7 +3,30 @@
     "allow": [
       "Bash(curl -s https://api.ipify.org)",
       "Bash(npx -y vercel --yes)",
-      "Bash(curl -s http://localhost:5173)"
+      "Bash(curl -s http://localhost:5173)",
+      "Read(//c/Users/Graycheg/Downloads/Telegram Desktop/**)",
+      "Bash(ffmpeg -i IMG_5182.MOV -vf \"scale=1080:1920,pad=1920:1080:\\(ow-iw\\)/2:\\(oh-ih\\)/2\" -an -c:v libx264 -crf 28 output.mp4)",
+      "Read(//c/ffmpeg/bin/**)",
+      "Read(//c/ProgramData/chocolatey/bin/**)",
+      "Read(//c/Users/Graycheg/**)",
+      "Bash(where ffmpeg.exe)",
+      "Bash(cmd.exe /c 'where ffmpeg')",
+      "Bash(cmd.exe /c \"dir /s /b C:\\\\ffmpeg\\\\bin\\\\ffmpeg.exe C:\\\\Users\\\\Graycheg\\\\AppData\\\\Local\\\\Microsoft\\\\WinGet\\\\Links\\\\ffmpeg.exe 2>nul\")",
+      "Bash(\"C:/Users/Graycheg/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1-full_build/bin/ffmpeg.exe\" -i IMG_5182.MOV -vf \"scale=-2:1080,pad=1920:1080:\\(ow-iw\\)/2:0:black\" -an -c:v libx264 -crf 28 output.mp4 -y)",
+      "Bash(\"C:/Users/Graycheg/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1-full_build/bin/ffmpeg.exe\" -i IMG_5182.MOV -vf \"scale=1920:-2,crop=1920:1080\" -an -c:v libx264 -crf 28 output.mp4 -y)",
+      "Bash(\"C:/Users/Graycheg/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1-full_build/bin/ffmpeg.exe\" -i IMG_5182.MOV -vf \"scale=1920:-2,crop=1920:1080,format=yuv420p\" -an -c:v libx264 -profile:v high -level 4.1 -pix_fmt yuv420p -crf 28 -movflags +faststart \"C:/Users/Graycheg/Documents/GitHub/fokus-sk-school/public/hero-video.mp4\" -y)",
+      "Bash(ls C:/Users/Graycheg/Downloads/Telegram Desktop/*Cygre* C:/Users/Graycheg/Downloads/*Cygre*)",
+      "Bash(find /c/Users/Graycheg -iname *cygre* -maxdepth 5)",
+      "Bash(curl -L -o cygre-font.zip \"https://fontesk.com/download/113058/?tmstv=1691727464\")",
+      "Bash(unzip -o cygre-font.zip \"Cygre-Regular.ttf\" -d \"C:/Users/Graycheg/Documents/GitHub/fokus-sk-school/public/fonts/\")",
+      "Bash(unzip -o cygre-font.zip \"Cygre-Bold.ttf\" \"Cygre-Medium.ttf\" \"Cygre-SemiBold.ttf\" -d \"C:/Users/Graycheg/Documents/GitHub/fokus-sk-school/public/fonts/\")",
+      "Bash(python3 -c \"from PIL import Image; print\\(''''PIL OK''''\\)\")",
+      "Bash(python -c \"from PIL import Image; print\\(''''PIL OK''''\\)\")",
+      "Bash(pip install:*)",
+      "Bash(python3:*)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\Graycheg\\Downloads\\Telegram Desktop"
     ]
   }
 }

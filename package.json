@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "deploy:netlify": "npm run build && npx netlify-cli deploy --prod --site focus-testing --dir dist --no-build",
     "lint": "eslint .",
+    "host": "vite preview --host 0.0.0.0 --port 4173",
+    "deploy:local": "vite build && vite preview --host 0.0.0.0 --port 4173",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit -p tsconfig.app.json"
   },
