@@ -1,6 +1,5 @@
 import { useState } from "react";
 import AnimatedElement from "./AnimatedElement";
-import { renderLapkoiText } from "./renderLapkoiText";
 
 export default function TrialSignupSection() {
   const [formData, setFormData] = useState({
@@ -29,8 +28,8 @@ export default function TrialSignupSection() {
             <div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight mb-6">
                 Почни говорити{" "}
-                <span className="text-brand-orange font-lapkoi">
-                  {renderLapkoiText("словацькою")}
+                <span className="text-brand-orange">
+                  словацькою
                 </span>{" "}
                 вже на пробному!
               </h2>
@@ -44,7 +43,7 @@ export default function TrialSignupSection() {
           <AnimatedElement animation="fade-in-right" delay={100}>
             <form
               onSubmit={handleSubmit}
-              className="rounded-3xl p-8 shadow-2xl bg-cover bg-center"
+              className="rounded-3xl p-8 bg-cover bg-center"
               style={{ backgroundImage: 'url(/textures/white.webp)' }}
             >
               <div className="space-y-4 mb-6">
@@ -118,7 +117,7 @@ export default function TrialSignupSection() {
               <button
                 type="submit"
                 className="w-full py-4 bg-brand-orange text-white rounded-2xl font-bold text-base
-                         hover:bg-brand-orange/90 transition-all duration-300 shadow-lg hover:shadow-xl
+                         hover:bg-brand-orange/90 transition-all duration-300
                          transform hover:-translate-y-0.5"
               >
                 Записатися на пробний урок ✍️
