@@ -13,10 +13,8 @@ const teachers = [
   {
     name: 'Яна',
     role: 'Викладач',
-    videoId: null,
-    hasVideo: false,
-    initials: 'Я',
-    color: 'bg-brand-orange',
+    videoId: '1-ArC0ss0xA',
+    hasVideo: true,
   },
   {
     name: 'Настя',
@@ -33,10 +31,8 @@ const teachers = [
   {
     name: 'Яна',
     role: 'Викладач',
-    videoId: null,
-    hasVideo: false,
-    initials: 'Я',
-    color: 'bg-brand-blue',
+    videoId: '-pRpwm9GxCg',
+    hasVideo: true,
   },
   {
     name: 'Віка',
@@ -55,14 +51,6 @@ const teachers = [
     role: 'Носійка мови',
     videoId: 'WQgluo4_dt8',
     hasVideo: true,
-  },
-  {
-    name: 'Даша',
-    role: 'Викладач',
-    videoId: null,
-    hasVideo: false,
-    initials: 'Д',
-    color: 'bg-brand-orange',
   },
 ];
 

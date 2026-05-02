@@ -18,7 +18,7 @@ const courses: {
   {
     question: "Ти новачок?",
     title: "Курс А1–А2",
-    duration: "3 місяці",
+    duration: "4 місяці",
     frequency: "2 рази/тиждень",
     lessonDuration: "60 хв урок",
     features: [
@@ -37,9 +37,9 @@ const courses: {
     badgeColor: "bg-brand-blue",
   },
   {
-    question: "Ти вже говориш, але з помилками?",
-    title: "Курс А2–В1",
-    duration: "2 місяці",
+    question: "Ти вже трошки говориш, але з помилками?",
+    title: "Курс А2",
+    duration: "3 місяці",
     frequency: "2 рази/тиждень",
     lessonDuration: "60 хв урок",
     features: [
@@ -52,18 +52,29 @@ const courses: {
     pricing: [
       { label: "1 місяць навчання", price: "96 євро" },
       { label: "2 місяці навчання", price: "152 євро", old: "192 євро" },
+      { label: "3 місяці навчання", price: "288 євро", old: "230 євро" },
     ],
     accent: "border-brand-orange",
     badgeColor: "bg-brand-orange",
   },
   {
-    question: "Ти вступаєш у Словаччину?",
-    title: "Курси для студентів",
-    duration: null,
+    question: "Хочеш впевнено говорити словацькою?",
+    title: "Курс В1",
+    duration: "3 місяці",
     frequency: "2 рази/тиждень",
     lessonDuration: "60 хв урок",
-    features: ["міні-групи (3–4 учні)", "теми для студентського життя"],
-    pricing: [{ label: "1 місяць навчання", price: "72 євро" }],
+    features: [
+      "міні-групи (3–4 учні)",
+      "багато розмовної практики",
+      "сленг та словацькі тонкощі",
+      "конспекти",
+      "граматичні конструкції",
+    ],
+    pricing: [
+      { label: "1 місяць навчання", price: "96 євро" },
+      { label: "2 місяці навчання", price: "152 євро", old: "192 євро" },
+      { label: "3 місяці навчання", price: "288 євро", old: "230 євро" },
+    ],
     accent: "border-brand-blue",
     badgeColor: "bg-brand-blue",
   },
@@ -79,6 +90,7 @@ const additionalFormats = [
       "1–3 рази на тиждень",
     ],
     price: "18 євро/урок",
+    priceNote: null as string | null,
     accent: "border-brand-blue",
   },
   {
@@ -90,17 +102,20 @@ const additionalFormats = [
       "2 рази на тиждень",
     ],
     price: "13 євро/урок",
+    priceNote: null as string | null,
     accent: "border-brand-orange",
   },
   {
-    title: "Розмовний клуб онлайн",
+    title: "Курси для студентів",
     benefits: [
-      "Щоденні завдання на комунікацію в групі телеграм",
-      "Детальна перевірка дз від викладача щодня",
-      "1 раз/тиждень зідзвони з носієм мови в міні-групі",
-      "Тільки розмовна практика",
+      "Теми для студентського життя",
+      "Додаткові відео-уроки для закріплення",
+      "Особистий кабінет кожного учня",
+      "Конспекти та карточки для вивчення слів",
+      "міні-групи (3–4 учні)",
     ],
-    price: "62 євро/місяць",
+    price: "72 євро/місяць",
+    priceNote: "6–12 місяців навчання" as string | null,
     accent: "border-brand-blue",
   },
 ];
@@ -144,12 +159,12 @@ export default function FormatsSection({
             >
               <div
                 className={`rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-t-4 ${course.accent} h-full flex flex-col bg-cover bg-center`}
-                style={{ backgroundImage: 'url(/textures/white.webp)' }}
+                style={{ backgroundImage: "url(/textures/white.webp)" }}
               >
-                <p className="text-brand-dark/60 text-sm font-medium mb-2">
+                <p className="text-brand-blue font-black text-lg mb-1">
                   {course.question}
                 </p>
-                <h3 className="text-2xl font-black text-brand-dark mb-1">
+                <h3 className="text-base font-semibold text-brand-dark/50 mb-1">
                   {course.title}
                 </h3>
                 {course.duration && (
@@ -193,15 +208,15 @@ export default function FormatsSection({
                       <span className="text-sm text-brand-dark/60">{p.label}</span>
                       <div className="text-right">
                         {p.old && (
-                          <div className="text-xs text-brand-dark/40 line-through leading-none mb-0.5" style={{ textShadow: 'none' }}>
+                          <div className="text-xs text-brand-dark/40 line-through leading-none mb-0.5">
                             {p.old}
                           </div>
                         )}
-                        <div className="text-lg font-bold leading-none" style={{ textShadow: 'none' }}>
+                        <div className="text-lg font-bold leading-none">
                           {p.old ? (
-                            <span className="text-brand-orange" style={{ textShadow: 'none' }}>{p.price}</span>
+                            <span className="text-brand-orange">{p.price}</span>
                           ) : (
-                            <span className="text-brand-blue" style={{ textShadow: 'none' }}>{p.price}</span>
+                            <span className="text-brand-blue">{p.price}</span>
                           )}
                         </div>
                       </div>
@@ -223,7 +238,10 @@ export default function FormatsSection({
 
         {/* Additional formats */}
         <AnimatedElement animation="fade-in-up" delay={100}>
-          <div className="rounded-3xl p-8 md:p-12 mb-12 bg-cover bg-center overflow-hidden" style={{ backgroundImage: 'url(/textures/orange.webp)' }}>
+          <div
+            className="rounded-3xl p-8 md:p-12 mb-12 bg-cover bg-center overflow-hidden"
+            style={{ backgroundImage: "url(/textures/orange.webp)" }}
+          >
             <h3 className="text-2xl md:text-3xl font-black text-white mb-8 text-center">
               Також ти можеш обрати:
             </h3>
@@ -232,7 +250,7 @@ export default function FormatsSection({
                 <div
                   key={index}
                   className={`rounded-2xl p-6 border-l-4 ${fmt.accent} hover:shadow-xl transition-all duration-300 bg-cover bg-center`}
-                  style={{ backgroundImage: 'url(/textures/white.webp)' }}
+                  style={{ backgroundImage: "url(/textures/white.webp)" }}
                 >
                   <h4 className="text-lg font-bold text-brand-dark mb-4">
                     {fmt.title}
@@ -248,9 +266,14 @@ export default function FormatsSection({
                       </li>
                     ))}
                   </ul>
-                  <div className="text-brand-orange font-bold text-xl" style={{ textShadow: 'none' }}>
+                  <div className="text-brand-orange font-bold text-xl">
                     {fmt.price}
                   </div>
+                  {fmt.priceNote && (
+                    <div className="text-brand-dark/50 text-sm mt-1">
+                      {fmt.priceNote}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -260,7 +283,10 @@ export default function FormatsSection({
         {/* Quiz CTA */}
         <AnimatedElement animation="scale-in" delay={300}>
           <div className="mt-4 text-center">
-            <div className="rounded-3xl p-8 md:p-10 shadow-xl max-w-2xl mx-auto bg-cover bg-center" style={{ backgroundImage: 'url(/textures/white.webp)' }}>
+            <div
+              className="rounded-3xl p-8 md:p-10 shadow-xl max-w-2xl mx-auto bg-cover bg-center"
+              style={{ backgroundImage: "url(/textures/white.webp)" }}
+            >
               <p className="text-xl text-brand-dark/70 mb-6">
                 Не знаєш який формат обрати?
               </p>
