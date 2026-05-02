@@ -140,18 +140,6 @@ export default function VideoLessonsSection() {
                 </div>
 
                 <div className="relative z-10">
-                  {/* Animated icon */}
-                  <div
-                    className="w-20 h-20 mx-auto mb-6 rounded-full bg-brand-orange/10 flex items-center justify-center"
-                    style={{
-                      animation: 'comingSoonBounce 2s ease-in-out infinite',
-                    }}
-                  >
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-orange">
-                      <polygon points="5 3 19 12 5 21 5 3" />
-                    </svg>
-                  </div>
-
                   <h3 className="text-2xl md:text-3xl font-black text-brand-dark mb-3">
                     Скоро буде доступно
                   </h3>
@@ -199,10 +187,6 @@ export default function VideoLessonsSection() {
           @keyframes comingSoonPulse {
             0%, 100% { transform: scale(1); opacity: 0.3; }
             50% { transform: scale(1.15); opacity: 0.6; }
-          }
-          @keyframes comingSoonBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
           }
         `}</style>
 
