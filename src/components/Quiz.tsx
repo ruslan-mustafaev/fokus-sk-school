@@ -12,7 +12,6 @@ import {
 } from 'lucide-react';
 import AnimatedElement from './AnimatedElement';
 import DecorativeElement from './DecorativeElement';
-import { renderLapkoiText } from './renderLapkoiText';
 import {
   determineLevel as determineNotionLevel,
   learningPlans as notionLearningPlans,
@@ -42,9 +41,9 @@ const ProgressBar = ({ current, total }: { current: number; total: number }) => 
 
   return (
     <div className="relative">
-      <div className="w-full h-4 bg-brand-light rounded-full overflow-hidden shadow-inner">
+      <div className="w-full h-4 bg-brand-light rounded-full overflow-hidden">
         <div
-          className="h-full bg-gradient-to-r from-brand-blue via-brand-blue to-brand-orange rounded-full transition-all duration-500 ease-out shadow-lg"
+          className="h-full bg-gradient-to-r from-brand-blue via-brand-blue to-brand-orange rounded-full transition-all duration-500 ease-out"
           style={{ width: `${percentage}%` }}
         />
       </div>
@@ -109,18 +108,18 @@ const QuestionCard = ({
 
           if (showResult) {
             if (index === question.correctAnswer) {
-              buttonClass += 'bg-green-50 border-green-500 text-green-900 shadow-lg';
+              buttonClass += 'bg-green-50 border-green-500 text-green-900';
             } else if (index === selectedAnswer) {
-              buttonClass += 'bg-red-50 border-red-500 text-red-900 shadow-lg';
+              buttonClass += 'bg-red-50 border-red-500 text-red-900';
             } else {
               buttonClass += 'bg-brand-light border-brand-light text-brand-dark/40';
             }
           } else if (selectedAnswer === index) {
             buttonClass +=
-              'bg-gradient-to-r from-brand-blue/10 to-brand-orange/10 border-brand-blue text-brand-dark scale-[1.02] shadow-xl';
+              'bg-gradient-to-r from-brand-blue/10 to-brand-orange/10 border-brand-blue text-brand-dark scale-[1.02]';
           } else {
             buttonClass +=
-              'bg-white border-brand-light text-brand-dark hover:bg-brand-light hover:border-brand-blue/30 hover:shadow-md hover:-translate-y-0.5';
+              'bg-white border-brand-light text-brand-dark hover:bg-brand-light hover:border-brand-blue/30 hover:-translate-y-0.5';
           }
 
           return (
@@ -187,10 +186,10 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: UserData) => void }) 
       <AnimatedElement animation="fade-in-down">
         <div className="text-center mb-8">
           <div className="inline-block w-full max-w-2xl mx-auto mb-4">
-            <h1 className="font-lapkoi text-4xl md:text-5xl lg:text-6xl leading-snug text-center text-brand-blue">
-              {renderLapkoiText('Тест на визначення')}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-snug text-center text-brand-blue">
+              Тест на визначення
               <br />
-              {renderLapkoiText('рівня словацької')}
+              рівня словацької
             </h1>
             <img
               src="/full_dekor/19_trim.png"
@@ -207,7 +206,7 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: UserData) => void }) 
       </AnimatedElement>
 
       <AnimatedElement animation="scale-in" delay={100}>
-        <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-2xl space-y-6 hover:shadow-3xl transition-all duration-300">
+        <div className="bg-white rounded-[2rem] p-8 md:p-10 space-y-6 transition-all duration-300">
           <div>
             <label className="block text-sm font-bold text-brand-dark mb-3">Ваше ім&apos;я</label>
             <input
@@ -268,7 +267,7 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: UserData) => void }) 
           <button
             onClick={handleSubmit}
             disabled={!formData.name || !formData.email}
-            className="w-full flex items-center justify-center gap-3 px-8 py-5 bg-brand-orange text-white rounded-full font-bold text-lg hover:bg-brand-orange/90 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+            className="w-full flex items-center justify-center gap-3 px-8 py-5 bg-brand-orange text-white rounded-full font-bold text-lg hover:bg-brand-orange/90 transition-all duration-300 transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
           >
             Розпочати тест
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -334,7 +333,7 @@ const ResultsScreen = ({
   return (
     <div className="max-w-3xl mx-auto">
       <AnimatedElement animation="scale-in">
-        <div className="bg-white rounded-[2rem] p-8 md:p-12 shadow-2xl mb-8 text-center relative overflow-hidden">
+        <div className="bg-white rounded-[2rem] p-8 md:p-12 mb-8 text-center relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-brand-blue/5 to-brand-orange/5 rounded-full -mr-32 -mt-32 blur-3xl" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-brand-blue/5 rounded-full -ml-24 -mb-24 blur-3xl" />
 
@@ -342,7 +341,7 @@ const ResultsScreen = ({
             <div className="relative inline-block mb-8">
               <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/20 to-brand-orange/20 rounded-full blur-2xl" />
               <div
-                className={`relative w-32 h-32 rounded-full bg-gradient-to-br ${levelColors[results.determinedLevel]} flex items-center justify-center shadow-2xl`}
+                className={`relative w-32 h-32 rounded-full bg-gradient-to-br ${levelColors[results.determinedLevel]} flex items-center justify-center`}
               >
                 <span className="text-5xl font-black text-white">{percentage}%</span>
               </div>
@@ -375,7 +374,7 @@ const ResultsScreen = ({
       </AnimatedElement>
 
       <AnimatedElement animation="fade-in-up" delay={100}>
-        <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-2xl mb-8">
+        <div className="bg-white rounded-[2rem] p-8 md:p-10 mb-8">
           <h2 className="text-2xl md:text-3xl font-black text-brand-dark mb-8 flex items-center gap-3">
             <div className="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center">
               <Target className="w-6 h-6 text-brand-blue" />
@@ -389,7 +388,7 @@ const ResultsScreen = ({
             ][]).map(([category, score]) => (
               <div
                 key={category}
-                className="bg-brand-light rounded-2xl p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+                className="bg-brand-light rounded-2xl p-6 transition-all duration-300 transform hover:-translate-y-1"
               >
                 <div className="text-sm font-bold text-brand-dark/60 mb-2 uppercase tracking-wide">
                   {categoryNames[category]}
@@ -398,7 +397,7 @@ const ResultsScreen = ({
                   {score.correct}
                   <span className="text-2xl text-brand-dark/40">/{score.total}</span>
                 </div>
-                <div className="w-full h-3 bg-white rounded-full mt-3 overflow-hidden shadow-inner">
+                <div className="w-full h-3 bg-white rounded-full mt-3 overflow-hidden">
                   <div
                     className="h-full bg-gradient-to-r from-brand-blue to-brand-orange rounded-full transition-all duration-500"
                     style={{ width: `${score.total > 0 ? (score.correct / score.total) * 100 : 0}%` }}
@@ -414,13 +413,13 @@ const ResultsScreen = ({
       </AnimatedElement>
 
       <AnimatedElement animation="fade-in-up" delay={200}>
-        <div className="bg-gradient-to-br from-brand-blue via-brand-blue to-brand-blue/90 rounded-[2rem] p-8 md:p-12 text-white mb-8 relative overflow-hidden shadow-2xl">
+        <div className="bg-gradient-to-br from-brand-blue via-brand-blue to-brand-blue/90 rounded-[2rem] p-8 md:p-12 text-white mb-8 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -mr-48 -mt-48 blur-3xl" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-orange/20 rounded-full -ml-32 -mb-32 blur-3xl" />
 
           <div className="relative z-10">
             <div className="flex items-start gap-6 mb-8">
-              <div className="w-20 h-20 rounded-[1.5rem] bg-white/10 backdrop-blur-sm flex items-center justify-center flex-shrink-0 shadow-xl">
+              <div className="w-20 h-20 rounded-[1.5rem] bg-white/10 backdrop-blur-sm flex items-center justify-center flex-shrink-0">
                 {formatIcons[plan.recommendedFormat]}
               </div>
               <div>
@@ -466,7 +465,7 @@ const ResultsScreen = ({
                   }, 100);
                 }
               }}
-              className="group w-full md:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 bg-brand-orange text-white rounded-full font-bold text-xl hover:bg-brand-orange/90 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:-translate-y-1"
+              className="group w-full md:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 bg-brand-orange text-white rounded-full font-bold text-xl hover:bg-brand-orange/90 transition-all duration-300 transform hover:-translate-y-1"
             >
               Записатись на безкоштовний урок
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
@@ -478,7 +477,7 @@ const ResultsScreen = ({
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <button
           onClick={onRestart}
-          className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-white border-2 border-brand-dark text-brand-dark rounded-full font-bold text-lg hover:bg-brand-dark hover:text-white transition-all duration-300 shadow-xl transform hover:-translate-y-1"
+          className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-white border-2 border-brand-dark text-brand-dark rounded-full font-bold text-lg hover:bg-brand-dark hover:text-white transition-all duration-300 transform hover:-translate-y-1"
         >
           <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
           Пройти ще раз
@@ -491,7 +490,7 @@ const ResultsScreen = ({
               setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
             }
           }}
-          className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-light text-brand-dark rounded-full font-bold text-lg hover:bg-brand-dark hover:text-white transition-all duration-300 shadow-lg transform hover:-translate-y-1"
+          className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-light text-brand-dark rounded-full font-bold text-lg hover:bg-brand-dark hover:text-white transition-all duration-300 transform hover:-translate-y-1"
         >
           Повернутись на сайт
         </button>
@@ -611,7 +610,7 @@ export default function Quiz({ onBackToSite }: { onBackToSite?: () => void }) {
       </div>
 
       <header
-        className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md shadow-lg py-2"
+        className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md py-2"
         style={{ backgroundColor: '#ffffff' }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -647,7 +646,7 @@ export default function Quiz({ onBackToSite }: { onBackToSite?: () => void }) {
 
             <button
               onClick={onBackToSite}
-              className="px-5 py-2.5 bg-brand-blue text-white rounded-full font-semibold hover:bg-brand-blue/90 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 text-sm"
+              className="px-5 py-2.5 bg-brand-blue text-white rounded-full font-semibold hover:bg-brand-blue/90 transition-all duration-300 transform hover:scale-105 text-sm"
             >
               На сайт
             </button>
@@ -668,7 +667,7 @@ export default function Quiz({ onBackToSite }: { onBackToSite?: () => void }) {
               </AnimatedElement>
 
               <AnimatedElement animation="scale-in" delay={100}>
-                <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-2xl hover:shadow-3xl transition-all duration-300">
+                <div className="bg-white rounded-[2rem] p-8 md:p-10 transition-all duration-300">
                   <QuestionCard
                     question={notionQuestions[currentQuestion]}
                     selectedAnswer={selectedAnswer}
@@ -683,7 +682,7 @@ export default function Quiz({ onBackToSite }: { onBackToSite?: () => void }) {
                       className={`group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 ${
                         selectedAnswer === null
                           ? 'bg-brand-light text-brand-dark/40 cursor-not-allowed'
-                          : 'bg-brand-orange text-white hover:bg-brand-orange/90 shadow-xl hover:shadow-2xl transform hover:-translate-y-1'
+                          : 'bg-brand-orange text-white hover:bg-brand-orange/90 transform hover:-translate-y-1'
                       }`}
                     >
                       {showResult
