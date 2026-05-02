@@ -1,4 +1,4 @@
-import { Check, ArrowRight } from 'lucide-react';
+import { Check } from 'lucide-react';
 import AnimatedElement from './AnimatedElement';
 import { renderLapkoiText } from './renderLapkoiText';
 
@@ -14,7 +14,6 @@ export default function PricingSection() {
         'Матеріали включені',
         'Підтримка 24/7',
       ],
-      highlight: false,
     },
     pair: {
       title: 'Парні',
@@ -26,7 +25,6 @@ export default function PricingSection() {
         'Спільна мотивація',
         'Матеріали включені',
       ],
-      highlight: false,
     },
     group: {
       title: 'Групові заняття',
@@ -42,24 +40,6 @@ export default function PricingSection() {
         'Матеріали включені',
       ],
     },
-    club: {
-      title: 'Розмовний клуб',
-      price: '10',
-      unit: 'за зустріч',
-      features: [
-        'Тільки розмова',
-        'Цікаві теми',
-        'Невимушена атмосфера',
-        'Нові знайомства',
-      ],
-    },
-  };
-
-  const scrollToContact = () => {
-    const element = document.querySelector('#contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
   };
 
   return (
@@ -83,14 +63,14 @@ export default function PricingSection() {
           </AnimatedElement>
           <AnimatedElement animation="fade-in-up" delay={100}>
             <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
-              Без прихованих платежів. Перший урок безкоштовно!
+              Без прихованих платежів
             </p>
           </AnimatedElement>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid lg:grid-cols-2 gap-6 mb-12">
           <AnimatedElement animation="fade-in-up" delay={100}>
-            <div className="bg-brand-light rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 h-full">
+            <div className="bg-brand-light rounded-3xl p-8 transition-all duration-500 transform hover:-translate-y-2 h-full">
               <h3 className="text-2xl font-bold mb-2 text-brand-dark">{pricing.individual.title}</h3>
               <div className="flex items-baseline gap-1 mb-6">
                 <span className="text-5xl font-black text-brand-blue">{pricing.individual.price}</span>
@@ -111,7 +91,7 @@ export default function PricingSection() {
           </AnimatedElement>
 
           <AnimatedElement animation="fade-in-up" delay={200}>
-            <div className="bg-brand-light rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 h-full">
+            <div className="bg-brand-light rounded-3xl p-8 transition-all duration-500 transform hover:-translate-y-2 h-full">
               <h3 className="text-2xl font-bold mb-2 text-brand-dark">{pricing.pair.title}</h3>
               <div className="flex items-baseline gap-1 mb-6">
                 <span className="text-5xl font-black text-brand-blue">{pricing.pair.price}</span>
@@ -123,27 +103,6 @@ export default function PricingSection() {
                   <li key={idx} className="flex items-center gap-3">
                     <div className="w-5 h-5 rounded-full bg-brand-blue/10 flex items-center justify-center flex-shrink-0">
                       <Check className="w-3 h-3 text-brand-blue" />
-                    </div>
-                    <span className="text-brand-dark/70">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </AnimatedElement>
-
-          <AnimatedElement animation="fade-in-up" delay={300}>
-            <div className="bg-brand-orange/10 rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-brand-orange/20 h-full">
-              <h3 className="text-2xl font-bold mb-2 text-brand-dark">{pricing.club.title}</h3>
-              <div className="flex items-baseline gap-1 mb-6">
-                <span className="text-5xl font-black text-brand-orange">{pricing.club.price}</span>
-                <span className="text-2xl font-bold text-brand-orange">EUR</span>
-                <span className="text-brand-dark/50 ml-2">{pricing.club.unit}</span>
-              </div>
-              <ul className="space-y-3">
-                {pricing.club.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center gap-3">
-                    <div className="w-5 h-5 rounded-full bg-brand-orange/10 flex items-center justify-center flex-shrink-0">
-                      <Check className="w-3 h-3 text-brand-orange" />
                     </div>
                     <span className="text-brand-dark/70">{feature}</span>
                   </li>
@@ -165,7 +124,7 @@ export default function PricingSection() {
               {pricing.group.packages.map((pkg, idx) => (
                 <div key={idx} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 relative hover:bg-white/20 transition-colors">
                   {pkg.badge && (
-                    <div className="absolute -top-3 -right-3 bg-brand-orange text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                    <div className="absolute -top-3 -right-3 bg-brand-orange text-white text-xs font-bold px-3 py-1 rounded-full">
                       {pkg.badge}
                     </div>
                   )}
@@ -193,26 +152,6 @@ export default function PricingSection() {
             </ul>
           </div>
           </div>
-        </AnimatedElement>
-
-        <AnimatedElement animation="fade-in-up" delay={100}>
-          <div className="bg-brand-light rounded-3xl p-8 md:p-12 text-center">
-          <p className="text-2xl md:text-3xl font-bold text-brand-dark mb-4">
-            Перший пробний урок безкоштовно!
-          </p>
-          <p className="text-brand-dark/70 mb-8 max-w-xl mx-auto">
-            Познайомся з викладачем, спробуй наш метод та відчуй атмосферу школи
-          </p>
-          <button
-            onClick={scrollToContact}
-            className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-orange text-white
-                     rounded-full font-bold text-lg hover:bg-brand-orange/90 transition-all duration-300
-                     shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
-          >
-            Записатись безкоштовно
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
         </AnimatedElement>
       </div>
     </section>
