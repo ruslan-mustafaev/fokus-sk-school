@@ -18,8 +18,9 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative text-white bg-cover bg-center" style={{ backgroundImage: 'url(/textures/dark.webp)' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <footer className="relative text-white bg-transparent">
+      <div className="absolute inset-0 bg-black/60" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <AnimatedElement animation="fade-in-up" delay={0}>
             <div className="md:col-span-2">
