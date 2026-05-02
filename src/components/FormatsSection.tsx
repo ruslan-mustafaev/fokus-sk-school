@@ -159,7 +159,7 @@ export default function FormatsSection({
                 className={`rounded-3xl p-8 transition-all duration-500 transform hover:-translate-y-2 border-t-4 ${course.accent} h-full flex flex-col bg-cover bg-center`}
                 style={{ backgroundImage: "url(/textures/white.webp)" }}
               >
-                <p className="text-brand-blue font-black text-lg mb-1">
+                <p className="text-brand-blue font-black text-lg mb-1 min-h-[3.5rem] flex items-start">
                   {course.question}
                 </p>
                 <h3 className="text-base font-semibold text-brand-dark/50 mb-1">
