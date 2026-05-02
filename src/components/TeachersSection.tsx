@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import AnimatedElement from './AnimatedElement';
-import { renderLapkoiText } from './renderLapkoiText';
+
 
 const teachers = [
   {
@@ -156,7 +156,7 @@ export default function TeachersSection() {
           <AnimatedElement animation="fade-in-up">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
               Наші{' '}
-              <span className="text-brand-orange font-lapkoi">{renderLapkoiText('викладачі')}</span>
+              <span className="text-brand-orange">викладачі</span>
             </h2>
           </AnimatedElement>
           <AnimatedElement animation="fade-in-up" delay={100}>
