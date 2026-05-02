@@ -35,8 +35,7 @@ export default function TrialSignupSection() {
                 вже на пробному!
               </h2>
               <p className="text-white/70 text-lg leading-relaxed">
-                Заповни форму і ми підберемо для тебе зручний час. Перший урок —
-                безкоштовно!
+                Заповни форму і ми підберемо для тебе зручний час.
               </p>
             </div>
           </AnimatedElement>
