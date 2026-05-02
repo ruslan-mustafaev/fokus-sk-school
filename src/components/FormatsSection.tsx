@@ -52,7 +52,7 @@ const courses: {
     pricing: [
       { label: "1 місяць навчання", price: "96 євро" },
       { label: "2 місяці навчання", price: "152 євро", old: "192 євро" },
-      { label: "3 місяці навчання", price: "288 євро", old: "230 євро" },
+      { label: "3 місяці навчання", price: "230 євро", old: "288 євро" },
     ],
     accent: "border-brand-orange",
     badgeColor: "bg-brand-orange",
@@ -73,7 +73,7 @@ const courses: {
     pricing: [
       { label: "1 місяць навчання", price: "96 євро" },
       { label: "2 місяці навчання", price: "152 євро", old: "192 євро" },
-      { label: "3 місяці навчання", price: "288 євро", old: "230 євро" },
+      { label: "3 місяці навчання", price: "230 євро", old: "288 євро" },
     ],
     accent: "border-brand-blue",
     badgeColor: "bg-brand-blue",
@@ -158,7 +158,7 @@ export default function FormatsSection({
               delay={(index * 100) as 0 | 100 | 200 | 300}
             >
               <div
-                className={`rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-t-4 ${course.accent} h-full flex flex-col bg-cover bg-center`}
+                className={`rounded-3xl p-8 transition-all duration-500 transform hover:-translate-y-2 border-t-4 ${course.accent} h-full flex flex-col bg-cover bg-center`}
                 style={{ backgroundImage: "url(/textures/white.webp)" }}
               >
                 <p className="text-brand-blue font-black text-lg mb-1">
@@ -249,7 +249,7 @@ export default function FormatsSection({
               {additionalFormats.map((fmt, index) => (
                 <div
                   key={index}
-                  className={`rounded-2xl p-6 border-l-4 ${fmt.accent} hover:shadow-xl transition-all duration-300 bg-cover bg-center`}
+                  className={`rounded-2xl p-6 border-l-4 ${fmt.accent} transition-all duration-300 bg-cover bg-center`}
                   style={{ backgroundImage: "url(/textures/white.webp)" }}
                 >
                   <h4 className="text-lg font-bold text-brand-dark mb-4">
@@ -284,7 +284,7 @@ export default function FormatsSection({
         <AnimatedElement animation="scale-in" delay={300}>
           <div className="mt-4 text-center">
             <div
-              className="rounded-3xl p-8 md:p-10 shadow-xl max-w-2xl mx-auto bg-cover bg-center"
+              className="rounded-3xl p-8 md:p-10 max-w-2xl mx-auto bg-cover bg-center"
               style={{ backgroundImage: "url(/textures/white.webp)" }}
             >
               <p className="text-xl text-brand-dark/70 mb-6">
@@ -294,7 +294,7 @@ export default function FormatsSection({
                 onClick={onQuizClick}
                 className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-orange text-white
                          rounded-full font-bold text-lg hover:bg-brand-orange/90 transition-all duration-300
-                         shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
+                         transform hover:-translate-y-1"
               >
                 Пройди тест на рівень
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
