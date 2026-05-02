@@ -85,7 +85,7 @@ export default function VideoLessonsSection() {
                   className="rounded-3xl overflow-hidden transition-all duration-500 h-full flex flex-col bg-cover bg-center"
                   style={{
                     backgroundImage: 'url(/textures/white.webp)',
-                    filter: 'blur(6px) grayscale(0.3)',
+                    filter: 'blur(3px) grayscale(0.3)',
                     opacity: 0.5,
                   }}
                 >
