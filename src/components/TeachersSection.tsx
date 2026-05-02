@@ -62,7 +62,7 @@ function TeacherCard({ teacher }: { teacher: (typeof teachers)[0] }) {
   if (teacher.hasVideo && teacher.videoId) {
     return (
       <div
-        className="flex-shrink-0 w-72 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-cover bg-center"
+        className="flex-shrink-0 w-72 rounded-3xl overflow-hidden transition-all duration-500 transform hover:-translate-y-2 bg-cover bg-center"
         style={{ backgroundImage: 'url(/textures/white.webp)' }}
       >
         <div className="relative aspect-video">
@@ -91,7 +91,7 @@ function TeacherCard({ teacher }: { teacher: (typeof teachers)[0] }) {
               />
               <div className="absolute inset-0 bg-brand-dark/35 transition-colors duration-300 group-hover:bg-brand-dark/20" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-white/90 text-brand-orange flex items-center justify-center shadow-xl transition-transform duration-300 group-hover:scale-110">
+                <div className="w-16 h-16 rounded-full bg-white/90 text-brand-orange flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
                   <Play className="w-7 h-7 ml-1" />
                 </div>
               </div>
@@ -107,7 +107,7 @@ function TeacherCard({ teacher }: { teacher: (typeof teachers)[0] }) {
   }
 
   return (
-    <div className="flex-shrink-0 w-72 bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+    <div className="flex-shrink-0 w-72 bg-white rounded-3xl overflow-hidden transition-all duration-500 transform hover:-translate-y-2">
       <div
         className={`relative w-full h-48 ${(teacher as { color?: string }).color ?? 'bg-brand-blue'} flex items-center justify-center`}
       >
@@ -142,7 +142,7 @@ export default function TeachersSection() {
 
   return (
     <section id="teachers" className="relative py-24 px-4 overflow-hidden">
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-black/20" />
       <img
         src="/full_dekor/10_trim.webp"
         alt=""
@@ -155,8 +155,8 @@ export default function TeachersSection() {
         <div className="text-center mb-12">
           <AnimatedElement animation="fade-in-up">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
-              Не сухі резюме, а живі люди,{' '}
-              <span className="text-brand-orange font-lapkoi">{renderLapkoiText('які люблять свою справу')}</span>
+              Наші{' '}
+              <span className="text-brand-orange font-lapkoi">{renderLapkoiText('викладачі')}</span>
             </h2>
           </AnimatedElement>
           <AnimatedElement animation="fade-in-up" delay={100}>
@@ -172,7 +172,7 @@ export default function TeachersSection() {
           <div className="relative">
             <button
               onClick={() => scroll('left')}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
@@ -189,7 +189,7 @@ export default function TeachersSection() {
 
             <button
               onClick={() => scroll('right')}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300"
             >
               <ChevronRight className="w-6 h-6" />
             </button>
