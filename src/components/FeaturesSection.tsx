@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import AnimatedElement from './AnimatedElement';
-import { renderLapkoiText } from './renderLapkoiText';
+
 
 const stats = [
   { value: '700', label: 'учнів успішно закінчили навчання' },
@@ -76,7 +76,7 @@ export default function FeaturesSection() {
           <AnimatedElement animation="fade-in-up" delay={100}>
             <div className="relative inline-block">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-white relative z-10">
-                Наші <span className="text-brand-orange font-lapkoi">{renderLapkoiText('Фішки')}</span>
+                Наші <span className="text-brand-orange">Фішки</span>
               </h2>
               <img
                 src="/full_dekor/16_trim.png"
