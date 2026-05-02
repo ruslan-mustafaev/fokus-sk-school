@@ -3,7 +3,6 @@ import { Menu, X } from 'lucide-react';
 
 const navLinks = [
   { label: 'Курси', href: '#formats' },
-  { label: 'Ціни', href: '#pricing' },
   { label: 'Відео-уроки', href: '#video-lessons' },
   { label: 'Викладачі', href: '#teachers' },
 ];
