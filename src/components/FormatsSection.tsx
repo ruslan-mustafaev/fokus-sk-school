@@ -1,6 +1,6 @@
 import { ArrowRight, Check, Clock, Users } from "lucide-react";
 import AnimatedElement from "./AnimatedElement";
-import { renderLapkoiText } from "./renderLapkoiText";
+
 
 type PricingItem = { label: string; price: string; old?: string };
 
@@ -141,8 +141,8 @@ export default function FormatsSection({
           <AnimatedElement animation="fade-in-down">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-white">
               <span className="uppercase tracking-wide">Обери свій</span>{" "}
-              <span className="text-brand-orange italic font-lapkoi">
-                {renderLapkoiText("Формат")}
+              <span className="text-brand-orange">
+                Формат
               </span>{" "}
               <span className="uppercase tracking-wide">навчання</span>
             </h2>
