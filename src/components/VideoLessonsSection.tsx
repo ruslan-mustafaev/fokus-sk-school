@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import AnimatedElement from './AnimatedElement';
-import { renderLapkoiText } from './renderLapkoiText';
+
 
 const lessons = [
   {
@@ -61,7 +61,7 @@ export default function VideoLessonsSection() {
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-down">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-white">
-              Відео-<span className="text-brand-orange font-lapkoi">{renderLapkoiText('уроки')}</span>
+              Відео-<span className="text-brand-orange">уроки</span>
             </h2>
           </AnimatedElement>
           <AnimatedElement animation="fade-in-up" delay={100}>
