@@ -1,6 +1,6 @@
 import { Check } from 'lucide-react';
 import AnimatedElement from './AnimatedElement';
-import { renderLapkoiText } from './renderLapkoiText';
+
 
 export default function PricingSection() {
   const pricing = {
@@ -58,7 +58,7 @@ export default function PricingSection() {
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-down">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-white">
-              Прозорі <span className="text-brand-orange font-lapkoi">{renderLapkoiText('ціни')}</span>
+              Прозорі <span className="text-brand-orange">ціни</span>
             </h2>
           </AnimatedElement>
           <AnimatedElement animation="fade-in-up" delay={100}>
