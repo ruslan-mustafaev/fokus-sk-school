@@ -65,7 +65,7 @@ export default function FeaturesSection() {
               onClick={handleTrialClick}
               className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-orange text-white
                        rounded-full font-bold text-lg hover:bg-brand-orange/90 transition-all duration-300
-                       shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
+                       transform hover:-translate-y-1"
             >
               Записатись на пробний ✍️
             </button>
@@ -99,11 +99,7 @@ export default function FeaturesSection() {
               <div
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className={`group relative rounded-3xl p-8 transition-all duration-500 transform hover:-translate-y-2 h-full cursor-default bg-cover bg-center ${
-                  hoveredIndex === index
-                    ? 'shadow-2xl shadow-brand-orange/20'
-                    : 'hover:shadow-xl'
-                }`}
+                className={`group relative rounded-3xl p-8 transition-all duration-500 transform hover:-translate-y-2 h-full cursor-default bg-cover bg-center`}
                 style={{ backgroundImage: hoveredIndex === index ? 'url(/textures/orange.webp)' : 'url(/textures/white.webp)' }}
               >
                 <div className="flex items-start gap-4 mb-4">
