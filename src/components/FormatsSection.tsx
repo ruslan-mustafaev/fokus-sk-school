@@ -141,7 +141,7 @@ export default function FormatsSection({
           <AnimatedElement animation="fade-in-down">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-white uppercase tracking-wide">
               Обери свій{" "}
-              <span className="text-brand-orange">Формат</span>{" "}
+              <span className="text-brand-orange">формат</span>{" "}
               навчання
             </h2>
           </AnimatedElement>
