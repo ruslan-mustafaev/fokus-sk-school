@@ -11,9 +11,8 @@ export default {
         'brand-white': '#FFFFFF',
       },
       fontFamily: {
-        'heading': ['Coolvetica', 'system-ui', 'sans-serif'],
+        'heading': ['Cygre', 'system-ui', 'sans-serif'],
         'body': ['Cygre', 'system-ui', 'sans-serif'],
-        'lapkoi': ['Lapkoi', 'cursive'],
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
