@@ -13,10 +13,10 @@ export default function HeroSection() {
     <>
       <section
         id="hero"
-        className="relative min-h-[90vh] flex items-end pb-20"
+        className="relative min-h-screen flex flex-col justify-end"
       >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pb-16 md:pb-20">
           <div className="max-w-3xl">
             <AnimatedElement animation="fade-in-up" delay={100}>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight text-brand-orange mb-6">
