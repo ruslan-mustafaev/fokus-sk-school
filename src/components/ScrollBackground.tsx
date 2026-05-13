@@ -42,6 +42,8 @@ export default function ScrollBackground() {
   );
   const [failedIds, setFailedIds] = useState<Set<string>>(() => new Set());
   const [shouldLoadHeroVideo, setShouldLoadHeroVideo] = useState(false);
+  const [heroReady, setHeroReady] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
   const elementsRef = useRef<(HTMLElement | null)[]>([]);
   const activeIndexRef = useRef(0);
 
@@ -129,6 +131,8 @@ export default function ScrollBackground() {
   }, []);
 
   useEffect(() => {
+    if (!heroReady) return;
+
     const activateHeroVideo = () => setShouldLoadHeroVideo(true);
 
     if ('requestIdleCallback' in window) {
@@ -138,32 +142,64 @@ export default function ScrollBackground() {
 
     const timeoutId = window.setTimeout(activateHeroVideo, 900);
     return () => window.clearTimeout(timeoutId);
-  }, []);
+  }, [heroReady]);
 
   return (
     <div className="fixed inset-0 z-0 pointer-events-none" aria-hidden="true">
       {sectionBackgrounds.map((scene, index) => {
         if (!loadedIds.has(scene.id)) return null;
 
-        const opacity = index === activeIndex ? 1 : 0;
-        const sharedClassName =
-          'absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out';
+        // Don't render non-hero scenes until hero is fully loaded
+        if (index > 0 && !heroReady) return null;
 
-        if (scene.kind === 'video' && shouldLoadHeroVideo) {
+        const isActive = index === activeIndex;
+        const opacity = isActive ? 1 : 0;
+
+        // Hero gets instant opacity on first render (no transition from nothing)
+        const isHeroInitial = index === 0 && !heroReady;
+        const transitionClass = isHeroInitial
+          ? 'absolute inset-0 w-full h-full object-cover'
+          : 'absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out';
+
+        if (scene.kind === 'video') {
+          // Keep poster img visible until video is ready to play
+          const showPoster = !videoReady;
+          const showVideo = shouldLoadHeroVideo;
+
           return (
-            <video
-              key={scene.id}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="none"
-              poster={scene.posterFallback ?? scene.fallbackSrc ?? scene.poster}
-              className={sharedClassName}
-              style={{ opacity }}
-            >
-              <source src={scene.src} type="video/mp4" />
-            </video>
+            <div key={scene.id} className="absolute inset-0">
+              {/* Poster image -- stays until video can play */}
+              {showPoster && (
+                <img
+                  src={getSceneImageSrc(scene)}
+                  onLoad={() => setHeroReady(true)}
+                  onError={() => {
+                    handleSceneError(scene);
+                    setHeroReady(true);
+                  }}
+                  alt=""
+                  decoding="async"
+                  fetchPriority="high"
+                  className={transitionClass}
+                  style={{ opacity: isActive ? 1 : 0, objectPosition: scene.position ?? 'center' }}
+                />
+              )}
+              {/* Video -- rendered once idle, shown once canplay fires */}
+              {showVideo && (
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="auto"
+                  onCanPlay={() => setVideoReady(true)}
+                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
+                  style={{ opacity: videoReady && isActive ? 1 : 0 }}
+                >
+                  <source src={scene.src} type="video/mp4" />
+                </video>
+              )}
+            </div>
           );
         }
 
@@ -174,8 +210,8 @@ export default function ScrollBackground() {
             onError={() => handleSceneError(scene)}
             alt=""
             decoding="async"
-            fetchPriority={scene.id === 'hero' ? 'high' : 'low'}
-            className={sharedClassName}
+            fetchPriority="low"
+            className={transitionClass}
             style={{ opacity, objectPosition: scene.position ?? 'center' }}
           />
         );
