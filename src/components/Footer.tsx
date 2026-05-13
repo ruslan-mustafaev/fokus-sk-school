@@ -4,7 +4,7 @@ import AnimatedElement from './AnimatedElement';
 const navLinks = [
   { label: 'Про нас', href: '#about' },
   { label: 'Формати', href: '#formats' },
-  { label: 'Ціни', href: '#formats' },
+  { label: 'Ціни', href: '#pricing' },
   { label: 'Викладачі', href: '#teachers' },
   { label: 'Відео-уроки', href: '#video-lessons' },
 ];
@@ -77,13 +77,19 @@ export default function Footer() {
               <h3 className="font-bold text-lg mt-8 mb-4">Соцмережі</h3>
               <div className="flex gap-3">
                 <a
-                  href="#"
+                  href="https://www.instagram.com/focus.slovak/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram FOCUS School"
                   className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center hover:bg-brand-orange transition-colors"
                 >
                   <Instagram className="w-5 h-5" />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.facebook.com/focus.slovak"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook FOCUS School"
                   className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center hover:bg-brand-blue transition-colors"
                 >
                   <Facebook className="w-5 h-5" />
