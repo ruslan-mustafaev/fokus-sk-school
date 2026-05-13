@@ -10,7 +10,21 @@
       name="description"
       content="FOCUS School - навчайся словацької мови онлайн з професійними викладачами. Фокус. Дія. Результат."
     />
+    <script>
+      // Disable browser scroll restoration IMMEDIATELY
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+      // Track when loader started — to enforce minimum display time
+      window.__loaderStartTime = Date.now();
+    </script>
     <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: #2D2D2D;
+      }
       #app-loader {
         position: fixed;
         inset: 0;
@@ -20,7 +34,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        transition: opacity 0.5s ease;
+        transition: opacity 0.4s ease;
       }
       #app-loader.hidden {
         opacity: 0;
@@ -66,14 +80,24 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <script>
-      // Safety: hide loader after 4 seconds max
+      // Helper to hide loader with minimum display time of 1 second
+      window.__hideLoader = function() {
+        var elapsed = Date.now() - (window.__loaderStartTime || Date.now());
+        var minTime = 1000; // minimum 1 second
+        var remaining = Math.max(0, minTime - elapsed);
+        setTimeout(function() {
+          var loader = document.getElementById('app-loader');
+          if (loader) {
+            loader.classList.add('hidden');
+            setTimeout(function() { loader.remove(); }, 500);
+          }
+        }, remaining);
+      };
+
+      // Safety: hide loader after 5 seconds max
       setTimeout(function() {
-        var loader = document.getElementById('app-loader');
-        if (loader) {
-          loader.classList.add('hidden');
-          setTimeout(function() { loader.remove(); }, 600);
-        }
-      }, 4000);
+        if (window.__hideLoader) window.__hideLoader();
+      }, 5000);
     </script>
   </body>
 </html>
