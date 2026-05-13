@@ -10,10 +10,70 @@
       name="description"
       content="FOCUS School - навчайся словацької мови онлайн з професійними викладачами. Фокус. Дія. Результат."
     />
+    <style>
+      #app-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        background: #2D2D2D;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.5s ease;
+      }
+      #app-loader.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      #app-loader img {
+        width: 160px;
+        height: auto;
+        filter: brightness(0) invert(1);
+      }
+      @keyframes loader-pulse {
+        0%, 100% { opacity: 0.4; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.05); }
+      }
+      #app-loader .loader-logo {
+        animation: loader-pulse 1.5s ease-in-out infinite;
+      }
+      #app-loader .loader-dots {
+        display: flex;
+        gap: 8px;
+        margin-top: 32px;
+      }
+      #app-loader .loader-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #EE4E00;
+        animation: loader-pulse 1.2s ease-in-out infinite;
+      }
+      #app-loader .loader-dot:nth-child(2) { animation-delay: 0.2s; }
+      #app-loader .loader-dot:nth-child(3) { animation-delay: 0.4s; }
+    </style>
   </head>
   <body>
-    <div id="app-loader" style="position:fixed;inset:0;z-index:9999;background:#2D2D2D;transition:opacity 0.4s ease;pointer-events:none;"></div>
+    <div id="app-loader">
+      <img src="/logo/image.png" alt="FOCUS" class="loader-logo" />
+      <div class="loader-dots">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+      </div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Safety: hide loader after 4 seconds max
+      setTimeout(function() {
+        var loader = document.getElementById('app-loader');
+        if (loader) {
+          loader.classList.add('hidden');
+          setTimeout(function() { loader.remove(); }, 600);
+        }
+      }, 4000);
+    </script>
   </body>
 </html>
