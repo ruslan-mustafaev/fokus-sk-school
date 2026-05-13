@@ -30,8 +30,9 @@ const courses: {
     ],
     pricing: [
       { label: "1 місяць навчання", price: "88 євро" },
-      { label: "2 місяці навчання", price: "176 євро", old: "166 євро" },
-      { label: "3 місяці навчання", price: "264 євро", old: "230 євро" },
+      { label: "2 місяці навчання", price: "152 євро", old: "176 євро" },
+      { label: "3 місяці навчання", price: "230 євро", old: "264 євро" },
+      { label: "4 місяці навчання", price: "304 євро", old: "352 євро" },
     ],
     accent: "border-brand-blue",
     badgeColor: "bg-brand-blue",
@@ -51,8 +52,8 @@ const courses: {
     ],
     pricing: [
       { label: "1 місяць навчання", price: "96 євро" },
-      { label: "2 місяці навчання", price: "152 євро", old: "192 євро" },
-      { label: "3 місяці навчання", price: "230 євро", old: "288 євро" },
+      { label: "2 місяці навчання", price: "152 євро", old: "176 євро" },
+      { label: "3 місяці навчання", price: "230 євро", old: "264 євро" },
     ],
     accent: "border-brand-orange",
     badgeColor: "bg-brand-orange",
@@ -72,8 +73,8 @@ const courses: {
     ],
     pricing: [
       { label: "1 місяць навчання", price: "96 євро" },
-      { label: "2 місяці навчання", price: "152 євро", old: "192 євро" },
-      { label: "3 місяці навчання", price: "230 євро", old: "288 євро" },
+      { label: "2 місяці навчання", price: "152 євро", old: "176 євро" },
+      { label: "3 місяці навчання", price: "230 євро", old: "264 євро" },
     ],
     accent: "border-brand-blue",
     badgeColor: "bg-brand-blue",
@@ -141,7 +142,7 @@ export default function FormatsSection({
           <AnimatedElement animation="fade-in-down">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-white uppercase tracking-wide">
               Обери свій{" "}
-              <span className="text-brand-orange">формат</span>{" "}
+              <span className="text-brand-orange">Формат</span>{" "}
               навчання
             </h2>
           </AnimatedElement>
