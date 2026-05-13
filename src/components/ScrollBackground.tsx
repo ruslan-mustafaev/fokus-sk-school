@@ -180,7 +180,6 @@ export default function ScrollBackground() {
           />
         );
       })}
-      <div className="absolute inset-0 bg-black/50" />
     </div>
   );
 }
