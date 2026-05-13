@@ -160,19 +160,19 @@ export default function FormatsSection({
                 className={`relative rounded-3xl p-8 transition-all duration-500 transform hover:-translate-y-2 border-t-4 ${course.accent} h-full flex flex-col bg-cover bg-center`}
                 style={{ backgroundImage: "url(/textures/white.webp)" }}
               >
-                {/* Duration badge top-right */}
+                {/* Duration sticker — circle overlapping top-right corner */}
                 {course.duration && (
-                  <div className="absolute top-4 right-4 text-center">
-                    <div className={`text-4xl font-black ${index === 1 ? 'text-brand-orange' : 'text-brand-blue'}`}>
+                  <div className={`absolute -top-5 -right-5 w-20 h-20 rounded-full flex flex-col items-center justify-center z-10 ${index === 1 ? 'bg-brand-orange' : 'bg-brand-blue'}`}>
+                    <span className="text-2xl font-black text-white leading-none">
                       {course.duration.split(' ')[0]}
-                    </div>
-                    <div className="text-xs font-bold text-brand-dark/40 uppercase tracking-wide">
+                    </span>
+                    <span className="text-[10px] font-bold text-white/80 uppercase tracking-wide leading-none mt-0.5">
                       {course.duration.split(' ')[1]}
-                    </div>
+                    </span>
                   </div>
                 )}
 
-                <p className="text-brand-blue font-black text-lg mb-1 min-h-[3.5rem] flex items-start pr-16">
+                <p className="text-brand-blue font-black text-lg mb-1 min-h-[3.5rem] flex items-start pr-12">
                   {course.question}
                 </p>
                 <h3 className="text-base font-semibold text-brand-dark/50 mb-4">
