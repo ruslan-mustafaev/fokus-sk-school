@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense, useState, useEffect } from 'react';
 import Header from './components/Header';
 import ScrollBackground from './components/ScrollBackground';
 import HeroSection from './components/HeroSection';
@@ -25,8 +25,29 @@ function QuizFallback() {
   );
 }
 
+function hideLoader() {
+  const loader = document.getElementById('app-loader');
+  if (loader) {
+    loader.classList.add('hidden');
+    setTimeout(() => loader.remove(), 600);
+  }
+}
+
 function App() {
   const [showQuiz, setShowQuiz] = useState(false);
+
+  useEffect(() => {
+    // Wait for hero background image to load, then hide loader
+    const img = new Image();
+    img.src = '/IMG_2092.webp';
+    if (img.complete) {
+      // Already cached
+      requestAnimationFrame(() => hideLoader());
+    } else {
+      img.onload = () => requestAnimationFrame(() => hideLoader());
+      img.onerror = () => hideLoader();
+    }
+  }, []);
 
   if (showQuiz) {
     return (
