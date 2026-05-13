@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense, useState, useEffect } from 'react';
 import Header from './components/Header';
 import ScrollBackground from './components/ScrollBackground';
 import HeroSection from './components/HeroSection';
@@ -25,8 +25,20 @@ function QuizFallback() {
   );
 }
 
+// Disable browser scroll restoration IMMEDIATELY (before React mounts)
+if (typeof window !== 'undefined') {
+  if ('scrollRestoration' in window.history) {
+    window.history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
+}
+
 function App() {
   const [showQuiz, setShowQuiz] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (showQuiz) {
     return (
