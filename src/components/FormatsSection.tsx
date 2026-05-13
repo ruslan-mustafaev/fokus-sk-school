@@ -157,22 +157,27 @@ export default function FormatsSection({
               delay={(index * 100) as 0 | 100 | 200 | 300}
             >
               <div
-                className={`rounded-3xl p-8 transition-all duration-500 transform hover:-translate-y-2 border-t-4 ${course.accent} h-full flex flex-col bg-cover bg-center`}
+                className={`relative rounded-3xl p-8 transition-all duration-500 transform hover:-translate-y-2 border-t-4 ${course.accent} h-full flex flex-col bg-cover bg-center`}
                 style={{ backgroundImage: "url(/textures/white.webp)" }}
               >
-                <p className="text-brand-blue font-black text-lg mb-1 min-h-[3.5rem] flex items-start">
+                {/* Duration badge top-right */}
+                {course.duration && (
+                  <div className="absolute top-4 right-4 text-center">
+                    <div className={`text-4xl font-black ${index === 1 ? 'text-brand-orange' : 'text-brand-blue'}`}>
+                      {course.duration.split(' ')[0]}
+                    </div>
+                    <div className="text-xs font-bold text-brand-dark/40 uppercase tracking-wide">
+                      {course.duration.split(' ')[1]}
+                    </div>
+                  </div>
+                )}
+
+                <p className="text-brand-blue font-black text-lg mb-1 min-h-[3.5rem] flex items-start pr-16">
                   {course.question}
                 </p>
-                <h3 className="text-base font-semibold text-brand-dark/50 mb-1">
+                <h3 className="text-base font-semibold text-brand-dark/50 mb-4">
                   {course.title}
                 </h3>
-                {course.duration && (
-                  <span
-                    className={`inline-block text-white text-xs font-bold px-3 py-1 rounded-full mb-4 ${course.badgeColor}`}
-                  >
-                    {course.duration}
-                  </span>
-                )}
 
                 <div className="flex items-center gap-4 mb-5 text-sm text-brand-dark/60">
                   <div className="flex items-center gap-1">
