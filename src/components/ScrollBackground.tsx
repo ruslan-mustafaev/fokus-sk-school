@@ -35,6 +35,12 @@ const sectionBackgrounds: BackgroundScene[] = [
 
 const PRELOAD_ROOT_MARGIN = '125% 0px';
 
+declare global {
+  interface Window {
+    __hideLoader?: () => void;
+  }
+}
+
 export default function ScrollBackground() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [loadedIds, setLoadedIds] = useState<Set<string>>(
@@ -53,10 +59,8 @@ export default function ScrollBackground() {
   const dismissLoader = () => {
     if (loaderDismissedRef.current) return;
     loaderDismissedRef.current = true;
-    const loader = document.getElementById('app-loader');
-    if (loader) {
-      loader.classList.add('hidden');
-      setTimeout(() => loader.remove(), 600);
+    if (typeof window !== 'undefined' && window.__hideLoader) {
+      window.__hideLoader();
     }
   };
 
@@ -77,22 +81,28 @@ export default function ScrollBackground() {
     });
   };
 
-  // Safety timeout for loader
+  // Safety fallback: mark hero ready after 4 seconds even if onLoad never fires
   useEffect(() => {
     const safetyTimeout = setTimeout(() => {
-      dismissLoader();
-      setHeroReady(true);
-      heroReadyRef.current = true;
-      setOtherScenesReady(true);
+      if (!heroReadyRef.current) {
+        setHeroReady(true);
+        heroReadyRef.current = true;
+        setOtherScenesReady(true);
+        dismissLoader();
+      }
     }, 4000);
     return () => clearTimeout(safetyTimeout);
   }, []);
 
-  // Delay rendering of other scenes after hero is ready
+  // Force scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  // Delay rendering other scenes 500ms after hero is ready
   useEffect(() => {
     if (!heroReady) return;
-    // Wait 300ms after hero is shown before allowing other scenes to render
-    const timer = setTimeout(() => setOtherScenesReady(true), 300);
+    const timer = setTimeout(() => setOtherScenesReady(true), 500);
     return () => clearTimeout(timer);
   }, [heroReady]);
 
@@ -131,10 +141,10 @@ export default function ScrollBackground() {
     return () => observer.disconnect();
   }, []);
 
-  // Scroll handler
+  // Scroll handler — only activates after hero is ready
   useEffect(() => {
     const handleScroll = () => {
-      // Don't change activeIndex until hero is ready
+      // IMPORTANT: never change activeIndex before hero is ready
       if (!heroReadyRef.current) return;
 
       const scrollY = window.scrollY + window.innerHeight / 3;
@@ -163,11 +173,11 @@ export default function ScrollBackground() {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    // Don't call handleScroll immediately — keep activeIndex at 0
+    // DO NOT call handleScroll() immediately
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Load hero video after hero is ready
+  // Load hero video after hero poster is ready
   useEffect(() => {
     if (!heroReady) return;
 
@@ -187,11 +197,10 @@ export default function ScrollBackground() {
       {sectionBackgrounds.map((scene, index) => {
         if (!loadedIds.has(scene.id)) return null;
 
-        // Don't render non-hero scenes until hero is shown AND 300ms delay passed
+        // Don't render non-hero scenes until hero is shown AND 500ms passed
         if (index > 0 && !otherScenesReady) return null;
 
         const isActive = index === activeIndex;
-        // Force opacity 0 for non-hero scenes initially
         const opacity = isActive ? 1 : 0;
 
         const transitionClass =
@@ -203,14 +212,16 @@ export default function ScrollBackground() {
 
           return (
             <div key={scene.id} className="absolute inset-0">
-              {/* Poster image — stays until video can play */}
               {showPoster && (
                 <img
                   src={getSceneImageSrc(scene)}
                   onLoad={() => {
                     setHeroReady(true);
                     heroReadyRef.current = true;
-                    dismissLoader();
+                    // Use rAF to ensure browser paints the hero img before hiding loader
+                    requestAnimationFrame(() => {
+                      requestAnimationFrame(() => dismissLoader());
+                    });
                   }}
                   onError={() => {
                     handleSceneError(scene);
@@ -225,7 +236,6 @@ export default function ScrollBackground() {
                   style={{ objectPosition: scene.position ?? 'center' }}
                 />
               )}
-              {/* Video — rendered once idle, shown once canplay fires */}
               {showVideo && (
                 <video
                   autoPlay
