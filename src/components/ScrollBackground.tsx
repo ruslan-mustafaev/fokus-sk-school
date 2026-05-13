@@ -43,9 +43,11 @@ export default function ScrollBackground() {
   const [failedIds, setFailedIds] = useState<Set<string>>(() => new Set());
   const [shouldLoadHeroVideo, setShouldLoadHeroVideo] = useState(false);
   const [heroReady, setHeroReady] = useState(false);
+  const [otherScenesReady, setOtherScenesReady] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
   const elementsRef = useRef<(HTMLElement | null)[]>([]);
   const activeIndexRef = useRef(0);
+  const heroReadyRef = useRef(false);
   const loaderDismissedRef = useRef(false);
 
   const dismissLoader = () => {
@@ -53,8 +55,8 @@ export default function ScrollBackground() {
     loaderDismissedRef.current = true;
     const loader = document.getElementById('app-loader');
     if (loader) {
-      loader.style.opacity = '0';
-      setTimeout(() => loader.remove(), 400);
+      loader.classList.add('hidden');
+      setTimeout(() => loader.remove(), 600);
     }
   };
 
@@ -75,11 +77,26 @@ export default function ScrollBackground() {
     });
   };
 
+  // Safety timeout for loader
   useEffect(() => {
-    const safetyTimeout = setTimeout(dismissLoader, 3000);
+    const safetyTimeout = setTimeout(() => {
+      dismissLoader();
+      setHeroReady(true);
+      heroReadyRef.current = true;
+      setOtherScenesReady(true);
+    }, 4000);
     return () => clearTimeout(safetyTimeout);
   }, []);
 
+  // Delay rendering of other scenes after hero is ready
+  useEffect(() => {
+    if (!heroReady) return;
+    // Wait 300ms after hero is shown before allowing other scenes to render
+    const timer = setTimeout(() => setOtherScenesReady(true), 300);
+    return () => clearTimeout(timer);
+  }, [heroReady]);
+
+  // Observe sections for preloading
   useEffect(() => {
     const sections = sectionBackgrounds.map((bg) => document.getElementById(bg.id));
     elementsRef.current = sections;
@@ -114,8 +131,12 @@ export default function ScrollBackground() {
     return () => observer.disconnect();
   }, []);
 
+  // Scroll handler
   useEffect(() => {
     const handleScroll = () => {
+      // Don't change activeIndex until hero is ready
+      if (!heroReadyRef.current) return;
+
       const scrollY = window.scrollY + window.innerHeight / 3;
       let nextIndex = 0;
 
@@ -142,10 +163,11 @@ export default function ScrollBackground() {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+    // Don't call handleScroll immediately — keep activeIndex at 0
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Load hero video after hero is ready
   useEffect(() => {
     if (!heroReady) return;
 
@@ -165,46 +187,45 @@ export default function ScrollBackground() {
       {sectionBackgrounds.map((scene, index) => {
         if (!loadedIds.has(scene.id)) return null;
 
-        // Don't render non-hero scenes until hero is fully loaded
-        if (index > 0 && !heroReady) return null;
+        // Don't render non-hero scenes until hero is shown AND 300ms delay passed
+        if (index > 0 && !otherScenesReady) return null;
 
         const isActive = index === activeIndex;
+        // Force opacity 0 for non-hero scenes initially
         const opacity = isActive ? 1 : 0;
 
-        // Hero gets instant opacity on first render (no transition from nothing)
-        const isHeroInitial = index === 0 && !heroReady;
-        const transitionClass = isHeroInitial
-          ? 'absolute inset-0 w-full h-full object-cover'
-          : 'absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out';
+        const transitionClass =
+          'absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out';
 
         if (scene.kind === 'video') {
-          // Keep poster img visible until video is ready to play
           const showPoster = !videoReady;
           const showVideo = shouldLoadHeroVideo;
 
           return (
             <div key={scene.id} className="absolute inset-0">
-              {/* Poster image -- stays until video can play */}
+              {/* Poster image — stays until video can play */}
               {showPoster && (
                 <img
                   src={getSceneImageSrc(scene)}
                   onLoad={() => {
                     setHeroReady(true);
+                    heroReadyRef.current = true;
                     dismissLoader();
                   }}
                   onError={() => {
                     handleSceneError(scene);
                     setHeroReady(true);
+                    heroReadyRef.current = true;
                     dismissLoader();
                   }}
                   alt=""
                   decoding="async"
                   fetchPriority="high"
-                  className={transitionClass}
-                  style={{ opacity: isActive ? 1 : 0, objectPosition: scene.position ?? 'center' }}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  style={{ objectPosition: scene.position ?? 'center' }}
                 />
               )}
-              {/* Video -- rendered once idle, shown once canplay fires */}
+              {/* Video — rendered once idle, shown once canplay fires */}
               {showVideo && (
                 <video
                   autoPlay
