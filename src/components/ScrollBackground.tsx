@@ -46,6 +46,17 @@ export default function ScrollBackground() {
   const [videoReady, setVideoReady] = useState(false);
   const elementsRef = useRef<(HTMLElement | null)[]>([]);
   const activeIndexRef = useRef(0);
+  const loaderDismissedRef = useRef(false);
+
+  const dismissLoader = () => {
+    if (loaderDismissedRef.current) return;
+    loaderDismissedRef.current = true;
+    const loader = document.getElementById('app-loader');
+    if (loader) {
+      loader.style.opacity = '0';
+      setTimeout(() => loader.remove(), 400);
+    }
+  };
 
   const getSceneImageSrc = (scene: BackgroundScene) => {
     const preferredSrc = scene.kind === 'video' ? scene.poster ?? scene.src : scene.src;
@@ -63,6 +74,11 @@ export default function ScrollBackground() {
       return next;
     });
   };
+
+  useEffect(() => {
+    const safetyTimeout = setTimeout(dismissLoader, 3000);
+    return () => clearTimeout(safetyTimeout);
+  }, []);
 
   useEffect(() => {
     const sections = sectionBackgrounds.map((bg) => document.getElementById(bg.id));
@@ -172,10 +188,14 @@ export default function ScrollBackground() {
               {showPoster && (
                 <img
                   src={getSceneImageSrc(scene)}
-                  onLoad={() => setHeroReady(true)}
+                  onLoad={() => {
+                    setHeroReady(true);
+                    dismissLoader();
+                  }}
                   onError={() => {
                     handleSceneError(scene);
                     setHeroReady(true);
+                    dismissLoader();
                   }}
                   alt=""
                   decoding="async"
