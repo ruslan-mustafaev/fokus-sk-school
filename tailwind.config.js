@@ -20,6 +20,7 @@ export default {
         'slide-up': 'slideUp 0.6s ease-out',
         'slide-in-left': 'slideInLeft 0.6s ease-out',
         'slide-in-right': 'slideInRight 0.6s ease-out',
+        'gradient': 'gradient 4s linear infinite',
       },
       keyframes: {
         float: {
@@ -37,6 +38,10 @@ export default {
         slideInRight: {
           '0%': { transform: 'translateX(30px)', opacity: '0' },
           '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
+        gradient: {
+          '0%': { backgroundPosition: '0% center' },
+          '100%': { backgroundPosition: '200% center' },
         },
       },
     },
