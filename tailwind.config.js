@@ -21,6 +21,7 @@ export default {
         'slide-in-left': 'slideInLeft 0.6s ease-out',
         'slide-in-right': 'slideInRight 0.6s ease-out',
         'gradient': 'gradient 4s linear infinite',
+        'color-flicker': 'colorFlicker 4s ease-in-out infinite',
       },
       keyframes: {
         float: {
@@ -42,6 +43,11 @@ export default {
         gradient: {
           '0%': { backgroundPosition: '0% center' },
           '100%': { backgroundPosition: '200% center' },
+        },
+        colorFlicker: {
+          '0%, 100%': { color: '#EE4E00' },
+          '33%':       { color: '#1E10C7' },
+          '66%':       { color: '#FFFFFF' },
         },
       },
     },
