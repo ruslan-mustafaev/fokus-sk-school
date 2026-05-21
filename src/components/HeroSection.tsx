@@ -15,7 +15,7 @@ export default function HeroSection() {
         id="hero"
         className="relative min-h-screen flex flex-col justify-end"
       >
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-black/50" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pb-16 md:pb-20">
           <div className="max-w-3xl">
             <AnimatedElement animation="fade-in-up" delay={100}>
