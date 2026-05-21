@@ -73,7 +73,6 @@ const QuestionCard = ({
     A2: 'bg-blue-100 text-blue-700',
     B1: 'bg-amber-100 text-amber-700',
     B2: 'bg-red-100 text-red-700',
-    C1: 'bg-zinc-800 text-zinc-100',
   };
 
   const categoryNames: Record<QuestionCategory, string> = {
@@ -90,7 +89,7 @@ const QuestionCard = ({
         <span
           className={`px-4 py-2 rounded-xl text-xs font-black ${difficultyColors[question.difficulty]}`}
         >
-          {question.difficulty}
+          {question.difficulty === 'B2' ? 'B2-C1' : question.difficulty}
         </span>
         <span className="text-brand-dark/50 text-sm font-semibold">
           {categoryNames[question.category]}
@@ -312,7 +311,6 @@ const ResultsScreen = ({
     A2: 'from-blue-400 to-blue-600',
     B1: 'from-amber-400 to-amber-600',
     B2: 'from-red-400 to-red-600',
-    C1: 'from-zinc-700 to-slate-900',
   };
 
   const formatIcons: Record<string, React.ReactNode> = {
@@ -329,6 +327,8 @@ const ResultsScreen = ({
     reading: 'Читання',
     writing: 'Письмо',
   };
+
+  const displayLevel = results.determinedLevel === 'B2' ? 'B2-C1' : results.determinedLevel;
 
   return (
     <div className="max-w-3xl mx-auto">
@@ -354,7 +354,7 @@ const ResultsScreen = ({
             <div
               className={`inline-block text-5xl md:text-6xl lg:text-7xl font-black bg-gradient-to-r ${levelColors[results.determinedLevel]} bg-clip-text text-transparent mb-6`}
             >
-              {results.determinedLevel} - {plan.title}
+              {displayLevel} - {plan.title}
             </div>
 
             <p className="text-lg md:text-xl text-brand-dark/70 mb-8 max-w-2xl mx-auto leading-relaxed">
@@ -520,7 +520,6 @@ export default function Quiz({ onBackToSite }: { onBackToSite?: () => void }) {
       A2: { correct: 0, total: 0 },
       B1: { correct: 0, total: 0 },
       B2: { correct: 0, total: 0 },
-      C1: { correct: 0, total: 0 },
     };
 
     const categoryScores: QuizResults['categoryScores'] = {
