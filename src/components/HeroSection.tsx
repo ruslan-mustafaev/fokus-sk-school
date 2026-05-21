@@ -16,6 +16,7 @@ export default function HeroSection() {
         className="relative min-h-screen flex flex-col justify-end"
       >
         <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-black/80" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pb-16 md:pb-20">
           <div className="max-w-3xl">
             <AnimatedElement animation="fade-in-up" delay={100}>
