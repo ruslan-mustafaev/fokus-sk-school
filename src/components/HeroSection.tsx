@@ -1,6 +1,5 @@
 import { PenTool } from 'lucide-react';
 import AnimatedElement from './AnimatedElement';
-
 export default function HeroSection() {
   const handleTrialClick = () => {
     const element = document.querySelector('#contact');
@@ -8,18 +7,17 @@ export default function HeroSection() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
   return (
     <>
       <section
         id="hero"
         className="relative min-h-screen flex flex-col justify-end"
       >
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-blue-900/25" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pb-16 md:pb-20">
           <div className="max-w-3xl">
             <AnimatedElement animation="fade-in-up" delay={100}>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight text-brand-orange mb-6">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight text-white mb-6">
                 Онлайн-школа словацької мови
               </h1>
             </AnimatedElement>
