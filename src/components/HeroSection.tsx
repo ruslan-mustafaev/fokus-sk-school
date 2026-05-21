@@ -19,7 +19,7 @@ export default function HeroSection() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pb-16 md:pb-20">
           <div className="max-w-3xl">
             <AnimatedElement animation="fade-in-up" delay={100}>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight text-brand-orange mb-6 backdrop-blur-sm bg-black/20 rounded-2xl px-4 py-2 inline-block">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight mb-6 bg-gradient-to-r from-white via-brand-orange to-blue-500 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
                 Онлайн-школа словацької мови
               </h1>
             </AnimatedElement>
