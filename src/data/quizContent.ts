@@ -1,4 +1,4 @@
-export type DifficultyLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1';
+export type DifficultyLevel = 'A1' | 'A2' | 'B1' | 'B2';
 export type QuestionCategory = 'grammar' | 'communication' | 'vocabulary' | 'reading' | 'writing';
 
 export interface QuizQuestion {
@@ -241,8 +241,8 @@ export const questions: QuizQuestion[] = [
       'Vyberte správnu možnosť:\n\nVyskytol sa vážny problém, ktorý ____ okamžité riešenie. Už na tom pracujeme.',
     options: ['požiada', 'požaduje', 'si vyžiada', 'si vyžaduje'],
     correctAnswer: 3,
-    explanation: 'Правильна відповідь: "si vyžaduje". Це просунутий рівень C1.',
-    difficulty: 'C1',
+    explanation: 'Правильна відповідь: "si vyžaduje". Це просунутий рівень B2-C1.',
+    difficulty: 'B2',
     category: 'vocabulary',
   },
   {
@@ -251,8 +251,8 @@ export const questions: QuizQuestion[] = [
       'Vyberte správну можність:\n\nEšte ____ nejaké záležitosti pred zajtrajším stretnutím s dôležitým klientom.',
     options: ['zoberieme', 'vyberieme', 'preberieme', 'oberieme'],
     correctAnswer: 2,
-    explanation: 'Правильна відповідь: "preberieme". Це просунутий рівень C1.',
-    difficulty: 'C1',
+    explanation: 'Правильна відповідь: "preberieme". Це просунутий рівень B2-C1.',
+    difficulty: 'B2',
     category: 'vocabulary',
   },
   {
@@ -261,8 +261,8 @@ export const questions: QuizQuestion[] = [
       'Vyberte správну можність:\n\n____ všetci pracovníci, aby referovali o stave rozpracovaných úloh.',
     options: ['rozchádzajú', 'vychádzajú', 'vchádzajú', 'schádzajú'],
     correctAnswer: 3,
-    explanation: 'Правильна відповідь: "schádzajú". Це просунутий рівень C1.',
-    difficulty: 'C1',
+    explanation: 'Правильна відповідь: "schádzajú". Це просунутий рівень B2-C1.',
+    difficulty: 'B2',
     category: 'vocabulary',
   },
 ];
@@ -319,33 +319,17 @@ export const learningPlans: Record<DifficultyLevel, LearningPlan> = {
   B2: {
     level: 'B2',
     title: 'Вище середнього',
-    description: 'У вас уже сильна база. На цьому етапі найкраще працює жива практика, нюанси слововживання та швидкість формулювання думок.',
-    recommendedFormat: 'club',
-    formatName: 'Розмовний клуб + міні-група',
-    formatDescription: 'Більше живого мовлення, складніші теми та шліфування точності в реальних діалогах.',
-    price: 'від 62 EUR / місяць',
-    duration: 'Постійна практика до впевненого просунутого рівня',
+    description: 'У вас уже сильна база. На цьому етапі найкраще працює жива розмовна практика, нюанси слововживання та шліфування точності.',
+    recommendedFormat: 'group',
+    formatName: 'Курс Б1+',
+    formatDescription: 'Розмовний курс з акцентом на складніші теми, точність граматики та природність мовлення.',
+    price: '96 EUR / місяць',
+    duration: '3 місяці інтенсивної практики',
     features: [
-      'Живе спілкування на складні теми',
-      'Точність у лексиці та граматиці',
-      'Робота з нюансами слововживання',
+      'Багато розмовної практики',
+      'Сленг та словацькі тонкощі',
+      'Складніші граматичні конструкції',
       'Підготовка до професійного середовища',
-    ],
-  },
-  C1: {
-    level: 'C1',
-    title: 'Просунутий',
-    description: 'У вас уже дуже впевнений рівень. Тут корисно шліфувати стиль, гнучкість мовлення та професійну або академічну лексику.',
-    recommendedFormat: 'club',
-    formatName: 'Індивідуальний супровід + розмовний клуб',
-    formatDescription: 'Точкова робота над стилем, просунутою лексикою та природністю мовлення у складних контекстах.',
-    price: 'за запитом',
-    duration: 'Індивідуальна траєкторія',
-    features: [
-      'Просунута лексика та колокації',
-      'Нюанси стилю та формальності',
-      'Аргументація і складні теми',
-      'Підтримка високого рівня через живу практику',
     ],
   },
 };
@@ -360,9 +344,7 @@ export function determineLevel(
   const a2 = score('A2');
   const b1 = score('B1');
   const b2 = score('B2');
-  const c1 = score('C1');
 
-  if (c1 >= 0.67 && b2 >= 0.6) return 'C1';
   if (b2 >= 0.6 && b1 >= 0.6) return 'B2';
   if (b1 >= 0.6 && a2 >= 0.6) return 'B1';
   if (a2 >= 0.6 && a1 >= 0.6) return 'A2';
