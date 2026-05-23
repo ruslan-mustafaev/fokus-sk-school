@@ -81,7 +81,7 @@ export default function FeaturesSection() {
               <img
                 src="/full_dekor/16_trim.png"
                 alt=""
-                className="absolute inset-0 w-full h-full object-contain pointer-events-none select-none z-0 scale-[3.5]"
+                className="absolute inset-0 w-full h-full object-contain pointer-events-none select-none z-0 scale-[2.5]"
                 decoding="async"
                 loading="lazy"
               />
