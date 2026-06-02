@@ -37,30 +37,24 @@ function validateContact(contact: string): string | null {
     return null;
   }
 
-  // Phone number — любой международный формат
-  const digitsOnly = trimmed.replace(/[\s\-\(\)\.+]/g, '');
-  if (/^\d+$/.test(digitsOnly)) {
-    if (digitsOnly.length < 7) return "Телефон занадто короткий (мін. 7 цифр)";
-    if (digitsOnly.length > 15) return "Телефон занадто довгий";
-    // Повтор одной цифры: 1111111
-    if (/^(\d)\1{6,}$/.test(digitsOnly)) return "Введіть справжній номер телефону";
-    // Повтор паттерна: 234234234, 1212121
-    for (let len = 1; len <= 4; len++) {
-      const pattern = digitsOnly.slice(0, len);
-      if (pattern.length === len && digitsOnly === pattern.repeat(Math.ceil(digitsOnly.length / len)).slice(0, digitsOnly.length)) {
-        return "Введіть справжній номер телефону";
-      }
-    }
-    // Последовательность: 1234567890
-    const asc = '0123456789012345';
-    const desc = '9876543210987654';
-    if (digitsOnly.length >= 7 && (asc.includes(digitsOnly) || desc.includes(digitsOnly))) {
-      return "Введіть справжній номер телефону";
-    }
-    return null;
+  // Phone — должен начинаться с + или 0
+  if (!trimmed.startsWith('+') && !trimmed.startsWith('0')) {
+    return "Номер має починатись з + або 0";
   }
 
-  return "Введіть номер телефону або Telegram (@username)";
+  const digitsOnly = trimmed.replace(/[\s\-\(\)\.+]/g, '');
+  if (!/^\d+$/.test(digitsOnly)) return "Номер має містити лише цифри";
+  if (digitsOnly.length < 7) return "Телефон занадто короткий (мін. 7 цифр)";
+  if (digitsOnly.length > 15) return "Телефон занадто довгий";
+
+  // Повтор одной цифры: 0000000
+  if (/^(\d)\1+$/.test(digitsOnly)) return "Введіть справжній номер телефону";
+
+  // Мало уникальных цифр — мусор
+  const unique = new Set(digitsOnly.split('')).size;
+  if (digitsOnly.length >= 9 && unique <= 3) return "Введіть справжній номер телефону";
+
+  return null;
 }
 
 function validateEmail(email: string): string | null {
