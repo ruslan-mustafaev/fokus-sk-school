@@ -52,7 +52,7 @@ export default function ScrollBackground() {
   const [otherScenesReady, setOtherScenesReady] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
 
-  // Определяем мобильный размер один раз при монтировании
+  // Определяем мобильный размер
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -204,8 +204,11 @@ export default function ScrollBackground() {
     return () => window.clearTimeout(timeoutId);
   }, [heroReady]);
 
-  // На мобильных hero-видео позиционируем сверху, чтобы убрать чёрную полосу
-  const heroObjectPosition = isMobile ? 'top center' : 'center';
+  // На мобильных поднимаем hero видео/постер выше, чтобы убрать тёмную полосу сверху.
+  // scale слегка увеличивает кадр, translateY сдвигает его вверх.
+  const heroMobileStyle = isMobile
+    ? { transform: 'translateY(-6%) scale(1.12)', transformOrigin: 'top center' }
+    : {};
 
   return (
     <div className="fixed inset-0 z-0 pointer-events-none" style={{ height: '100dvh' }} aria-hidden="true">
@@ -226,7 +229,7 @@ export default function ScrollBackground() {
           const showVideo = shouldLoadHeroVideo;
 
           return (
-            <div key={scene.id} className="absolute inset-0">
+            <div key={scene.id} className="absolute inset-0 overflow-hidden">
               {showPoster && (
                 <img
                   src={getSceneImageSrc(scene)}
@@ -248,7 +251,7 @@ export default function ScrollBackground() {
                   decoding="async"
                   fetchPriority="high"
                   className="absolute inset-0 w-full h-full object-cover"
-                  style={{ objectPosition: heroObjectPosition }}
+                  style={{ objectPosition: scene.position ?? 'center', ...heroMobileStyle }}
                 />
               )}
               {showVideo && (
@@ -262,7 +265,7 @@ export default function ScrollBackground() {
                   className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
                   style={{
                     opacity: videoReady && isActive ? 1 : 0,
-                    objectPosition: heroObjectPosition,
+                    ...heroMobileStyle,
                   }}
                 >
                   <source src={scene.src} type="video/mp4" />
