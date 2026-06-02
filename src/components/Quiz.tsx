@@ -20,6 +20,7 @@ import {
   type QuestionCategory,
   type QuizQuestion,
 } from '../data/quizContent';
+import { sendQuizResultEmail } from '../lib/emailjs';
 
 interface UserData {
   name: string;
@@ -499,6 +500,21 @@ const ResultsScreen = ({
   );
 };
 
+const GOAL_LABELS: Record<string, string> = {
+  general: 'Загальне вивчення мови',
+  work: 'Для роботи в Словаччині',
+  study: 'Для навчання в університеті',
+  citizenship: 'Для отримання громадянства',
+  travel: 'Для подорожей',
+};
+
+const STUDY_TIME_LABELS: Record<string, string> = {
+  minimal: '1-2 години на тиждень',
+  moderate: '3-5 годин на тиждень',
+  intensive: '6+ годин на тиждень',
+  flexible: 'Гнучкий графік',
+};
+
 export default function Quiz({ onBackToSite }: { onBackToSite?: () => void }) {
   const [stage, setStage] = useState<'registration' | 'quiz' | 'results'>('registration');
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -582,6 +598,66 @@ export default function Quiz({ onBackToSite }: { onBackToSite?: () => void }) {
       setShowResult(false);
       setQuestionStartTime(Date.now());
       return;
+    }
+
+    // Build final answers list including current question
+    const finalAnswers = [
+      ...answers,
+    ];
+
+    // Calculate results and send email
+    const levelScores: QuizResults['levelScores'] = {
+      A1: { correct: 0, total: 0 },
+      A2: { correct: 0, total: 0 },
+      B1: { correct: 0, total: 0 },
+      B2: { correct: 0, total: 0 },
+      C1: { correct: 0, total: 0 },
+    };
+    const categoryScores: QuizResults['categoryScores'] = {
+      vocabulary: { correct: 0, total: 0 },
+      grammar: { correct: 0, total: 0 },
+      communication: { correct: 0, total: 0 },
+      reading: { correct: 0, total: 0 },
+      writing: { correct: 0, total: 0 },
+    };
+    let totalScore = 0;
+    finalAnswers.forEach((answer) => {
+      const question = notionQuestions.find((q) => q.id === answer.questionId);
+      if (!question) return;
+      levelScores[question.difficulty].total++;
+      categoryScores[question.category].total++;
+      if (answer.isCorrect) {
+        totalScore++;
+        levelScores[question.difficulty].correct++;
+        categoryScores[question.category].correct++;
+      }
+    });
+    const determinedLevel = determineNotionLevel(levelScores);
+    const plan = notionLearningPlans[determinedLevel];
+    const percentage = Math.round((totalScore / notionQuestions.length) * 100);
+
+    if (userData) {
+      sendQuizResultEmail({
+        name: userData.name,
+        email: userData.email,
+        goal: GOAL_LABELS[userData.goal] ?? userData.goal,
+        studyTime: STUDY_TIME_LABELS[userData.studyTime] ?? userData.studyTime,
+        level: determinedLevel,
+        levelTitle: plan.title,
+        score: String(totalScore),
+        totalQuestions: String(notionQuestions.length),
+        percentage: String(percentage),
+        recommendedFormat: plan.formatName,
+        price: plan.price,
+        duration: plan.duration,
+        vocabScore: `${categoryScores.vocabulary.correct}/${categoryScores.vocabulary.total}`,
+        grammarScore: `${categoryScores.grammar.correct}/${categoryScores.grammar.total}`,
+        communicationScore: `${categoryScores.communication.correct}/${categoryScores.communication.total}`,
+        readingScore: `${categoryScores.reading.correct}/${categoryScores.reading.total}`,
+        writingScore: `${categoryScores.writing.correct}/${categoryScores.writing.total}`,
+      }).catch(() => {
+        // silently fail — results are still shown to user
+      });
     }
 
     setStage('results');
