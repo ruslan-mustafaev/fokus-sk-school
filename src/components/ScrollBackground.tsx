@@ -51,6 +51,18 @@ export default function ScrollBackground() {
   const [heroReady, setHeroReady] = useState(false);
   const [otherScenesReady, setOtherScenesReady] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
+
+  // Определяем мобильный размер один раз при монтировании
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const elementsRef = useRef<(HTMLElement | null)[]>([]);
   const activeIndexRef = useRef(0);
   const heroReadyRef = useRef(false);
@@ -192,6 +204,9 @@ export default function ScrollBackground() {
     return () => window.clearTimeout(timeoutId);
   }, [heroReady]);
 
+  // На мобильных hero-видео позиционируем сверху, чтобы убрать чёрную полосу
+  const heroObjectPosition = isMobile ? 'top center' : 'center';
+
   return (
     <div className="fixed inset-0 z-0 pointer-events-none" style={{ height: '100dvh' }} aria-hidden="true">
       {sectionBackgrounds.map((scene, index) => {
@@ -233,7 +248,7 @@ export default function ScrollBackground() {
                   decoding="async"
                   fetchPriority="high"
                   className="absolute inset-0 w-full h-full object-cover"
-                  style={{ objectPosition: scene.position ?? 'center' }}
+                  style={{ objectPosition: heroObjectPosition }}
                 />
               )}
               {showVideo && (
@@ -245,7 +260,10 @@ export default function ScrollBackground() {
                   preload="auto"
                   onCanPlay={() => setVideoReady(true)}
                   className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
-                  style={{ opacity: videoReady && isActive ? 1 : 0 }}
+                  style={{
+                    opacity: videoReady && isActive ? 1 : 0,
+                    objectPosition: heroObjectPosition,
+                  }}
                 >
                   <source src={scene.src} type="video/mp4" />
                 </video>
