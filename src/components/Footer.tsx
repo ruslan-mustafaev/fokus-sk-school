@@ -1,4 +1,4 @@
-import { Mail, Instagram, Facebook, MapPin } from 'lucide-react';
+import { Mail, Instagram, MapPin } from 'lucide-react';
 import AnimatedElement from './AnimatedElement';
 
 const navLinks = [
@@ -64,29 +64,25 @@ export default function Footer() {
               <h3 className="font-bold text-lg mb-6">Контакти</h3>
               <div className="space-y-4">
                 <a
-                  href="mailto:info@fokus.sk"
+                  href="mailto:focus.school.sk@gmail.com"
                   className="flex items-center gap-3 text-white/70 hover:text-white transition-colors"
                 >
                   <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
                     <Mail className="w-5 h-5" />
                   </div>
-                  <span>info@fokus.sk</span>
+                  <span>focus.school.sk@gmail.com</span>
                 </a>
               </div>
 
               <h3 className="font-bold text-lg mt-8 mb-4">Соцмережі</h3>
               <div className="flex gap-3">
                 <a
-                  href="#"
+                  href="https://www.instagram.com/foocus.school?igsh=cmttYzVhdWV3eHg0"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center hover:bg-brand-orange transition-colors"
                 >
                   <Instagram className="w-5 h-5" />
-                </a>
-                <a
-                  href="#"
-                  className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center hover:bg-brand-blue transition-colors"
-                >
-                  <Facebook className="w-5 h-5" />
                 </a>
               </div>
             </div>
