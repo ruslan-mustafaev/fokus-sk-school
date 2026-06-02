@@ -42,9 +42,7 @@ export default function Header({ onQuizClick }: { onQuizClick?: () => void }) {
           ? 'backdrop-blur-md shadow-lg py-2'
           : 'backdrop-blur-sm py-3'
       }`}
-      style={{
-        backgroundColor: isScrolled ? '#eaeaea' : 'transparent',
-      }}
+      style={{ backgroundColor: '#eaeaea' }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -64,9 +62,8 @@ export default function Header({ onQuizClick }: { onQuizClick?: () => void }) {
               <button
                 key={link.href}
                 onClick={() => scrollToSection(link.href)}
-                className={`font-semibold text-base uppercase tracking-wide transition-colors duration-200 hover:text-brand-blue ${
-                  isScrolled ? 'text-brand-dark/80' : 'text-white/90'
-                }`}
+                className="text-brand-dark/80 font-semibold text-base uppercase tracking-wide
+                         hover:text-brand-blue transition-colors duration-200"
                 style={{ boxShadow: 'none', textShadow: 'none' }}
               >
                 {link.label}
@@ -99,9 +96,7 @@ export default function Header({ onQuizClick }: { onQuizClick?: () => void }) {
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className={`lg:hidden p-2 transition-colors ${
-              isScrolled ? 'text-brand-dark' : 'text-white'
-            }`}
+            className="lg:hidden p-2 text-brand-dark"
           >
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
