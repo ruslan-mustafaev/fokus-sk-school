@@ -4,6 +4,7 @@ import {
   ArrowRight,
   CheckCircle,
   GraduationCap,
+  Loader2,
   MessageCircle,
   Star,
   Target,
@@ -22,7 +23,9 @@ import {
 } from '../data/quizContent';
 import { sendQuizResultEmail } from '../lib/emailjs';
 
-interface UserData {
+// ── Types ────────────────────────────────────────────────────────────────────
+
+interface LeadData {
   name: string;
   email: string;
   goal: string;
@@ -37,9 +40,37 @@ interface QuizResults {
   answers: { questionId: number; selectedAnswer: number; isCorrect: boolean; timeSpent: number }[];
 }
 
+type Stage = 'quiz' | 'lead' | 'results';
+
+// ── Constants ────────────────────────────────────────────────────────────────
+
+const GOAL_LABELS: Record<string, string> = {
+  general: 'Загальне вивчення мови',
+  work: 'Для роботи в Словаччині',
+  study: 'Для навчання в університеті',
+  citizenship: 'Для отримання громадянства',
+  travel: 'Для подорожей',
+};
+
+const STUDY_TIME_LABELS: Record<string, string> = {
+  minimal: '1-2 години на тиждень',
+  moderate: '3-5 годин на тиждень',
+  intensive: '6+ годин на тиждень',
+  flexible: 'Гнучкий графік',
+};
+
+const LEVEL_COLORS: Record<DifficultyLevel, string> = {
+  A1: 'from-green-400 to-green-600',
+  A2: 'from-blue-400 to-blue-600',
+  B1: 'from-amber-400 to-amber-600',
+  B2: 'from-red-400 to-red-600',
+  C1: 'from-zinc-700 to-slate-900',
+};
+
+// ── ProgressBar ───────────────────────────────────────────────────────────────
+
 const ProgressBar = ({ current, total }: { current: number; total: number }) => {
   const percentage = (current / total) * 100;
-
   return (
     <div className="relative">
       <div className="w-full h-4 bg-brand-light rounded-full overflow-hidden">
@@ -57,6 +88,8 @@ const ProgressBar = ({ current, total }: { current: number; total: number }) => 
     </div>
   );
 };
+
+// ── QuestionCard ──────────────────────────────────────────────────────────────
 
 const QuestionCard = ({
   question,
@@ -88,9 +121,7 @@ const QuestionCard = ({
   return (
     <div className="animate-fadeIn mb-8">
       <div className="flex items-center gap-3 mb-6">
-        <span
-          className={`px-4 py-2 rounded-xl text-xs font-black ${difficultyColors[question.difficulty]}`}
-        >
+        <span className={`px-4 py-2 rounded-xl text-xs font-black ${difficultyColors[question.difficulty]}`}>
           {question.difficulty}
         </span>
         <span className="text-brand-dark/50 text-sm font-semibold">
@@ -104,45 +135,30 @@ const QuestionCard = ({
 
       <div className="grid gap-4">
         {question.options.map((option, index) => {
-          let buttonClass =
-            'relative w-full p-5 text-left rounded-2xl border-2 transition-all duration-300 cursor-pointer ';
-
+          let cls = 'relative w-full p-5 text-left rounded-2xl border-2 transition-all duration-300 cursor-pointer ';
           if (showResult) {
-            if (index === question.correctAnswer) {
-              buttonClass += 'bg-green-50 border-green-500 text-green-900';
-            } else if (index === selectedAnswer) {
-              buttonClass += 'bg-red-50 border-red-500 text-red-900';
-            } else {
-              buttonClass += 'bg-brand-light border-brand-light text-brand-dark/40';
-            }
+            if (index === question.correctAnswer) cls += 'bg-green-50 border-green-500 text-green-900';
+            else if (index === selectedAnswer) cls += 'bg-red-50 border-red-500 text-red-900';
+            else cls += 'bg-brand-light border-brand-light text-brand-dark/40';
           } else if (selectedAnswer === index) {
-            buttonClass +=
-              'bg-gradient-to-r from-brand-blue/10 to-brand-orange/10 border-brand-blue text-brand-dark scale-[1.02]';
+            cls += 'bg-gradient-to-r from-brand-blue/10 to-brand-orange/10 border-brand-blue text-brand-dark scale-[1.02]';
           } else {
-            buttonClass +=
-              'bg-white border-brand-light text-brand-dark hover:bg-brand-light hover:border-brand-blue/30 hover:-translate-y-0.5';
+            cls += 'bg-white border-brand-light text-brand-dark hover:bg-brand-light hover:border-brand-blue/30 hover:-translate-y-0.5';
           }
 
           return (
-            <button
-              key={index}
-              onClick={() => !showResult && onSelect(index)}
-              disabled={showResult}
-              className={buttonClass}
-            >
+            <button key={index} onClick={() => !showResult && onSelect(index)} disabled={showResult} className={cls}>
               <span className="flex items-center gap-4">
                 <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-brand-blue/10 text-brand-blue text-sm font-black flex-shrink-0">
                   {String.fromCharCode(65 + index)}
                 </span>
                 <span className="text-base md:text-lg font-semibold">{option}</span>
               </span>
-
               {showResult && index === question.correctAnswer && (
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-green-500">
                   <CheckCircle className="w-6 h-6" />
                 </span>
               )}
-
               {showResult && index === selectedAnswer && index !== question.correctAnswer && (
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-red-500">
                   <XCircle className="w-6 h-6" />
@@ -167,154 +183,240 @@ const QuestionCard = ({
   );
 };
 
-const RegistrationForm = ({ onSubmit }: { onSubmit: (data: UserData) => void }) => {
-  const [formData, setFormData] = useState<UserData>({
+// ── LeadForm ──────────────────────────────────────────────────────────────────
+// Shown AFTER the quiz, before showing results.
+// Collects name + email, sends the result email, then reveals results.
+
+const LeadForm = ({
+  completedAnswers,
+  onComplete,
+}: {
+  completedAnswers: QuizResults['answers'];
+  onComplete: (lead: LeadData, results: QuizResults) => void;
+}) => {
+  const [formData, setFormData] = useState<LeadData>({
     name: '',
     email: '',
     goal: 'general',
     studyTime: 'flexible',
   });
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (formData.name && formData.email) {
-      onSubmit(formData);
+  // Pre-calculate results so we can show a teaser level badge
+  const levelScores: QuizResults['levelScores'] = {
+    A1: { correct: 0, total: 0 },
+    A2: { correct: 0, total: 0 },
+    B1: { correct: 0, total: 0 },
+    B2: { correct: 0, total: 0 },
+    C1: { correct: 0, total: 0 },
+  };
+  const categoryScores: QuizResults['categoryScores'] = {
+    vocabulary: { correct: 0, total: 0 },
+    grammar: { correct: 0, total: 0 },
+    communication: { correct: 0, total: 0 },
+    reading: { correct: 0, total: 0 },
+    writing: { correct: 0, total: 0 },
+  };
+  let totalScore = 0;
+  completedAnswers.forEach((answer) => {
+    const q = notionQuestions.find((q) => q.id === answer.questionId);
+    if (!q) return;
+    levelScores[q.difficulty].total++;
+    categoryScores[q.category].total++;
+    if (answer.isCorrect) {
+      totalScore++;
+      levelScores[q.difficulty].correct++;
+      categoryScores[q.category].correct++;
     }
+  });
+  const determinedLevel = determineNotionLevel(levelScores);
+  const plan = notionLearningPlans[determinedLevel];
+  const percentage = Math.round((totalScore / notionQuestions.length) * 100);
+
+  const results: QuizResults = {
+    totalScore,
+    levelScores,
+    categoryScores,
+    determinedLevel,
+    answers: completedAnswers,
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name.trim() || !formData.email.trim()) return;
+    setSending(true);
+    setError('');
+    try {
+      await sendQuizResultEmail({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        goal: GOAL_LABELS[formData.goal] ?? formData.goal,
+        studyTime: STUDY_TIME_LABELS[formData.studyTime] ?? formData.studyTime,
+        level: determinedLevel,
+        levelTitle: plan.title,
+        score: String(totalScore),
+        totalQuestions: String(notionQuestions.length),
+        percentage: String(percentage),
+        recommendedFormat: plan.formatName,
+        price: plan.price,
+        duration: plan.duration,
+        vocabScore: `${categoryScores.vocabulary.correct}/${categoryScores.vocabulary.total}`,
+        grammarScore: `${categoryScores.grammar.correct}/${categoryScores.grammar.total}`,
+        communicationScore: `${categoryScores.communication.correct}/${categoryScores.communication.total}`,
+        readingScore: `${categoryScores.reading.correct}/${categoryScores.reading.total}`,
+        writingScore: `${categoryScores.writing.correct}/${categoryScores.writing.total}`,
+      });
+    } catch {
+      // Email failure should not block showing results — just note it
+      setError('Не вдалось надіслати результати на пошту. Але ваш рівень вже визначено!');
+    }
+    onComplete(formData, results);
   };
 
   return (
     <div className="max-w-2xl mx-auto">
       <AnimatedElement animation="fade-in-down">
-        <div className="text-center mb-8">
-          <div className="inline-block w-full max-w-2xl mx-auto mb-4">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-snug text-center text-brand-blue">
-              Тест на визначення
-              <br />
-              рівня словацької
-            </h1>
-            <img
-              src="/full_dekor/19_trim.png"
-              alt="Underline decoration"
-              loading="lazy"
-              decoding="async"
-              className="w-3/4 md:w-2/3 h-auto mx-auto mt-2"
-            />
+        {/* Teaser card */}
+        <div className={`relative bg-gradient-to-br ${LEVEL_COLORS[determinedLevel]} rounded-[2rem] p-8 md:p-10 mb-6 text-white text-center overflow-hidden`}>
+          <div className="absolute inset-0 bg-black/10 rounded-[2rem]" />
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-bold mb-4">
+              <CheckCircle className="w-4 h-4" />
+              Тест завершено!
+            </div>
+            <p className="text-white/80 text-base mb-3">Ви відповіли правильно на</p>
+            <div className="text-6xl font-black mb-2">{percentage}%</div>
+            <p className="text-white/70 text-sm">
+              {totalScore} з {notionQuestions.length} питань
+            </p>
+            {/* Blurred level teaser */}
+            <div className="mt-6 flex items-center justify-center gap-3">
+              <span className="text-white/70 text-base">Ваш рівень:</span>
+              <span className="text-3xl font-black bg-white/20 backdrop-blur-sm px-5 py-1.5 rounded-xl blur-sm select-none">
+                {determinedLevel} — {plan.title}
+              </span>
+            </div>
           </div>
-          <p className="text-base md:text-lg text-brand-dark/70 max-w-xl mx-auto leading-relaxed">
-            Пройдіть тест і дізнайтесь свій рівень володіння словацькою мовою
-          </p>
         </div>
       </AnimatedElement>
 
       <AnimatedElement animation="scale-in" delay={100}>
-        <div className="bg-white rounded-[2rem] p-8 md:p-10 space-y-6 transition-all duration-300">
-          <div>
-            <label className="block text-sm font-bold text-brand-dark mb-3">Ваше ім&apos;я</label>
-            <input
-              type="text"
-              required
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full px-5 py-4 rounded-xl bg-brand-light border-2 border-transparent text-brand-dark placeholder-brand-dark/40 focus:border-brand-blue focus:bg-white focus:outline-none transition-all duration-300 font-medium"
-              placeholder="Введіть ваше ім'я"
-            />
-          </div>
+        <div className="bg-white rounded-[2rem] p-8 md:p-10">
+          <h2 className="text-2xl md:text-3xl font-black text-brand-dark mb-2 text-center">
+            Дізнайтесь свій рівень
+          </h2>
+          <p className="text-brand-dark/60 text-center text-base mb-8 leading-relaxed">
+            Введіть ім'я та email — ми відкриємо повний результат<br className="hidden sm:block" /> і надішлемо детальний звіт на пошту
+          </p>
 
-          <div>
-            <label className="block text-sm font-bold text-brand-dark mb-3">Email</label>
-            <input
-              type="email"
-              required
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="w-full px-5 py-4 rounded-xl bg-brand-light border-2 border-transparent text-brand-dark placeholder-brand-dark/40 focus:border-brand-blue focus:bg-white focus:outline-none transition-all duration-300 font-medium"
-              placeholder="your@email.com"
-            />
-          </div>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label className="block text-sm font-bold text-brand-dark mb-2">Ваше ім'я</label>
+              <input
+                type="text"
+                required
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="w-full px-5 py-4 rounded-xl bg-brand-light border-2 border-transparent text-brand-dark placeholder-brand-dark/40 focus:border-brand-blue focus:bg-white focus:outline-none transition-all duration-300 font-medium"
+                placeholder="Введіть ваше ім'я"
+              />
+            </div>
 
-          <div>
-            <label className="block text-sm font-bold text-brand-dark mb-3">
-              Мета вивчення словацької
-            </label>
-            <select
-              value={formData.goal}
-              onChange={(e) => setFormData({ ...formData, goal: e.target.value })}
-              className="w-full px-5 py-4 rounded-xl bg-brand-light border-2 border-transparent text-brand-dark focus:border-brand-blue focus:bg-white focus:outline-none transition-all duration-300 cursor-pointer font-medium"
+            <div>
+              <label className="block text-sm font-bold text-brand-dark mb-2">Email</label>
+              <input
+                type="email"
+                required
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full px-5 py-4 rounded-xl bg-brand-light border-2 border-transparent text-brand-dark placeholder-brand-dark/40 focus:border-brand-blue focus:bg-white focus:outline-none transition-all duration-300 font-medium"
+                placeholder="your@email.com"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-bold text-brand-dark mb-2">
+                Мета вивчення словацької
+              </label>
+              <select
+                value={formData.goal}
+                onChange={(e) => setFormData({ ...formData, goal: e.target.value })}
+                className="w-full px-5 py-4 rounded-xl bg-brand-light border-2 border-transparent text-brand-dark focus:border-brand-blue focus:bg-white focus:outline-none transition-all duration-300 cursor-pointer font-medium"
+              >
+                <option value="general">Загальне вивчення мови</option>
+                <option value="work">Для роботи в Словаччині</option>
+                <option value="study">Для навчання в університеті</option>
+                <option value="citizenship">Для отримання громадянства</option>
+                <option value="travel">Для подорожей</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-bold text-brand-dark mb-2">
+                Скільки часу готові приділяти навчанню?
+              </label>
+              <select
+                value={formData.studyTime}
+                onChange={(e) => setFormData({ ...formData, studyTime: e.target.value })}
+                className="w-full px-5 py-4 rounded-xl bg-brand-light border-2 border-transparent text-brand-dark focus:border-brand-blue focus:bg-white focus:outline-none transition-all duration-300 cursor-pointer font-medium"
+              >
+                <option value="minimal">1-2 години на тиждень</option>
+                <option value="moderate">3-5 годин на тиждень</option>
+                <option value="intensive">6+ годин на тиждень</option>
+                <option value="flexible">Гнучкий графік</option>
+              </select>
+            </div>
+
+            {error && (
+              <p className="text-amber-600 text-sm font-medium bg-amber-50 px-4 py-3 rounded-xl">
+                {error}
+              </p>
+            )}
+
+            <button
+              type="submit"
+              disabled={!formData.name.trim() || !formData.email.trim() || sending}
+              className="w-full flex items-center justify-center gap-3 px-8 py-5 bg-brand-orange text-white rounded-full font-bold text-lg hover:bg-brand-orange/90 transition-all duration-300 transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
-              <option value="general">Загальне вивчення мови</option>
-              <option value="work">Для роботи в Словаччині</option>
-              <option value="study">Для навчання в університеті</option>
-              <option value="citizenship">Для отримання громадянства</option>
-              <option value="travel">Для подорожей</option>
-            </select>
-          </div>
+              {sending ? (
+                <>
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  Надсилаємо...
+                </>
+              ) : (
+                <>
+                  Показати мій результат
+                  <ArrowRight className="w-5 h-5" />
+                </>
+              )}
+            </button>
+          </form>
 
-          <div>
-            <label className="block text-sm font-bold text-brand-dark mb-3">
-              Скільки часу готові приділяти навчанню?
-            </label>
-            <select
-              value={formData.studyTime}
-              onChange={(e) => setFormData({ ...formData, studyTime: e.target.value })}
-              className="w-full px-5 py-4 rounded-xl bg-brand-light border-2 border-transparent text-brand-dark focus:border-brand-blue focus:bg-white focus:outline-none transition-all duration-300 cursor-pointer font-medium"
-            >
-              <option value="minimal">1-2 години на тиждень</option>
-              <option value="moderate">3-5 годин на тиждень</option>
-              <option value="intensive">6+ годин на тиждень</option>
-              <option value="flexible">Гнучкий графік</option>
-            </select>
-          </div>
-
-          <button
-            onClick={handleSubmit}
-            disabled={!formData.name || !formData.email}
-            className="w-full flex items-center justify-center gap-3 px-8 py-5 bg-brand-orange text-white rounded-full font-bold text-lg hover:bg-brand-orange/90 transition-all duration-300 transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-          >
-            Розпочати тест
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
-
-        <div className="mt-8 flex items-center justify-center gap-6 text-sm text-brand-dark/60">
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-brand-blue" />
-            <span className="font-medium">{notionQuestions.length} питань</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-brand-orange" />
-            <span className="font-medium">~12 хвилин</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-green-500" />
-            <span className="font-medium">Визначення рівня</span>
-          </div>
+          <p className="text-center text-xs text-brand-dark/40 mt-4 leading-relaxed">
+            Ми не надсилаємо спам. Тільки ваш результат та корисна інформація про курс.
+          </p>
         </div>
       </AnimatedElement>
     </div>
   );
 };
 
+// ── ResultsScreen ─────────────────────────────────────────────────────────────
+
 const ResultsScreen = ({
   results,
-  userData,
+  leadData,
   onRestart,
   onBackToSite,
 }: {
   results: QuizResults;
-  userData: UserData;
+  leadData: LeadData;
   onRestart: () => void;
   onBackToSite?: () => void;
 }) => {
   const percentage = Math.round((results.totalScore / notionQuestions.length) * 100);
   const plan = notionLearningPlans[results.determinedLevel];
-
-  const levelColors: Record<DifficultyLevel, string> = {
-    A1: 'from-green-400 to-green-600',
-    A2: 'from-blue-400 to-blue-600',
-    B1: 'from-amber-400 to-amber-600',
-    B2: 'from-red-400 to-red-600',
-    C1: 'from-zinc-700 to-slate-900',
-  };
 
   const formatIcons: Record<string, React.ReactNode> = {
     individual: <GraduationCap className="w-8 h-8" />,
@@ -341,21 +443,17 @@ const ResultsScreen = ({
           <div className="relative z-10">
             <div className="relative inline-block mb-8">
               <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/20 to-brand-orange/20 rounded-full blur-2xl" />
-              <div
-                className={`relative w-32 h-32 rounded-full bg-gradient-to-br ${levelColors[results.determinedLevel]} flex items-center justify-center`}
-              >
+              <div className={`relative w-32 h-32 rounded-full bg-gradient-to-br ${LEVEL_COLORS[results.determinedLevel]} flex items-center justify-center`}>
                 <span className="text-5xl font-black text-white">{percentage}%</span>
               </div>
             </div>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-brand-dark mb-4">
-              {userData.name}, ваш рівень:
+              {leadData.name}, ваш рівень:
             </h1>
 
-            <div
-              className={`inline-block text-5xl md:text-6xl lg:text-7xl font-black bg-gradient-to-r ${levelColors[results.determinedLevel]} bg-clip-text text-transparent mb-6`}
-            >
-              {results.determinedLevel} - {plan.title}
+            <div className={`inline-block text-5xl md:text-6xl lg:text-7xl font-black bg-gradient-to-r ${LEVEL_COLORS[results.determinedLevel]} bg-clip-text text-transparent mb-6`}>
+              {results.determinedLevel} — {plan.title}
             </div>
 
             <p className="text-lg md:text-xl text-brand-dark/70 mb-8 max-w-2xl mx-auto leading-relaxed">
@@ -366,9 +464,7 @@ const ResultsScreen = ({
               <span className="text-brand-dark/60 font-medium">Правильних відповідей:</span>
               <span className="text-2xl font-black text-brand-blue">{results.totalScore}</span>
               <span className="text-brand-dark/60 font-medium">з</span>
-              <span className="text-2xl font-black text-brand-orange">
-                {notionQuestions.length}
-              </span>
+              <span className="text-2xl font-black text-brand-orange">{notionQuestions.length}</span>
             </div>
           </div>
         </div>
@@ -383,32 +479,28 @@ const ResultsScreen = ({
             Результати за категоріями
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
-            {(Object.entries(results.categoryScores) as [
-              QuestionCategory,
-              { correct: number; total: number },
-            ][]).map(([category, score]) => (
-              <div
-                key={category}
-                className="bg-brand-light rounded-2xl p-6 transition-all duration-300 transform hover:-translate-y-1"
-              >
-                <div className="text-sm font-bold text-brand-dark/60 mb-2 uppercase tracking-wide">
-                  {categoryNames[category]}
+            {(Object.entries(results.categoryScores) as [QuestionCategory, { correct: number; total: number }][]).map(
+              ([category, score]) => (
+                <div key={category} className="bg-brand-light rounded-2xl p-6 transition-all duration-300 transform hover:-translate-y-1">
+                  <div className="text-sm font-bold text-brand-dark/60 mb-2 uppercase tracking-wide">
+                    {categoryNames[category]}
+                  </div>
+                  <div className="text-4xl font-black text-brand-dark mb-3">
+                    {score.correct}
+                    <span className="text-2xl text-brand-dark/40">/{score.total}</span>
+                  </div>
+                  <div className="w-full h-3 bg-white rounded-full mt-3 overflow-hidden">
+                    <div
+                      className="h-full bg-gradient-to-r from-brand-blue to-brand-orange rounded-full transition-all duration-500"
+                      style={{ width: `${score.total > 0 ? (score.correct / score.total) * 100 : 0}%` }}
+                    />
+                  </div>
+                  <div className="text-sm font-bold text-brand-blue mt-2">
+                    {score.total > 0 ? Math.round((score.correct / score.total) * 100) : 0}%
+                  </div>
                 </div>
-                <div className="text-4xl font-black text-brand-dark mb-3">
-                  {score.correct}
-                  <span className="text-2xl text-brand-dark/40">/{score.total}</span>
-                </div>
-                <div className="w-full h-3 bg-white rounded-full mt-3 overflow-hidden">
-                  <div
-                    className="h-full bg-gradient-to-r from-brand-blue to-brand-orange rounded-full transition-all duration-500"
-                    style={{ width: `${score.total > 0 ? (score.correct / score.total) * 100 : 0}%` }}
-                  />
-                </div>
-                <div className="text-sm font-bold text-brand-blue mt-2">
-                  {score.total > 0 ? Math.round((score.correct / score.total) * 100) : 0}%
-                </div>
-              </div>
-            ))}
+              )
+            )}
           </div>
         </div>
       </AnimatedElement>
@@ -459,10 +551,8 @@ const ResultsScreen = ({
                 if (onBackToSite) {
                   onBackToSite();
                   setTimeout(() => {
-                    const element = document.querySelector('#contact');
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
+                    const el = document.querySelector('#contact');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
                   }, 100);
                 }
               }}
@@ -500,77 +590,17 @@ const ResultsScreen = ({
   );
 };
 
-const GOAL_LABELS: Record<string, string> = {
-  general: 'Загальне вивчення мови',
-  work: 'Для роботи в Словаччині',
-  study: 'Для навчання в університеті',
-  citizenship: 'Для отримання громадянства',
-  travel: 'Для подорожей',
-};
-
-const STUDY_TIME_LABELS: Record<string, string> = {
-  minimal: '1-2 години на тиждень',
-  moderate: '3-5 годин на тиждень',
-  intensive: '6+ годин на тиждень',
-  flexible: 'Гнучкий графік',
-};
+// ── Main Quiz ─────────────────────────────────────────────────────────────────
 
 export default function Quiz({ onBackToSite }: { onBackToSite?: () => void }) {
-  const [stage, setStage] = useState<'registration' | 'quiz' | 'results'>('registration');
-  const [userData, setUserData] = useState<UserData | null>(null);
+  const [stage, setStage] = useState<Stage>('quiz');
+  const [leadData, setLeadData] = useState<LeadData | null>(null);
+  const [quizResults, setQuizResults] = useState<QuizResults | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [answers, setAnswers] = useState<QuizResults['answers']>([]);
   const [questionStartTime, setQuestionStartTime] = useState<number>(Date.now());
-
-  const handleRegistration = (data: UserData) => {
-    setUserData(data);
-    setStage('quiz');
-    setQuestionStartTime(Date.now());
-  };
-
-  const calculateResults = (): QuizResults => {
-    const levelScores: QuizResults['levelScores'] = {
-      A1: { correct: 0, total: 0 },
-      A2: { correct: 0, total: 0 },
-      B1: { correct: 0, total: 0 },
-      B2: { correct: 0, total: 0 },
-      C1: { correct: 0, total: 0 },
-    };
-
-    const categoryScores: QuizResults['categoryScores'] = {
-      vocabulary: { correct: 0, total: 0 },
-      grammar: { correct: 0, total: 0 },
-      communication: { correct: 0, total: 0 },
-      reading: { correct: 0, total: 0 },
-      writing: { correct: 0, total: 0 },
-    };
-
-    let totalScore = 0;
-
-    answers.forEach((answer) => {
-      const question = notionQuestions.find((q) => q.id === answer.questionId);
-      if (!question) return;
-
-      levelScores[question.difficulty].total++;
-      categoryScores[question.category].total++;
-
-      if (answer.isCorrect) {
-        totalScore++;
-        levelScores[question.difficulty].correct++;
-        categoryScores[question.category].correct++;
-      }
-    });
-
-    return {
-      totalScore,
-      levelScores,
-      categoryScores,
-      determinedLevel: determineNotionLevel(levelScores),
-      answers,
-    };
-  };
 
   const handleNextQuestion = () => {
     if (selectedAnswer === null) return;
@@ -579,15 +609,9 @@ export default function Quiz({ onBackToSite }: { onBackToSite?: () => void }) {
       setShowResult(true);
       const isCorrect = selectedAnswer === notionQuestions[currentQuestion].correctAnswer;
       const timeSpent = Date.now() - questionStartTime;
-
-      setAnswers([
-        ...answers,
-        {
-          questionId: notionQuestions[currentQuestion].id,
-          selectedAnswer,
-          isCorrect,
-          timeSpent,
-        },
+      setAnswers((prev) => [
+        ...prev,
+        { questionId: notionQuestions[currentQuestion].id, selectedAnswer, isCorrect, timeSpent },
       ]);
       return;
     }
@@ -600,79 +624,28 @@ export default function Quiz({ onBackToSite }: { onBackToSite?: () => void }) {
       return;
     }
 
-    // Build final answers list including current question
-    const finalAnswers = [
-      ...answers,
-    ];
+    // Quiz done — go to lead form
+    setStage('lead');
+  };
 
-    // Calculate results and send email
-    const levelScores: QuizResults['levelScores'] = {
-      A1: { correct: 0, total: 0 },
-      A2: { correct: 0, total: 0 },
-      B1: { correct: 0, total: 0 },
-      B2: { correct: 0, total: 0 },
-      C1: { correct: 0, total: 0 },
-    };
-    const categoryScores: QuizResults['categoryScores'] = {
-      vocabulary: { correct: 0, total: 0 },
-      grammar: { correct: 0, total: 0 },
-      communication: { correct: 0, total: 0 },
-      reading: { correct: 0, total: 0 },
-      writing: { correct: 0, total: 0 },
-    };
-    let totalScore = 0;
-    finalAnswers.forEach((answer) => {
-      const question = notionQuestions.find((q) => q.id === answer.questionId);
-      if (!question) return;
-      levelScores[question.difficulty].total++;
-      categoryScores[question.category].total++;
-      if (answer.isCorrect) {
-        totalScore++;
-        levelScores[question.difficulty].correct++;
-        categoryScores[question.category].correct++;
-      }
-    });
-    const determinedLevel = determineNotionLevel(levelScores);
-    const plan = notionLearningPlans[determinedLevel];
-    const percentage = Math.round((totalScore / notionQuestions.length) * 100);
-
-    if (userData) {
-      sendQuizResultEmail({
-        name: userData.name,
-        email: userData.email,
-        goal: GOAL_LABELS[userData.goal] ?? userData.goal,
-        studyTime: STUDY_TIME_LABELS[userData.studyTime] ?? userData.studyTime,
-        level: determinedLevel,
-        levelTitle: plan.title,
-        score: String(totalScore),
-        totalQuestions: String(notionQuestions.length),
-        percentage: String(percentage),
-        recommendedFormat: plan.formatName,
-        price: plan.price,
-        duration: plan.duration,
-        vocabScore: `${categoryScores.vocabulary.correct}/${categoryScores.vocabulary.total}`,
-        grammarScore: `${categoryScores.grammar.correct}/${categoryScores.grammar.total}`,
-        communicationScore: `${categoryScores.communication.correct}/${categoryScores.communication.total}`,
-        readingScore: `${categoryScores.reading.correct}/${categoryScores.reading.total}`,
-        writingScore: `${categoryScores.writing.correct}/${categoryScores.writing.total}`,
-      }).catch(() => {
-        // silently fail — results are still shown to user
-      });
-    }
-
+  const handleLeadComplete = (lead: LeadData, results: QuizResults) => {
+    setLeadData(lead);
+    setQuizResults(results);
     setStage('results');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleRestart = () => {
-    setStage('registration');
-    setUserData(null);
+    setStage('quiz');
+    setLeadData(null);
+    setQuizResults(null);
     setCurrentQuestion(0);
     setSelectedAnswer(null);
     setShowResult(false);
     setAnswers([]);
   };
 
-  const currentScore = answers.filter((answer) => answer.isCorrect).length;
+  const currentScore = answers.filter((a) => a.isCorrect).length;
 
   return (
     <div className="min-h-screen bg-brand-light pb-16 relative overflow-hidden">
@@ -685,17 +658,10 @@ export default function Quiz({ onBackToSite }: { onBackToSite?: () => void }) {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-gradient-to-br from-brand-blue/3 to-brand-orange/3 rounded-full blur-3xl" />
       </div>
 
-      <header
-        className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md py-2"
-        style={{ backgroundColor: '#ffffff' }}
-      >
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md py-2" style={{ backgroundColor: '#ffffff' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            <button
-              onClick={onBackToSite}
-              className="flex items-center group cursor-pointer"
-              style={{ boxShadow: 'none', textShadow: 'none' }}
-            >
+            <button onClick={onBackToSite} className="flex items-center group cursor-pointer" style={{ boxShadow: 'none' }}>
               <img
                 src="/logo/image.png"
                 alt="FOCUS School"
@@ -732,7 +698,6 @@ export default function Quiz({ onBackToSite }: { onBackToSite?: () => void }) {
 
       <main className="relative z-10 px-4 pt-24">
         <div className="max-w-5xl mx-auto">
-          {stage === 'registration' && <RegistrationForm onSubmit={handleRegistration} />}
 
           {stage === 'quiz' && (
             <div>
@@ -776,27 +741,26 @@ export default function Quiz({ onBackToSite }: { onBackToSite?: () => void }) {
             </div>
           )}
 
-          {stage === 'results' && userData && (
+          {stage === 'lead' && (
+            <LeadForm completedAnswers={answers} onComplete={handleLeadComplete} />
+          )}
+
+          {stage === 'results' && leadData && quizResults && (
             <ResultsScreen
-              results={calculateResults()}
-              userData={userData}
+              results={quizResults}
+              leadData={leadData}
               onRestart={handleRestart}
               onBackToSite={onBackToSite}
             />
           )}
+
         </div>
       </main>
 
       <footer className="relative z-10 mt-12 bg-brand-dark text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <img
-              src="/logo/image.png"
-              alt="FOCUS School"
-              loading="lazy"
-              decoding="async"
-              className="h-12 w-auto"
-            />
+            <img src="/logo/image.png" alt="FOCUS School" loading="lazy" decoding="async" className="h-12 w-auto" />
             <p className="text-white/50 text-sm">2026 FOCUS School. Всі права захищені.</p>
             <p className="text-white/30 text-sm">ФОКУС. ДІЯ. РЕЗУЛЬТАТ.</p>
           </div>
