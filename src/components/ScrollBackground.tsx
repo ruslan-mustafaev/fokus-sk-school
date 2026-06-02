@@ -193,7 +193,7 @@ export default function ScrollBackground() {
   }, [heroReady]);
 
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none" aria-hidden="true">
+    <div className="fixed inset-0 z-0 pointer-events-none" style={{ height: '100dvh' }} aria-hidden="true">
       {sectionBackgrounds.map((scene, index) => {
         if (!loadedIds.has(scene.id)) return null;
 

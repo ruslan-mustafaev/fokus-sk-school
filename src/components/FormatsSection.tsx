@@ -140,7 +140,7 @@ export default function FormatsSection({
         {/* Heading */}
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-down">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-white uppercase tracking-wide">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-white uppercase tracking-wide">
               Обери свій{" "}
               <span className="text-brand-orange">Формат</span>{" "}
               навчання
@@ -157,16 +157,16 @@ export default function FormatsSection({
               delay={(index * 100) as 0 | 100 | 200 | 300}
             >
               <div
-                className={`relative rounded-3xl p-8 transition-all duration-500 transform hover:-translate-y-2 border-t-4 ${course.accent} h-full flex flex-col bg-cover bg-center`}
+                className={`relative rounded-3xl p-5 md:p-8 transition-all duration-500 transform hover:-translate-y-2 border-t-4 ${course.accent} h-full flex flex-col bg-cover bg-center`}
                 style={{ backgroundImage: "url(/textures/white.webp)" }}
               >
                 {/* Duration sticker — circle overlapping top-right corner */}
                 {course.duration && (
-                  <div className={`absolute -top-5 -right-5 w-20 h-20 rounded-full flex flex-col items-center justify-center z-10 ${index === 1 ? 'bg-brand-orange' : 'bg-brand-blue'}`}>
-                    <span className="text-2xl font-black text-white leading-none">
+                  <div className={`absolute -top-4 -right-4 w-16 h-16 md:w-20 md:h-20 rounded-full flex flex-col items-center justify-center z-10 ${index === 1 ? 'bg-brand-orange' : 'bg-brand-blue'}`}>
+                    <span className="text-xl md:text-2xl font-black text-white leading-none">
                       {course.duration.split(' ')[0]}
                     </span>
-                    <span className="text-[10px] font-bold text-white/80 uppercase tracking-wide leading-none mt-0.5">
+                    <span className="text-[9px] md:text-[10px] font-bold text-white/80 uppercase tracking-wide leading-none mt-0.5">
                       {course.duration.split(' ')[1]}
                     </span>
                   </div>

@@ -60,7 +60,7 @@ export default function VideoLessonsSection() {
 
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-down">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-white">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-white">
               Відео-<span className="text-brand-orange">уроки</span>
             </h2>
           </AnimatedElement>

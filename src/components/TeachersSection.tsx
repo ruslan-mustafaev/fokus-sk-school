@@ -61,8 +61,7 @@ function TeacherCard({ teacher }: { teacher: (typeof teachers)[0] }) {
 
   if (teacher.hasVideo && teacher.videoId) {
     return (
-      <div
-        className="flex-shrink-0 w-72 rounded-3xl overflow-hidden transition-all duration-500 transform hover:-translate-y-2 bg-cover bg-center"
+      <div className="flex-shrink-0 w-[calc(100vw-3rem)] sm:w-72 rounded-3xl overflow-hidden transition-all duration-500 transform hover:-translate-y-2 bg-cover bg-center"
         style={{ backgroundImage: 'url(/textures/white.webp)' }}
       >
         <div className="relative aspect-video">
@@ -107,7 +106,7 @@ function TeacherCard({ teacher }: { teacher: (typeof teachers)[0] }) {
   }
 
   return (
-    <div className="flex-shrink-0 w-72 bg-white rounded-3xl overflow-hidden transition-all duration-500 transform hover:-translate-y-2">
+    <div className="flex-shrink-0 w-[calc(100vw-3rem)] sm:w-72 bg-white rounded-3xl overflow-hidden transition-all duration-500 transform hover:-translate-y-2">
       <div
         className={`relative w-full h-48 ${(teacher as { color?: string }).color ?? 'bg-brand-blue'} flex items-center justify-center`}
       >
@@ -141,7 +140,7 @@ export default function TeachersSection() {
   };
 
   return (
-    <section id="teachers" className="relative py-24 px-4 overflow-hidden">
+    <section id="teachers" className="relative py-24 px-0 sm:px-4 overflow-hidden">
       <div className="absolute inset-0 bg-black/20" />
       <img
         src="/full_dekor/10_trim.webp"
@@ -151,7 +150,7 @@ export default function TeachersSection() {
         loading="lazy"
       />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10 px-4 sm:px-0">
         <div className="text-center mb-12">
           <AnimatedElement animation="fade-in-up">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
@@ -172,14 +171,14 @@ export default function TeachersSection() {
           <div className="relative">
             <button
               onClick={() => scroll('left')}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300"
+              className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-12 h-12 bg-white rounded-full items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
 
             <div
               ref={scrollRef}
-              className="flex gap-6 overflow-x-auto py-4 px-2 scroll-smooth"
+              className="flex gap-4 sm:gap-6 overflow-x-auto py-4 px-4 scroll-smooth"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {teachers.map((teacher, index) => (
@@ -189,7 +188,7 @@ export default function TeachersSection() {
 
             <button
               onClick={() => scroll('right')}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300"
+              className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-12 h-12 bg-white rounded-full items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300"
             >
               <ChevronRight className="w-6 h-6" />
             </button>

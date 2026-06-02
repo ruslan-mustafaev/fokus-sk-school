@@ -52,7 +52,7 @@ export default function FeaturesSection() {
           {stats.map((stat, index) => (
             <AnimatedElement key={stat.label} animation="fade-in-up" delay={(100 + index * 100) as 0 | 100 | 200 | 300}>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-black text-brand-orange mb-2">{stat.value}</div>
+                <div className="text-3xl md:text-4xl lg:text-5xl font-black text-brand-orange mb-2">{stat.value}</div>
                 <div className="text-sm md:text-base text-white/70 font-medium leading-relaxed">{stat.label}</div>
               </div>
             </AnimatedElement>
@@ -75,7 +75,7 @@ export default function FeaturesSection() {
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-up" delay={100}>
             <div className="relative inline-block">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-white relative z-10">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-white relative z-10">
                 Наші <span className="text-brand-orange">Фішки</span>
               </h2>
               <img
@@ -99,7 +99,7 @@ export default function FeaturesSection() {
               <div
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className={`group relative rounded-3xl p-8 transition-all duration-500 transform hover:-translate-y-2 h-full cursor-default bg-cover bg-center`}
+                className={`group relative rounded-3xl p-5 md:p-8 transition-all duration-500 transform hover:-translate-y-2 h-full cursor-default bg-cover bg-center`}
                 style={{ backgroundImage: hoveredIndex === index ? 'url(/textures/orange.webp)' : 'url(/textures/white.webp)' }}
               >
                 <div className="flex items-start gap-4 mb-4">

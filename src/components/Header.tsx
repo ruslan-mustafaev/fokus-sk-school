@@ -123,7 +123,7 @@ export default function Header({ onQuizClick }: { onQuizClick?: () => void }) {
                 className="w-full px-5 py-3 bg-brand-orange text-white rounded-full font-semibold
                          text-sm text-center"
               >
-                Тест на рівень -- 3 хв твого часу
+                Тест на рівень — 3 хв
               </button>
               <button
                 onClick={scrollToContact}

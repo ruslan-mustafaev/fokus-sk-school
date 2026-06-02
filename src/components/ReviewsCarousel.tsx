@@ -134,8 +134,8 @@ export default function ReviewsCarousel() {
 
       <div className="relative overflow-hidden">
         {/* Gradient edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black/50 to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black/50 to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-32 bg-gradient-to-r from-black/50 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-32 bg-gradient-to-l from-black/50 to-transparent z-10 pointer-events-none" />
 
         {/* Navigation buttons */}
         <button
@@ -168,7 +168,7 @@ export default function ReviewsCarousel() {
           {duplicatedReviews.map((review, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-80 rounded-2xl p-6 transition-all duration-300 bg-cover bg-center select-none"
+              className="flex-shrink-0 w-[min(320px,calc(100vw-3rem))] rounded-2xl p-5 sm:p-6 transition-all duration-300 bg-cover bg-center select-none"
               style={{ backgroundImage: 'url(/textures/white.webp)' }}
             >
               <div className="flex gap-1 mb-3">

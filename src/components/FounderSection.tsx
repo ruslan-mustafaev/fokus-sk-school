@@ -36,7 +36,7 @@ export default function FounderSection() {
       />
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
 
           {/* Photo */}
           <AnimatedElement animation="fade-in-left">
@@ -59,7 +59,7 @@ export default function FounderSection() {
           {/* Bio text */}
           <AnimatedElement animation="fade-in-right" delay={100}>
             <div>
-              <h2 className="text-5xl md:text-6xl font-black text-brand-dark mb-2">Нана</h2>
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-brand-dark mb-2">Нана</h2>
               <p className="text-brand-blue text-lg mb-8" style={{ fontFamily: 'Cygre, sans-serif', fontWeight: 400 }}>Засновниця Focus School</p>
 
               <div className="space-y-5 text-brand-dark/80 leading-relaxed text-base md:text-lg">
@@ -80,7 +80,7 @@ export default function FounderSection() {
                   Я постійно вдосконалюю програми, розвиваю команду та масштабую школу,
                   щоб ще більше українців могли почуватися впевнено у Словаччині.
                 </p>
-                <blockquote className="border-l-4 border-brand-orange pl-4 italic text-brand-dark font-body text-2xl md:text-[1.8rem]">
+                <blockquote className="border-l-4 border-brand-orange pl-4 italic text-brand-dark font-body text-xl sm:text-2xl md:text-[1.8rem]">
                   Focus School — це про результат, систему і любов до мови.
                 </blockquote>
               </div>
