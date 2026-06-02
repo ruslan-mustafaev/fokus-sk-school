@@ -207,7 +207,7 @@ export default function ScrollBackground() {
   // На мобильных поднимаем hero видео/постер выше, чтобы убрать тёмную полосу сверху.
   // scale слегка увеличивает кадр, translateY сдвигает его вверх.
   const heroMobileStyle = isMobile
-    ? { transform: 'translateY(-6%) scale(1.12)', transformOrigin: 'top center' }
+    ? { transform: 'translateY(-12%) scale(1.25)', transformOrigin: 'top center' }
     : {};
 
   return (
