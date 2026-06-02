@@ -1,11 +1,9 @@
-// EmailJS configuration — replace placeholders with real credentials
 export const EMAILJS_CONFIG = {
-  SERVICE_ID: 'YOUR_SERVICE_ID',
-  PUBLIC_KEY: 'YOUR_PUBLIC_KEY',
-  // Template IDs
+  SERVICE_ID: 'service_93390z3',
+  PUBLIC_KEY: '0lRqySXMIafpQ2Q7e',
   TEMPLATES: {
     TRIAL_SIGNUP: 'YOUR_TRIAL_SIGNUP_TEMPLATE_ID',
-    QUIZ_RESULTS: 'YOUR_QUIZ_RESULTS_TEMPLATE_ID',
+    QUIZ_RESULTS: 'template_lr3i6km',
   },
 };
 
