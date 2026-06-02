@@ -39,7 +39,7 @@ function validateContact(contact: string): string | null {
 
   // Phone — должен начинаться с + или 0
   if (!trimmed.startsWith('+') && !trimmed.startsWith('0')) {
-    return "Номер має починатись з + або 0";
+    return "Введіть номер у форматі +380 / +421 або Telegram @username";
   }
 
   const digitsOnly = trimmed.replace(/[\s\-\(\)\.+]/g, '');
