@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
@@ -183,6 +183,40 @@ const QuestionCard = ({
   );
 };
 
+// ── Validation ───────────────────────────────────────────────────────────────
+
+const BANNED_WORDS = [
+  'fuck','shit','bitch','ass','dick','pussy','cunt','bastard',
+  'сука','блять','блядь','хуй','пизд','ебат','ёбан','нахуй','пошёл нах',
+  'kurva','piča','kokot','jebať','do piče','prdel',
+];
+
+function containsBannedWords(text: string): boolean {
+  const lower = text.toLowerCase();
+  return BANNED_WORDS.some((w) => lower.includes(w));
+}
+
+function validateLeadName(name: string): string | null {
+  const t = name.trim();
+  if (t.length < 2) return "Ім'я має містити мінімум 2 символи";
+  if (t.length > 50) return "Ім'я занадто довге";
+  if (/\d/.test(t)) return "Ім'я не може містити цифри";
+  if (!/^[\p{L}\s'-]+$/u.test(t)) return "Ім'я містить недопустимі символи";
+  if (containsBannedWords(t)) return "Будь ласка, введіть справжнє ім'я";
+  return null;
+}
+
+function validateLeadEmail(email: string): string | null {
+  const t = email.trim();
+  if (!t) return "Введіть email";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(t)) return "Невірний формат email";
+  const local = t.split('@')[0];
+  if (local.length < 3) return "Email занадто короткий";
+  if (!/[a-zA-Z]/.test(local)) return "Введіть справжній email";
+  if (containsBannedWords(t)) return "Введіть справжній email";
+  return null;
+}
+
 // ── LeadForm ──────────────────────────────────────────────────────────────────
 // Shown AFTER the quiz, before showing results.
 // Collects name + email, sends the result email, then reveals results.
@@ -194,14 +228,17 @@ const LeadForm = ({
   completedAnswers: QuizResults['answers'];
   onComplete: (lead: LeadData, results: QuizResults) => void;
 }) => {
-  const [formData, setFormData] = useState<LeadData>({
+  const [formData, setFormData] = useState<LeadData & { website: string }>({
     name: '',
     email: '',
     goal: 'general',
     studyTime: 'flexible',
+    website: '', // honeypot
   });
   const [sending, setSending] = useState(false);
-  const [error, setError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [globalError, setGlobalError] = useState('');
+  const lastSubmitRef = useRef<number>(0);
 
   // Pre-calculate results so we can show a teaser level badge
   const levelScores: QuizResults['levelScores'] = {
@@ -244,9 +281,31 @@ const LeadForm = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name.trim() || !formData.email.trim()) return;
+
+    // Honeypot — bot fills hidden field
+    if (formData.website) return;
+
+    // Rate limit — no more than once per 10 seconds
+    const now = Date.now();
+    if (now - lastSubmitRef.current < 10_000) {
+      setGlobalError('Зачекайте трохи перед повторною відправкою');
+      return;
+    }
+
+    const errs: Record<string, string> = {};
+    const nameErr = validateLeadName(formData.name);
+    if (nameErr) errs.name = nameErr;
+    const emailErr = validateLeadEmail(formData.email);
+    if (emailErr) errs.email = emailErr;
+    if (containsBannedWords(`${formData.name} ${formData.email}`)) {
+      errs.global = 'Форма містить неприпустимий текст';
+    }
+    setFieldErrors(errs);
+    if (Object.keys(errs).length > 0) return;
+
+    lastSubmitRef.current = now;
     setSending(true);
-    setError('');
+    setGlobalError('');
     try {
       await sendQuizResultEmail({
         name: formData.name.trim(),
@@ -269,7 +328,7 @@ const LeadForm = ({
       });
     } catch {
       // Email failure should not block showing results — just note it
-      setError('Не вдалось надіслати результати на пошту. Але ваш рівень вже визначено!');
+      setGlobalError('Не вдалось надіслати результати на пошту. Але ваш рівень вже визначено!');
     }
     onComplete(formData, results);
   };
@@ -311,16 +370,31 @@ const LeadForm = ({
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-5">
+            {/* Honeypot — hidden from real users */}
+            <input
+              type="text"
+              name="website"
+              value={formData.website}
+              onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+              className="hidden"
+              tabIndex={-1}
+              autoComplete="off"
+            />
+
             <div>
               <label className="block text-sm font-bold text-brand-dark mb-2">Ваше ім'я</label>
               <input
                 type="text"
                 required
                 value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-5 py-4 rounded-xl bg-brand-light border-2 border-transparent text-brand-dark placeholder-brand-dark/40 focus:border-brand-blue focus:bg-white focus:outline-none transition-all duration-300 font-medium"
+                onChange={(e) => {
+                  setFormData({ ...formData, name: e.target.value });
+                  if (fieldErrors.name) setFieldErrors((p) => { const n = { ...p }; delete n.name; return n; });
+                }}
+                className={`w-full px-5 py-4 rounded-xl bg-brand-light border-2 text-brand-dark placeholder-brand-dark/40 focus:bg-white focus:outline-none transition-all duration-300 font-medium ${fieldErrors.name ? 'border-red-400 focus:border-red-400' : 'border-transparent focus:border-brand-blue'}`}
                 placeholder="Введіть ваше ім'я"
               />
+              {fieldErrors.name && <p className="mt-1.5 text-sm text-red-500 font-medium">{fieldErrors.name}</p>}
             </div>
 
             <div>
@@ -329,10 +403,14 @@ const LeadForm = ({
                 type="email"
                 required
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-5 py-4 rounded-xl bg-brand-light border-2 border-transparent text-brand-dark placeholder-brand-dark/40 focus:border-brand-blue focus:bg-white focus:outline-none transition-all duration-300 font-medium"
+                onChange={(e) => {
+                  setFormData({ ...formData, email: e.target.value });
+                  if (fieldErrors.email) setFieldErrors((p) => { const n = { ...p }; delete n.email; return n; });
+                }}
+                className={`w-full px-5 py-4 rounded-xl bg-brand-light border-2 text-brand-dark placeholder-brand-dark/40 focus:bg-white focus:outline-none transition-all duration-300 font-medium ${fieldErrors.email ? 'border-red-400 focus:border-red-400' : 'border-transparent focus:border-brand-blue'}`}
                 placeholder="your@email.com"
               />
+              {fieldErrors.email && <p className="mt-1.5 text-sm text-red-500 font-medium">{fieldErrors.email}</p>}
             </div>
 
             <div>
@@ -368,15 +446,15 @@ const LeadForm = ({
               </select>
             </div>
 
-            {error && (
+            {(globalError || fieldErrors.global) && (
               <p className="text-amber-600 text-sm font-medium bg-amber-50 px-4 py-3 rounded-xl">
-                {error}
+                {globalError || fieldErrors.global}
               </p>
             )}
 
             <button
               type="submit"
-              disabled={!formData.name.trim() || !formData.email.trim() || sending}
+              disabled={sending}
               className="w-full flex items-center justify-center gap-3 px-8 py-5 bg-brand-orange text-white rounded-full font-bold text-lg hover:bg-brand-orange/90 transition-all duration-300 transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
               {sending ? (
