@@ -34,13 +34,6 @@ const features = [
 export default function FeaturesSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  const handleTrialClick = () => {
-    const element = document.querySelector('#contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <section
       id="about"
@@ -58,19 +51,6 @@ export default function FeaturesSection() {
             </AnimatedElement>
           ))}
         </div>
-
-        <AnimatedElement animation="scale-in" delay={200}>
-          <div className="flex justify-center mb-24 md:mb-28">
-            <button
-              onClick={handleTrialClick}
-              className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-orange text-white
-                       rounded-full font-bold text-lg hover:bg-brand-orange/90 transition-all duration-300
-                       transform hover:-translate-y-1"
-            >
-              Записатись на пробний ✍️
-            </button>
-          </div>
-        </AnimatedElement>
 
         <div className="text-center mb-16">
           <AnimatedElement animation="fade-in-up" delay={100}>
