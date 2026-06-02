@@ -2,7 +2,7 @@ export const EMAILJS_CONFIG = {
   SERVICE_ID: 'service_93390z3',
   PUBLIC_KEY: '0lRqySXMIafpQ2Q7e',
   TEMPLATES: {
-    TRIAL_SIGNUP: 'YOUR_TRIAL_SIGNUP_TEMPLATE_ID',
+    TRIAL_SIGNUP: 'template_vyiot1d',
     QUIZ_RESULTS: 'template_lr3i6km',
   },
 };
