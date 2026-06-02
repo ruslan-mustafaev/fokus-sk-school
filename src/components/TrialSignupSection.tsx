@@ -1,8 +1,68 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import AnimatedElement from "./AnimatedElement";
 import { sendTrialSignupEmail } from "../lib/emailjs";
 
 type FormStatus = 'idle' | 'sending' | 'success' | 'error';
+
+/* ── Валидация ────────────────────────────────────────── */
+
+const BANNED_WORDS = [
+  'fuck','shit','bitch','ass','dick','pussy','cunt','bastard',
+  'сука','блять','блядь','хуй','пизд','ебат','ёбан','нахуй','пошёл нах',
+  'kurva','piča','kokot','jebať','do piče','prdel',
+];
+
+function containsBannedWords(text: string): boolean {
+  const lower = text.toLowerCase();
+  return BANNED_WORDS.some((w) => lower.includes(w));
+}
+
+function validateName(name: string): string | null {
+  const trimmed = name.trim();
+  if (trimmed.length < 2) return "Ім'я має містити мінімум 2 символи";
+  if (trimmed.length > 50) return "Ім'я занадто довге";
+  if (/\d/.test(trimmed)) return "Ім'я не може містити цифри";
+  if (!/^[\p{L}\s'-]+$/u.test(trimmed)) return "Ім'я містить недопустимі символи";
+  if (containsBannedWords(trimmed)) return "Будь ласка, введіть справжнє ім'я";
+  return null;
+}
+
+function validateContact(contact: string): string | null {
+  const trimmed = contact.trim();
+  if (trimmed.length < 3) return "Введіть телефон або Telegram";
+
+  // Telegram username
+  if (trimmed.startsWith('@')) {
+    if (!/^@[a-zA-Z0-9_]{4,32}$/.test(trimmed)) return "Невірний формат Telegram (мін. 5 символів після @)";
+    return null;
+  }
+
+  // Phone number — любой международный формат
+  const digitsOnly = trimmed.replace(/[\s\-\(\)\.+]/g, '');
+  if (/^\d+$/.test(digitsOnly)) {
+    if (digitsOnly.length < 7) return "Телефон занадто короткий (мін. 7 цифр)";
+    if (digitsOnly.length > 15) return "Телефон занадто довгий";
+    if (/^(\d)\1{6,}$/.test(digitsOnly)) return "Введіть справжній номер телефону";
+    return null;
+  }
+
+  return "Введіть номер телефону або Telegram (@username)";
+}
+
+function validateEmail(email: string): string | null {
+  if (!email.trim()) return null; // email необов'язковий
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  if (!re.test(email.trim())) return "Невірний формат email";
+  return null;
+}
+
+function validateAllFields(name: string, contact: string, email: string): string | null {
+  const combined = `${name} ${contact} ${email}`;
+  if (containsBannedWords(combined)) return "Форма містить неприпустимий текст";
+  return null;
+}
+
+/* ── Компонент ────────────────────────────────────────── */
 
 export default function TrialSignupSection() {
   const [formData, setFormData] = useState({
@@ -10,22 +70,69 @@ export default function TrialSignupSection() {
     contact: "",
     email: "",
     agreed: false,
+    website: "", // honeypot
   });
   const [status, setStatus] = useState<FormStatus>('idle');
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const lastSubmitRef = useRef<number>(0);
+
+  const validate = (): boolean => {
+    const newErrors: Record<string, string> = {};
+
+    const nameErr = validateName(formData.name);
+    if (nameErr) newErrors.name = nameErr;
+
+    const contactErr = validateContact(formData.contact);
+    if (contactErr) newErrors.contact = contactErr;
+
+    const emailErr = validateEmail(formData.email);
+    if (emailErr) newErrors.email = emailErr;
+
+    const globalErr = validateAllFields(formData.name, formData.contact, formData.email);
+    if (globalErr) newErrors.global = globalErr;
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Honeypot — бот заполнит скрытое поле
+    if (formData.website) return;
+
+    // Rate limit — не чаще 1 раз в 10 секунд
+    const now = Date.now();
+    if (now - lastSubmitRef.current < 10_000) {
+      setErrors({ global: "Зачекайте трохи перед повторною відправкою" });
+      return;
+    }
+
+    if (!validate()) return;
+
+    lastSubmitRef.current = now;
     setStatus('sending');
     try {
       await sendTrialSignupEmail({
-        name: formData.name,
-        contact: formData.contact,
-        email: formData.email,
+        name: formData.name.trim(),
+        contact: formData.contact.trim(),
+        email: formData.email.trim(),
       });
       setStatus('success');
-      setFormData({ name: "", contact: "", email: "", agreed: false });
+      setFormData({ name: "", contact: "", email: "", agreed: false, website: "" });
+      setErrors({});
     } catch {
       setStatus('error');
+    }
+  };
+
+  const clearError = (field: string) => {
+    if (errors[field]) {
+      setErrors((prev) => {
+        const next = { ...prev };
+        delete next[field];
+        return next;
+      });
     }
   };
 
@@ -82,6 +189,18 @@ export default function TrialSignupSection() {
                 className="rounded-3xl p-8 bg-cover bg-center"
                 style={{ backgroundImage: 'url(/textures/white.webp)' }}
               >
+                {/* Honeypot — невидимое поле для ботов */}
+                <div style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, overflow: 'hidden' }} aria-hidden="true">
+                  <input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={formData.website}
+                    onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                  />
+                </div>
+
                 <div className="space-y-4 mb-6">
                   <div>
                     <label className="block text-xs font-semibold text-brand-dark/60 uppercase tracking-wide mb-1">
@@ -90,14 +209,19 @@ export default function TrialSignupSection() {
                     <input
                       type="text"
                       required
+                      maxLength={50}
                       value={formData.name}
-                      onChange={(e) =>
-                        setFormData({ ...formData, name: e.target.value })
-                      }
-                      className="w-full border-b-2 border-brand-dark/20 focus:border-brand-blue outline-none py-2
-                               text-brand-dark placeholder-brand-dark/30 transition-colors duration-200 bg-transparent"
+                      onChange={(e) => {
+                        setFormData({ ...formData, name: e.target.value });
+                        clearError('name');
+                      }}
+                      className={`w-full border-b-2 ${errors.name ? 'border-red-400' : 'border-brand-dark/20'} focus:border-brand-blue outline-none py-2
+                               text-brand-dark placeholder-brand-dark/30 transition-colors duration-200 bg-transparent`}
                       placeholder="Твоє ім'я"
                     />
+                    {errors.name && (
+                      <p className="text-red-500 text-xs mt-1 font-medium">{errors.name}</p>
+                    )}
                   </div>
 
                   <div>
@@ -107,14 +231,19 @@ export default function TrialSignupSection() {
                     <input
                       type="text"
                       required
+                      maxLength={40}
                       value={formData.contact}
-                      onChange={(e) =>
-                        setFormData({ ...formData, contact: e.target.value })
-                      }
-                      className="w-full border-b-2 border-brand-dark/20 focus:border-brand-blue outline-none py-2
-                               text-brand-dark placeholder-brand-dark/30 transition-colors duration-200 bg-transparent"
-                      placeholder="+380... або @username"
+                      onChange={(e) => {
+                        setFormData({ ...formData, contact: e.target.value });
+                        clearError('contact');
+                      }}
+                      className={`w-full border-b-2 ${errors.contact ? 'border-red-400' : 'border-brand-dark/20'} focus:border-brand-blue outline-none py-2
+                               text-brand-dark placeholder-brand-dark/30 transition-colors duration-200 bg-transparent`}
+                      placeholder="+421..., +380... або @username"
                     />
+                    {errors.contact && (
+                      <p className="text-red-500 text-xs mt-1 font-medium">{errors.contact}</p>
+                    )}
                   </div>
 
                   <div>
@@ -123,14 +252,19 @@ export default function TrialSignupSection() {
                     </label>
                     <input
                       type="email"
+                      maxLength={100}
                       value={formData.email}
-                      onChange={(e) =>
-                        setFormData({ ...formData, email: e.target.value })
-                      }
-                      className="w-full border-b-2 border-brand-dark/20 focus:border-brand-blue outline-none py-2
-                               text-brand-dark placeholder-brand-dark/30 transition-colors duration-200 bg-transparent"
+                      onChange={(e) => {
+                        setFormData({ ...formData, email: e.target.value });
+                        clearError('email');
+                      }}
+                      className={`w-full border-b-2 ${errors.email ? 'border-red-400' : 'border-brand-dark/20'} focus:border-brand-blue outline-none py-2
+                               text-brand-dark placeholder-brand-dark/30 transition-colors duration-200 bg-transparent`}
                       placeholder="email@example.com"
                     />
+                    {errors.email && (
+                      <p className="text-red-500 text-xs mt-1 font-medium">{errors.email}</p>
+                    )}
                   </div>
                 </div>
 
@@ -150,9 +284,9 @@ export default function TrialSignupSection() {
                   </span>
                 </label>
 
-                {status === 'error' && (
+                {(status === 'error' || errors.global) && (
                   <p className="text-red-500 text-sm font-medium mb-4">
-                    Помилка надсилання. Спробуйте ще раз або напишіть нам напряму.
+                    {errors.global || 'Помилка надсилання. Спробуйте ще раз або напишіть нам напряму.'}
                   </p>
                 )}
 
